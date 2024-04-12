@@ -43,6 +43,7 @@
     box-shadow: none;
     text-decoration: none;
     scroll-behavior: smooth;
+    border: 1px solid red;
 
 }
 
@@ -122,6 +123,7 @@ h2 {
 html {
   margin: 0;
   padding: 0;
+  top: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
 
@@ -137,7 +139,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   width: 100vw;
   height: auto;
   margin: 0;
