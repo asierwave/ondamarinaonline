@@ -43,7 +43,6 @@
     box-shadow: none;
     text-decoration: none;
     scroll-behavior: smooth;
-    border: 1px solid red;
 
 }
 
@@ -448,6 +447,14 @@ gap: 20px;
   letter-spacing: 4px;
   font-size: 14px;
   font-weight: 500;
+
+}
+
+/* para descripciones de programas */
+
+.descriptiononalt {
+  background-color: #2F75A2;
+  color: #fafafa;
 
 }
 
