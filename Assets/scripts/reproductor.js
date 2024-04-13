@@ -37,17 +37,71 @@ iconosPlay.forEach(iconoPlay => {
 const botonFotoplay = document.getElementById('imagen-reproducir-pausar');
 let estaReproduciendo = false;
 
+
+
+
+
 botonFotoplay.addEventListener('click', function () {
+  if (window.scrollY < 70) {
+    if (estaReproduciendo) {
+      miAudio.pause(); // Pausa la transmisión si está reproduciéndose
+      botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Reproducir"
+      estaReproduciendo = false;
+
+  
+    } else {
+      miAudio.play(); // Reproduce la transmisión si está pausada
+      botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Pausar"
+      estaReproduciendo = true;
+
+  }
+} else {
+
   if (estaReproduciendo) {
     miAudio.pause(); // Pausa la transmisión si está reproduciéndose
     botonFotoplay.setAttribute('src', 'Assets/playicon.png'); // Cambia la imagen a "Reproducir"
     estaReproduciendo = false;
+
+
   } else {
     miAudio.play(); // Reproduce la transmisión si está pausada
     botonFotoplay.setAttribute('src', 'Assets/pauseblue.png'); // Cambia la imagen a "Pausar"
     estaReproduciendo = true;
+
+}
+
+}
+
+});
+
+
+window.addEventListener('scroll', function () {
+  // Verificar la posición del scroll
+  if (window.scrollY < 70) {
+    if (estaReproduciendo) {
+      botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Reproducir"
+
+  
+    } else {
+      botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Pausar"
+
+  }
+  } else {
+    
+  if (estaReproduciendo) {
+    botonFotoplay.setAttribute('src', 'Assets/pauseblue.png'); // Cambia la imagen a "Reproducir"
+
+
+  } else {
+    botonFotoplay.setAttribute('src', 'Assets/playicon.png'); // Cambia la imagen a "Pausar"
+
+}
   }
 });
+
+ 
+  
+
 
 // Agrega un manejador de eventos para retroceder 10 segundos
 const botonDiezSegundosAtras = document.getElementById('imagen-diez-segundos-atras');

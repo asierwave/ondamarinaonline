@@ -1,7 +1,7 @@
 function mostrarProgramaActual() {
   var ahora = new Date();
   var horaActual = ahora.getHours() + ':' + (ahora.getMinutes() < 10 ? '0' : '') + ahora.getMinutes();
-  var diaSemanaActual = ahora.getDay();
+  var diaSemanaActual = ahora.getDay()+7 || 0 ;
 
   var tablaProgramacion = document.getElementById("tablaProgramacion");
   var programaActual = ""; // Inicialmente no hay programa actual
