@@ -18,8 +18,8 @@ rd2.addEventListener('click', function() {
 
 
   if (window.innerWidth < 800) {
-    rd2.style.top='400px';
-    rd2.style.width='60vw';
+    rd2.style.top='350px';
+    rd2.style.width='70vw';
 
   
     } else {
@@ -52,7 +52,7 @@ window.addEventListener('scroll', function() {
 
   var scrollPosition = window.scrollY;
 
-  if (scrollPosition < 280) {
+  if (scrollPosition < 350) {
     ar2.style.color = '#fafafa';
     logo.src = 'Assets/logowhite.png';
     menu.src = 'Assets/menualtwhite.png';
@@ -73,7 +73,7 @@ window.addEventListener('scroll', function() {
     if (window.innerWidth < 800) {
       rd2.style.top='350px';
       rd2.style.boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)';
-      rd2.style.width='60vw';
+      rd2.style.width='70vw';
 
     } else {
       rd2.style.top='120px';
@@ -83,7 +83,7 @@ window.addEventListener('scroll', function() {
     }
     
 
-  } else if (scrollPosition > 280) {
+  } else if (scrollPosition > 350) {
     ar2.style.color = '#2F75A2';
     logo.src = 'Assets/logonline.png';
     menu.src = 'Assets/menualt.png';
@@ -104,10 +104,9 @@ window.addEventListener('scroll', function() {
     if (window.innerWidth < 800) {
     rd2.style.top='-65px';
     rd2.style.boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)';
-    rd2.style.width='60vw';
+    rd2.style.width='70vw';
     rd2.style.background = '#fafafa';
     directo.style.opacity='100';
-    rd2.style.boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)';
 
 
     } else {

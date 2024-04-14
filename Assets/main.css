@@ -1677,19 +1677,19 @@ h4 {
 
     @keyframes moverTexto {
         0% {
-        transform: translateX(700px);
+        transform: translateX(600px);
         transform: translateY(0px);
 
     }
     100% {
-        transform: translateX(700px);
+        transform: translateX(-600px);
         transform: translateY(0px);
     }
     }
 
     #programaActual {
         display: flex;
-        animation: moverTexto 0s linear infinite;
+        animation: moverTexto 10s linear infinite;
         letter-spacing: 4pt;
         white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
         padding:14px 2px;
@@ -1799,7 +1799,7 @@ h4 {
       max-height: 160px;
       padding:8px 7% 40px 7%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 60vw;
+      width: 70vw;
       cursor: pointer;
       border-radius: 20px;
       overflow: hidden;
@@ -1823,7 +1823,7 @@ h4 {
       max-height: 160px;
       padding:8px 7% 40px 7%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 60vw;
+      width: 70vw;
       cursor: pointer;
       border-radius: 20px;
       overflow: hidden;
