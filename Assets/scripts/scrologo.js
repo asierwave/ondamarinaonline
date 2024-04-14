@@ -1,3 +1,69 @@
+// Función para desplazarse hasta arriba
+function scrollToTop() {
+
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+var rd2 = document.querySelector('.reproductor');
+
+// Agregar event listener al botón
+rd2.addEventListener('click', function() {
+  if (window.innerWidth < 800){
+  // Llamar a la función scrollToTop cuando se hace clic en el botón
+  scrollToTop();
+  }
+});
+
+
+
+
+
+
+
+
+  // Definir una función para manejar el cambio en el ancho de la pantalla
+function manejarCambioAnchoPantalla() {
+  // Obtener el ancho de la pantalla actual
+  var anchoPantalla = window.innerWidth;
+
+  // Hacer lo que necesites con el ancho de la pantalla
+  console.log("El ancho de la pantalla es: " + anchoPantalla + " píxeles.");
+}
+
+// Agregar un event listener para el evento resize
+window.addEventListener('resize', function () {
+  var rd2 = document.querySelector('.reproductor');
+
+  if (window.innerWidth < 800) {
+    rd2.style.top='-65px';
+
+    rd2.addEventListener('click', function () {
+      scrollPosition= -100;
+
+    });
+   
+
+    } else {
+    rd2.style.top='120px';
+
+    
+    }
+
+
+  // Llamar a la función manejarCambioAnchoPantalla cada vez que se redimensione la ventana
+  manejarCambioAnchoPantalla();
+});
+
+// Llamar a la función manejarCambioAnchoPantalla al cargar la página para obtener el ancho inicial de la pantalla
+manejarCambioAnchoPantalla();
+
+
+
+
 window.addEventListener('scroll', function() {
   var logo = document.querySelector('#logo');
   var menu = document.querySelector('#menu');
@@ -11,6 +77,9 @@ window.addEventListener('scroll', function() {
   var hr2 = document.querySelector('header'); 
   var ar2 = document.querySelector('.submenuitem'); 
   var menuCabeza = document.querySelector('.cabeza');
+
+
+  
 
 
   var scrollPosition = window.scrollY;
@@ -43,8 +112,9 @@ window.addEventListener('scroll', function() {
     botondirecto.src = 'Assets/playwhite.png';
     atras.src = 'Assets/backwhite.png';
     rd2.style.maxHeight='180px';
+    botondirecto.style.transform='rotate(90deg)';
 
-    if (innerWidth < 800) {
+    if (window.innerWidth < 800) {
       rd2.style.top='0';
     } else {
       rd2.style.top='120px';
@@ -52,7 +122,7 @@ window.addEventListener('scroll', function() {
     
 
 
-  } else {
+  } else if (scrollPosition > 900){
     rd2.style.background = '#fafafa';
     directo.style.color = '#2F75A2';
     menuitem.style.color = '#fafafa';
@@ -61,14 +131,27 @@ window.addEventListener('scroll', function() {
     botondirecto.src = 'Assets/iconoplays.png';
     atras.src = 'Assets/backblue.png';
     rd2.style.maxHeight='50px';
+    botondirecto.style.transform='rotate(0deg)';
 
-    if (innerWidth < 800) {
+
+   
+  
+
+   
+
+
+
+    if (window.innerWidth < 800) {
     rd2.style.top='-65px';
+
     } else {
     rd2.style.top='120px';
     }
 
   }
+
+
+
 });
 
 

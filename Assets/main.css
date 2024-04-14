@@ -154,9 +154,7 @@ body {
   header {
     display: flex;
     position:fixed;
-    z-index: 1;
     background: none;
-
     top: -3px; 
     justify-content: space-between; 
     gap: 12px;
