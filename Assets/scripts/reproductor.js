@@ -42,7 +42,7 @@ let estaReproduciendo = false;
 
 
 botonFotoplay.addEventListener('click', function () {
-  if (window.scrollY < 70) {
+  if (window.scrollY < 900) {
     if (estaReproduciendo) {
       miAudio.pause(); // Pausa la transmisión si está reproduciéndose
       botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Reproducir"
@@ -77,7 +77,7 @@ botonFotoplay.addEventListener('click', function () {
 
 window.addEventListener('scroll', function () {
   // Verificar la posición del scroll
-  if (window.scrollY < 70) {
+  if (window.scrollY < 900) {
     if (estaReproduciendo) {
       botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Reproducir"
 
