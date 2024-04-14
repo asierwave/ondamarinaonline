@@ -167,7 +167,7 @@ body {
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
-
+z-index: 1;
 
   }
 
@@ -231,7 +231,7 @@ body {
     white-space: nowrap;
     width: 100vw;
     height: auto;
-    padding:0 8vw 0 8vw;
+    padding:0 10vw 0 10vw;
     gap:auto;
     flex-direction: row;
     transition: padding 4s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -350,6 +350,7 @@ flex-direction: column;
 margin: 0 10vw;
 justify-content: space-between;
 gap: 20px;
+padding: 0 10vw 0 10vw;
 
 }
 
@@ -371,27 +372,32 @@ gap: 20px;
 
   .card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    grid-template-rows: 1fr 1fr;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
     width: auto;
+    max-width: 1000px;
     height: auto;
-    gap: 2px;
+    gap: 30px;
     background-color: #fafafa;
     border-radius: 8px;
+    scale: 0.9;
+
 
 
 
   }
 
 
+
+
   .partetextualcard {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
-    width: auto;
+    width: 900px;
     height: auto;
     padding: 25px 0 20px 0;
     border: 0px solid rgb(255, 255, 255);
@@ -401,7 +407,7 @@ gap: 20px;
 }
 
 .card img {
-    width: 100%;
+    width: 400px;
     height: 400px;
     border-radius: 40px;
     margin: 0 0 8px 0; /* Separación entre imagen y texto */
@@ -414,7 +420,8 @@ gap: 20px;
 .card .days {
     display: flex;
     width: auto;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 10px;
     flex-wrap: wrap;
     padding: 0;
@@ -647,10 +654,10 @@ gap: 20px;
     font-size: 22px;
     color: #2F75A2;
     letter-spacing: 10px;
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     margin: 0;
-    align-items: center;
+    align-items: flex-start;
     cursor: default;
 }
 
@@ -789,21 +796,13 @@ overflow-x: auto;
   border-radius: 10px;
 }
 
-#programacioncompletalink {
-  padding: 2vh 10vw;
-}
 
 .cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-gap: 2vw;
-  padding: 0 10vw 0 10vw;
- 
-
-
-  overflow: hidden;
-  
-
+    display: flex;
+    flex-direction: row;
+    width: 100vw; /* Ajusta el ancho del grid al contenido */
+    overflow-x: auto; /* Permite hacer scroll horizontal */
+    padding: 0 7vw;
 }
 
 
@@ -1044,6 +1043,7 @@ footer {
     transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
     cursor: pointer;
     overflow: hidden;
+    z-index: 1;
 
 
     }
@@ -1451,8 +1451,9 @@ footer {
 
 .parrafoleermas {
   align-content: flex-start;
+  width: auto;
   overflow-y: hidden;
-  padding:0 10px;
+  padding:0;
   margin-top: -20px;
   margin-bottom: 10px;
   max-height: 400px;
@@ -1482,7 +1483,8 @@ footer {
 
 .grupocarddescripcion {
   display: flex;
-  flex-direction: column;
+  width: auto;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -1564,16 +1566,6 @@ h4 {
 @media (max-width: 1150px) {
 
 
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    padding: 0 10vw 0 10vw;
-    grid-gap: 2vw;
-    overflow: hidden;
-    justify-content: center;
-  
-  }
-
 
 
 
@@ -1607,9 +1599,17 @@ h4 {
       z-index: 1;
 
     }
+    
+    .card {
+      flex-wrap: wrap;
+      height: 100%;
+      max-width: 400px;
+
+    }
+
 
     .cabeza {
-      padding:0 8vw 0 8vw;
+      padding:0 7vw 0 7vw;
   
     }
 
@@ -1633,31 +1633,39 @@ h4 {
       width: 100%; /*No entiendo por que pero funciona */
       justify-content: center;
       align-items: center;
-      height: auto;
-      overflow-x: hidden;
-      z-index: 1;
+      height: 60px;
+      z-index: -1;
+      overflow: hidden;
+
+
 
 
     }
 
     .radiotexto {
       display: flex;
-      height: auto;
+      height: 60px;
       width: 100%;
       font-size: 6vh;
       align-items: center;
       position: relative;
-      overflow-x: hidden; /* Para ocultar cualquier contenido que se desborde */
+      justify-content: center;
       z-index: 1;
+      overflow: hidden;
+
+
 
     }
 
     @keyframes moverTexto {
         0% {
         transform: translateX(700px);
+        transform: translateY(0px);
+
     }
     100% {
         transform: translateX(700px);
+        transform: translateY(0px);
     }
     }
 
@@ -1668,25 +1676,27 @@ h4 {
         white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
         padding: 50px;
         width: 100%;
-        height: auto;
+        height: 60px;
         z-index: -1;
         font-size:16px;
         -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
         color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
-
+        overflow: hidden;
     }
 
 
     .navegadormomentodirecto {
       order: 1;
+      height: 20px;
     }
 
     .mascara {
-      order: 3;
+      order: 2;
     }
 
     .controles {
-      order: 2;
+      order: 3;
+      height: 30px;
     }
 
     #contactotextoflotante {
@@ -1815,13 +1825,9 @@ h4 {
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: 1fr; 
-  grid-gap: 14vw;
-  padding: 0 10vw 0 10vw;
-  overflow: hidden;
-  z-index: 1;
-
+  padding: 0 7vw;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
   
@@ -1870,7 +1876,7 @@ margin-bottom: 10px;
 }
 
 .quienesomos {
-  padding-top: 0;
+  padding-top: 120px;
 }
 
 #video-background {
