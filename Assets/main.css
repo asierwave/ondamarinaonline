@@ -1691,7 +1691,7 @@ h4 {
         display: flex;
         animation: moverTexto 0s linear infinite;
         letter-spacing: 4pt;
-        white-space: wrap; /* Evita que el texto se rompa en varias líneas */
+        white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
         padding:14px 2px;
         align-items: left;
         justify-content: center;
