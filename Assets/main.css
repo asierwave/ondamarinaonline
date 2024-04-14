@@ -167,9 +167,10 @@ body {
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
-z-index: 1;
-
-  }
+    z-index: 1;
+    transition:  4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: #fafafa00;
+  } 
 
   
 
@@ -201,6 +202,12 @@ z-index: 1;
 }
 
 .submenuitem2 {
+  font-size: 16px;
+  align-self: flex-end;
+  color: #fafafa;
+  background: #2F75A2;
+  padding: 10px 10px;
+  border-radius: 3px;
 }
 
 .menu:hover .submenu {
@@ -362,10 +369,12 @@ padding: 0 10vw 0 10vw;
 #botondirecto {
   transform: rotate(90deg);
   transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  
 }
 
 .reproductor:hover #botondirecto {
   transform: rotate(0deg);
+  scale: 1.1;
 }
 
   /*card*/
@@ -1031,7 +1040,7 @@ footer {
     display: flex;
     flex-direction: row;
     background: none;
-    width:24vw;
+    width:100vw;
     height: auto;
     justify-content: space-between;
     align-items: center;
@@ -1040,7 +1049,7 @@ footer {
     padding:8px 4% 8px 3%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 10px 0 0 10px;
-    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
+    transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
@@ -1050,18 +1059,25 @@ footer {
 
 
     .reproductor:hover {
+      position: absolute;
+      right: 0;
+      top: 120px;
       display: flex;
       flex-direction: row;
+      background: none;
+      width:100vw;
       height: auto;
       justify-content: space-between;
       align-items: center;
-      gap: auto;
+      gap: 100px;
       height: auto;
-      padding:8px 4% 8px 5%;
+      padding:8px 4% 8px 3%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      border-radius: 0px;
-      width: 100vw;
+      border-radius: 10px 0 0 10px;
+      transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
+      cursor: pointer;
       overflow: hidden;
+      z-index: 1;
 
     }
 
@@ -1256,6 +1272,7 @@ footer {
                         align-items: center;
                         font-weight:800;
                         pointer-events: none;
+                        opacity: 100;
                     
                     }
                     
@@ -1633,8 +1650,8 @@ h4 {
       background: #fafafa00;
       width: 100%; /*No entiendo por que pero funciona */
       justify-content: center;
-      align-items: center;
-      height: 60px;
+      align-items: left;
+      height: 50px;
       z-index: -1;
       overflow: hidden;
 
@@ -1645,7 +1662,7 @@ h4 {
 
     .radiotexto {
       display: flex;
-      height: 60px;
+      height: 50px;
       width: 100%;
       font-size: 6vh;
       align-items: center;
@@ -1671,13 +1688,15 @@ h4 {
     }
 
     #programaActual {
-        display: block;
+        display: flex;
         animation: moverTexto 0s linear infinite;
         letter-spacing: 4pt;
-        white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-        padding: 50px;
+        white-space: wrap; /* Evita que el texto se rompa en varias líneas */
+        padding:14px 2px;
+        align-items: left;
+        justify-content: center;
         width: 100%;
-        height: 60px;
+        height: 50px;
         z-index: -1;
         font-size:16px;
         -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
@@ -1767,7 +1786,7 @@ h4 {
     .reproductor {
       display: flex;
       position: sticky;
-      top: 40px;
+      top: 350px;
       margin: 0 10vw;
       position: relative;
       margin-bottom:0;
@@ -1777,10 +1796,10 @@ h4 {
       align-items: center;
       backdrop-filter: blur(5px); 
       gap: 20px;
-      max-height: 50px;
+      max-height: 160px;
       padding:8px 7% 40px 7%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 70%;
+      width: 60vw;
       cursor: pointer;
       border-radius: 20px;
       overflow: hidden;
@@ -1791,6 +1810,7 @@ h4 {
     .reproductor:hover {
       display: flex;
       position: sticky;
+      top: 350px;
       margin: 0 10vw;
       position: relative;
       margin-bottom:0;
@@ -1800,13 +1820,15 @@ h4 {
       align-items: center;
       backdrop-filter: blur(5px); 
       gap: 20px;
-      max-height: 180px;
+      max-height: 160px;
       padding:8px 7% 40px 7%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 70%;
+      width: 60vw;
       cursor: pointer;
       border-radius: 20px;
       overflow: hidden;
+      transition: top 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+      z-index: 1;
 
     }
 
@@ -1826,7 +1848,7 @@ h4 {
 }
 
 .cards {
-  padding: 0 10vw;
+  padding: 0 7vw;
   gap: 40px;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -1886,8 +1908,9 @@ margin-top: -90px;
   position: absolute;
   top: 0;
   left: -280px;
-  width: 320%;
+  width: 290%;
   height: auto;
+  scale: 1.4;
   z-index: -1;
   pointer-events: none;
 
@@ -1945,7 +1968,7 @@ margin-top: -90px;
 
 @media (max-width: 500px) {
   .divisorportada {
-    display: flex;
+    display: none;
     width: auto;
     height:20px;
     margin: -20vh 20px 0px 20px;
