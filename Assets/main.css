@@ -1677,12 +1677,12 @@ h4 {
 
     @keyframes moverTexto {
         0% {
-        transform: translateX(600px);
+        transform: translateX(900px);
         transform: translateY(0px);
 
     }
     100% {
-        transform: translateX(-600px);
+        transform: translateX(-900px);
         transform: translateY(0px);
     }
     }
