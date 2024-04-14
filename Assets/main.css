@@ -1653,8 +1653,6 @@ h4 {
       align-items: left;
       height: 50px;
       z-index: -1;
-      overflow: hidden;
-
 
 
 
@@ -1669,7 +1667,6 @@ h4 {
       position: relative;
       justify-content: center;
       z-index: 1;
-      overflow: hidden;
 
 
 
@@ -1677,12 +1674,12 @@ h4 {
 
     @keyframes moverTexto {
         0% {
-        transform: translateX(900px);
+        transform: translateX(700px);
         transform: translateY(0px);
 
     }
     100% {
-        transform: translateX(-900px);
+        transform: translateX(700px);
         transform: translateY(0px);
     }
     }
@@ -1701,7 +1698,6 @@ h4 {
         font-size:16px;
         -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
         color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
-        overflow: hidden;
     }
 
 

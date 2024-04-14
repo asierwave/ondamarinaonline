@@ -33,9 +33,6 @@ rd2.addEventListener('click', function() {
 
 
 
-
-
-
 window.addEventListener('scroll', function() {
   var logo = document.querySelector('#logo');
   var menu = document.querySelector('#menu');

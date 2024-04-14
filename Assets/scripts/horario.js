@@ -1,13 +1,13 @@
 function mostrarProgramaActual() {
   var ahora = new Date();
   var horaActual = ahora.getHours() + ':' + (ahora.getMinutes() < 10 ? '0' : '') + ahora.getMinutes();
-  var diaSemanaActual = ahora.getDay()+7 || 0 ;
+  var diaSemanaActual = ahora.getDay()+7;
 
   var tablaProgramacion = document.getElementById("tablaProgramacion");
   var programaActual = ""; // Inicialmente no hay programa actual
 
   // Iterar sobre las filas de la tabla (a partir de la segunda fila)
-  for (var i = 1; i < tablaProgramacion.rows.length; i++) {
+  for (var i = 2; i < tablaProgramacion.rows.length; i++) {
     var fila = tablaProgramacion.rows[i];
     var horaPrograma = fila.cells[0].textContent;
     var programa = fila.cells[diaSemanaActual].textContent; // Usar el día de la semana actual como índice
