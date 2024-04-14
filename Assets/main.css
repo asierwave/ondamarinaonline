@@ -1604,6 +1604,7 @@ h4 {
       flex-wrap: wrap;
       height: 100%;
       max-width: 400px;
+      scale: 0.9;
 
     }
 
@@ -1766,7 +1767,7 @@ h4 {
     .reproductor {
       display: flex;
       position: sticky;
-      top: 20px;
+      top: 40px;
       margin: 0 10vw;
       position: relative;
       margin-bottom:0;
@@ -1825,7 +1826,8 @@ h4 {
 }
 
 .cards {
-  padding: 0 7vw;
+  padding: 0 10vw;
+  gap: 40px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -1876,7 +1878,8 @@ margin-bottom: 10px;
 }
 
 .quienesomos {
-  padding-top: 120px;
+margin-top: -90px;
+  padding-top: 0 px;
 }
 
 #video-background {

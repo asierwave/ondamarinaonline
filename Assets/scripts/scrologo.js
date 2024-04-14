@@ -39,7 +39,7 @@ window.addEventListener('resize', function () {
   var rd2 = document.querySelector('.reproductor');
 
   if (window.innerWidth < 800) {
-    rd2.style.top='-65px';
+    rd2.style.top='200px';
 
     rd2.addEventListener('click', function () {
       scrollPosition= -100;
@@ -115,7 +115,7 @@ window.addEventListener('scroll', function() {
     botondirecto.style.transform='rotate(90deg)';
 
     if (window.innerWidth < 800) {
-      rd2.style.top='0';
+      rd2.style.top='50vh';
     } else {
       rd2.style.top='120px';
     }
