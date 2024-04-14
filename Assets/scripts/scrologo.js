@@ -63,7 +63,7 @@ window.addEventListener('scroll', function() {
     rd2.style.maxHeight='50px';
 
     if (innerWidth < 800) {
-    rd2.style.top='-70px';
+    rd2.style.top='-65px';
     } else {
     rd2.style.top='120px';
     }
