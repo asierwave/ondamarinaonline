@@ -77,7 +77,7 @@ window.addEventListener('scroll', function() {
 
   //Si estamos en una posición de scroll superior
 
-  if (scrollPosition < 380) {
+  if (scrollPosition < 443) {
     ar2.style.color = '#fafafa';
     logo.src = 'Assets/logowhite.png';
     menu.src = 'Assets/menualtwhite.png';
@@ -128,7 +128,7 @@ window.addEventListener('scroll', function() {
 
     //Posición de scroll inferior
 
-  } else if (scrollPosition > 380) {
+  } else if (scrollPosition > 443) {
     ar2.style.color = '#2F75A2';
     logo.src = 'Assets/logonline.png';
     menu.src = 'Assets/menualt.png';

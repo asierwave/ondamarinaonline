@@ -1860,17 +1860,19 @@ margin-top: -100px;
   position: absolute;
   top: 0;
   left: -280px;
-  width: 290%;
-  height: auto;
   scale: 1.4;
   z-index: -1;
   pointer-events: none;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
 
 
 }
 
 .quienesomostexto {
   display: flex;
+  position: sticky;
   flex-direction: column;
   justify-content: center;
   width: 100%;
@@ -1880,7 +1882,7 @@ margin-top: -100px;
   background: #fafafa00;
   order: 2;
   border-radius: 0px;
-  margin: 40vw 10vw;
+  margin: 30vh 20vh;
   margin-left: 0px;
   padding: 10vw;
 
@@ -1898,12 +1900,6 @@ margin-top: -100px;
   border-radius: 3px;
 }
 
-.video-background {
-  height: 30vh;
-  width: auto;
-  pointer-events: none;
-
-}
 
 .submenu {
   display: flex;
@@ -1927,6 +1923,10 @@ margin-top: -100px;
     overflow: hidden;
   
   
+  }
+
+  .quienesomos {
+    height: 120vh;
   }
 
   }
