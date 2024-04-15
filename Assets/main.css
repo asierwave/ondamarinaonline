@@ -168,8 +168,9 @@ body {
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
     z-index: 1;
-    transition:  4s cubic-bezier(0.075, 0.82, 0.165, 1);
-    background-color: #fafafa00;
+    /* transition: background 4s cubic-bezier(0.075, 0.82, 0.165, 1); */
+    background: transparent;
+    filter: blur(40);
   } 
 
   
@@ -290,15 +291,15 @@ body {
 
 .quienesomos {
   display: flex;
-  overflow: hidden;
   width: 100%;
   margin: 0;
-  margin-bottom: 20px;
-  height: auto;
+  height: 1080px;
+  overflow: hidden;
   flex-direction: column;
   justify-content: left;
   gap: 20px;
   position: relative; /* Añade esto para posicionar el contenido en relación con el video */
+  transition: margin-bottom 2s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 #video-background {
@@ -306,8 +307,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: fit-content;
+  height: fit-content;
   z-index: -1;
   pointer-events: none;
 }
@@ -354,10 +355,11 @@ body {
 .programastexto {
 display: flex;
 flex-direction: column;
-margin: 0 10vw;
+margin: 0;
+width: 100vw;
 justify-content: space-between;
 gap: 20px;
-padding: 0 10vw 0 10vw;
+padding: 0 11vw;
 
 }
 
@@ -387,8 +389,7 @@ padding: 0 10vw 0 10vw;
     width: auto;
     max-width: 1000px;
     height: auto;
-    gap: 30px;
-    background-color: #fafafa;
+    gap: 0;
     border-radius: 8px;
     scale: 0.9;
 
@@ -408,10 +409,10 @@ padding: 0 10vw 0 10vw;
     gap: 20px;
     width: 900px;
     height: auto;
-    padding: 25px 0 20px 0;
+    margin-top: 45px;
+    padding: 25px 100px 20px 40px;
     border: 0px solid rgb(255, 255, 255);
-    background-color: #fafafa;
-    border-radius: 12px;
+    border-radius: 0 12px ;
     
 }
 
@@ -753,13 +754,6 @@ h2{
   letter-spacing: 3px;
 }
 
-.noticias {
-  display: flex;
-  gap: 40px;
-  flex-direction: column;
-  padding: 40px 0px 40px 0px;
-  background: #FAFAFA;
-}
 
 .home {
 padding: 0 10vw;
@@ -1040,12 +1034,13 @@ footer {
     display: flex;
     flex-direction: row;
     background: none;
-    width:100vw;
+    width:70vw;
     height: auto;
     justify-content: space-between;
     align-items: center;
     gap: 100px;
     height: auto;
+    max-height: 160px;
     padding:8px 4% 8px 3%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 10px 0 0 10px;
@@ -1054,32 +1049,8 @@ footer {
     overflow: hidden;
     z-index: 1;
 
-
     }
 
-
-    .reproductor:hover {
-      position: absolute;
-      right: 0;
-      top: 120px;
-      display: flex;
-      flex-direction: row;
-      background: none;
-      width:100vw;
-      height: auto;
-      justify-content: space-between;
-      align-items: center;
-      gap: 100px;
-      height: auto;
-      padding:8px 4% 8px 3%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      border-radius: 10px 0 0 10px;
-      transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
-      cursor: pointer;
-      overflow: hidden;
-      z-index: 1;
-
-    }
 
   
 
@@ -1616,6 +1587,13 @@ h4 {
       z-index: 1;
 
     }
+
+    .partetextualcard {
+      margin-top: 0;
+      padding: 0;
+      padding-top:20px;
+
+    }
     
     .card {
       flex-wrap: wrap;
@@ -1624,6 +1602,13 @@ h4 {
       scale: 0.9;
 
     }
+
+    .card img {
+    width: 300px;
+    height: 300px;
+
+    }
+
 
 
     .cabeza {
@@ -1634,12 +1619,6 @@ h4 {
     .logo img {
       width: 60px ;
   
-    }
-
-    .noticias {
-      z-index: 0;
-      background-color: #fafafa;
-
     }
 
 
@@ -1653,7 +1632,6 @@ h4 {
       align-items: left;
       height: 50px;
       z-index: -1;
-
 
 
     }
@@ -1733,6 +1711,8 @@ h4 {
       position: fixed;
       margin-bottom: 0; /*para ajustar el cuerpo*/
       z-index: 1;
+      height: auto;
+      
     }
   
    
@@ -1781,8 +1761,8 @@ h4 {
 
     .reproductor {
       display: flex;
-      position: sticky;
-      top: 350px;
+      position: fixed;
+      top: 300px;
       margin: 0 10vw;
       position: relative;
       margin-bottom:0;
@@ -1799,34 +1779,10 @@ h4 {
       cursor: pointer;
       border-radius: 20px;
       overflow: hidden;
-      transition: top 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition: top 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
       z-index: 1;
     }
 
-    .reproductor:hover {
-      display: flex;
-      position: sticky;
-      top: 350px;
-      margin: 0 10vw;
-      position: relative;
-      margin-bottom:0;
-      flex-direction: column;
-      height: 600px;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(5px); 
-      gap: 20px;
-      max-height: 160px;
-      padding:8px 7% 40px 7%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 70vw;
-      cursor: pointer;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: top 4s cubic-bezier(0.075, 0.82, 0.165, 1);
-      z-index: 1;
-
-    }
 
     
 
@@ -1896,7 +1852,7 @@ margin-bottom: 10px;
 }
 
 .quienesomos {
-margin-top: -90px;
+margin-top: -100px;
   padding-top: 0 px;
 }
 
@@ -1972,51 +1928,6 @@ margin-top: -90px;
   
   
   }
-
-
-  /* .reproductor {
-    display: flex;
-    position: sticky;
-    margin: 0 10vw;
-    position: relative;
-    margin-bottom: -68vh;
-    flex-direction: column;
-    height: 600px;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(5px); 
-    gap: 20px;
-    max-height: 50px;
-    padding:8px 7% 20px 7%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 70%;
-    transition: max-height 4s cubic-bezier(0.19, 1, 0.22, 1), padding 4s cubic-bezier(0.19, 1, 0.22, 1), margin-bottom 4s cubic-bezier(0.19, 1, 0.22, 1), gap 4s cubic-bezier(0.19, 1, 0.22, 1); 
-    cursor: pointer;
-    border-radius: 20px;
-    z-index: -1;
-
-
-  }
-
-  .reproductor:hover {
-    display: flex;
-    position: sticky;
-    margin: 0 10vw;
-    position: relative;
-    margin-bottom:-68vh;
-    flex-direction: column;
-    height: 600px;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(5px); 
-    gap: 10px;
-    max-height: 180px;
-    padding:8px 7% 40px 7%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 70%;
-    cursor: pointer;
-    border-radius: 20px;
-    overflow: hidden; */
 
   }
 
