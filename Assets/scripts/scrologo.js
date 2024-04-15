@@ -109,6 +109,7 @@ window.addEventListener('scroll', function() {
 
 
 
+
   
       //Posición de scroll superior y pantalla desktop
 
@@ -120,6 +121,7 @@ window.addEventListener('scroll', function() {
       rd2.style.maxHeight='40px';
       quienesSomos.style.marginBottom= '-10vh';
       hr2.style.background = 'transparent';
+
 
 
 
@@ -170,8 +172,7 @@ window.addEventListener('scroll', function() {
     directo.style.opacity='0';
     rd2.style.boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)';
     botondirecto.style.transform='rotate(0deg)';
-    hr2.style.backgroundColor = 'transparent'; 
-
+    hr2.style.background = 'linear-gradient(180deg, rgba(250,250,250,1) 84%, rgba(250,250,250,0) 38%)';
 
     
   }

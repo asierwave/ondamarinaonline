@@ -413,6 +413,7 @@ padding: 0 11vw;
     padding: 25px 100px 20px 40px;
     border: 0px solid rgb(255, 255, 255);
     border-radius: 0 12px ;
+    background-color: #FAFAFA;
     
 }
 
@@ -806,6 +807,8 @@ overflow-x: auto;
     width: 100vw; /* Ajusta el ancho del grid al contenido */
     overflow-x: auto; /* Permite hacer scroll horizontal */
     padding: 0 7vw;
+    z-index:0;
+
 }
 
 
@@ -1047,7 +1050,6 @@ footer {
     transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
     cursor: pointer;
     overflow: hidden;
-    z-index: 1;
 
     }
 
@@ -1780,7 +1782,6 @@ h4 {
       border-radius: 20px;
       overflow: hidden;
       transition: top 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-      z-index: 1;
     }
 
 
