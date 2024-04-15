@@ -167,10 +167,10 @@ body {
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
-    z-index: 1;
     /* transition: background 4s cubic-bezier(0.075, 0.82, 0.165, 1); */
     background: transparent;
     filter: blur(40);
+    z-index: 0;
   } 
 
   
@@ -180,6 +180,7 @@ body {
 .menu {
   position: relative;
   cursor: pointer;
+  z-index: 4;
 }
 
 .submenu {
@@ -241,6 +242,7 @@ body {
     height: auto;
     padding:0 10vw 0 10vw;
     gap:auto;
+    z-index: 4;
     flex-direction: row;
     transition: padding 4s cubic-bezier(0.075, 0.82, 0.165, 1);
   
@@ -271,6 +273,7 @@ body {
     height: auto;
     margin: 0;
     padding: 0;
+    z-index: 4;
   }
 
   #logo {
@@ -300,6 +303,7 @@ body {
   gap: 20px;
   position: relative; /* Añade esto para posicionar el contenido en relación con el video */
   transition: margin-bottom 2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  z-index: -1;
 }
 
 #video-background {
@@ -392,6 +396,7 @@ padding: 0 11vw;
     gap: 0;
     border-radius: 8px;
     scale: 0.9;
+    z-index: -1;
 
 
 
@@ -854,7 +859,7 @@ overflow-x: auto;
 
 .mapa {
   display: flex;
-  background: #FAFAFA;
+  background: transparent;
   flex-direction: column;
   width: 100vw;
   padding: 0 10vw 0 10vw;
@@ -1050,6 +1055,7 @@ footer {
     transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
     cursor: pointer;
     overflow: hidden;
+    z-index: 4;
 
     }
 
@@ -1712,7 +1718,6 @@ h4 {
     header {
       position: fixed;
       margin-bottom: 0; /*para ajustar el cuerpo*/
-      z-index: 1;
       height: auto;
       
     }

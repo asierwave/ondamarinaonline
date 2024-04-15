@@ -74,6 +74,9 @@ window.addEventListener('scroll', function() {
 
   var rd2 = document.querySelector('.reproductor');
 
+  var submenu = document.querySelector ('.submenu');
+
+
 
   //Si estamos en una posición de scroll superior
 
@@ -134,7 +137,7 @@ window.addEventListener('scroll', function() {
     ar2.style.color = '#2F75A2';
     logo.src = 'Assets/logonline.png';
     menu.src = 'Assets/menualt.png';
-    menuCabeza.style.padding= '0 2vw 0 1vw';
+    menuCabeza.style.padding= '0 2vw 0 0.5vw';
     logo.style.scale='0.6';
     directo.style.color = '#2F75A2';
     menuitem.style.color = '#fafafa';
@@ -150,7 +153,8 @@ window.addEventListener('scroll', function() {
     rd2.style.top='-65px';
     rd2.style.boxShadow='0 0 0 0 rgba(0,0,0,0)';
     rd2.style.width='70vw';
-    rd2.style.background = '#fafafa';
+    rd2.style.background = 'none';
+    rd2.style.backdropFilter='none';
     directo.style.opacity='100';
     botondirecto.style.transform='rotate(0deg)';
     hr2.style.background = 'linear-gradient(180deg, rgba(250,250,250,1) 54%, rgba(250,250,250,0) 38%)';
@@ -179,6 +183,30 @@ window.addEventListener('scroll', function() {
 
 
 }
+
+
+
+
+
+if (window.innerWidth<800) {
+  hr2.style.zIndex='0';
+  menuCabeza.style.zIndex= '0';
+  rd2.style.zIndex='0';
+  submenu.style.zIndex='0';
+}
+
+if (scrollPosition > 1240) {
+
+
+if (window.innerWidth<800) {
+  hr2.style.zIndex='4';
+  menuCabeza.style.zIndex= '5';
+  rd2.style.zIndex='6';
+  submenu.style.zIndex='7';
+
+}
+}
+
 
 
 
