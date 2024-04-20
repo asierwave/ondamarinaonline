@@ -1098,10 +1098,10 @@ footer {
               display: flex;
               height: auto;
               font-size: 14px;
-              align-items: center;
+              align-items: flex-start;
               position: relative;
               white-space: nowrap; /* Evita que el texto se desborde */
-              animation: moverTexto 60s linear infinite;
+              animation: moverTexto 40s linear infinite;
 
             }
 
