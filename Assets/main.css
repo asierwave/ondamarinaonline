@@ -1108,10 +1108,10 @@ footer {
 
             @keyframes moverTexto {
               0% {
-                  transform: translateX(250%);
+                  transform: translateX(300%);
               } 
               100% {
-                  transform: translateX(-250%);
+                  transform: translateX(-300%);
               }
           }
         
