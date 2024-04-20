@@ -1096,7 +1096,6 @@ footer {
         
             .radiotexto {
               display: flex;
-              width: 100%;
               height: auto;
               font-size: 14px;
               align-items: center;
