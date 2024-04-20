@@ -1101,7 +1101,7 @@ footer {
               align-items: center;
               position: relative;
               white-space: nowrap; /* Evita que el texto se desborde */
-              animation: moverTexto 18s linear infinite;
+              animation: moverTexto 45s linear infinite;
 
             }
 
