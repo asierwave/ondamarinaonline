@@ -1108,10 +1108,10 @@ footer {
 
             @keyframes moverTexto {
               0% {
-                  transform: translateX(200%);
+                  transform: translateX(250%);
               } 
               100% {
-                  transform: translateX(-200%);
+                  transform: translateX(-250%);
               }
           }
         
@@ -1856,10 +1856,10 @@ scale: 1.05;
 
   @keyframes moverTexto {
     0% {
-    transform: translateX(200%);
+    transform: translateX(250%);
 }
 100% {
-    transform: translateX(-200%);
+    transform: translateX(-250%);
 }
 }
 
