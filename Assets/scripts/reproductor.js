@@ -59,13 +59,13 @@ botonFotoplay.addEventListener('click', function () {
 
   if (estaReproduciendo) {
     miAudio.pause(); // Pausa la transmisión si está reproduciéndose
-    botonFotoplay.setAttribute('src', 'Assets/playicon.png'); // Cambia la imagen a "Reproducir"
+    botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Reproducir"
     estaReproduciendo = false;
 
 
   } else {
     miAudio.play(); // Reproduce la transmisión si está pausada
-    botonFotoplay.setAttribute('src', 'Assets/pauseblue.png'); // Cambia la imagen a "Pausar"
+    botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Pausar"
     estaReproduciendo = true;
 
 }
@@ -89,11 +89,11 @@ window.addEventListener('scroll', function () {
   } else {
     
   if (estaReproduciendo) {
-    botonFotoplay.setAttribute('src', 'Assets/pauseblue.png'); // Cambia la imagen a "Reproducir"
+    botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Reproducir"
 
 
   } else {
-    botonFotoplay.setAttribute('src', 'Assets/playicon.png'); // Cambia la imagen a "Pausar"
+    botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Pausar"
 
 }
   }

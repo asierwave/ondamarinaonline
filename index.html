@@ -13,6 +13,9 @@
         <link rel="alternate icon" href="Assets/favicon-32x32.png" sizes="32x32" type="image/png">
 
     </meta>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     </head>
 
     <!-- Google tag (gtag.js) -->
@@ -41,25 +44,98 @@
 
     <body>
       
+     
+              <!-- Reproductor -->
+                    
+              <section class="controles">
 
+                <div class="icono" id="treintatras">
+                    <img id="imagen-diez-segundos-atras" src="Assets/10adelantewhite.png" alt="">
+                </div>
+    
+                 <!-- <img id="botondirecto" src="Assets/playwhite.png" alt="Botón circular de directo animado"> -->
+              <div class="icono" id="fotoplay">
+                <img id="imagen-reproducir-pausar" src="Assets/playwhite.png" alt="Reproducir">
+            </div>
+      
+                <div class="icono" id="treintadelante">
+                    <img id="imagen-en-vivo" src="Assets/backwhite.png" alt="">
+                  </div>
+      
+              
+              <div class="controlestexto">
+                <strong>DIRECTO</strong>
+              </div>
+                 
+                </section> 
 
       <header>
+
+       
         <section class="cabeza">
         <a class="logo"  href="#"><img  id="logo" src="Assets/logowhite.png" alt="Logotipo de OndaMarina">
         </a>
         
-        <nav class="menu">
+        <nav class="menu" id="menu">
           <ul class="menulist">
               <li class="menuitem"><a href="#">
               <img class="botonclasico" id="menu" src="Assets/menualtwhite.png" alt="">
               </a>
-              <ul class="submenu" style="z-index: 7;">
+               
+              
+
+
+              <ul class="submenu">
                 <!-- <li class="submenuitem"><a class="submenuitem2" href="#video-background"><strong></strong></a></li> -->
-                  <li class="submenuitem"><a class="submenuitem2" href="#anclahorarios"><strong>HORARIOS</strong></a></li>
-                  <li class="submenuitem"><a class="submenuitem2" href="#contacto"><strong>CONTACTO</strong></a></li>   
-                  <!-- <li class="submenuitem"><a class="submenuitem2" href="https://wa.me/34611803831?text=Hola,%20Onda%20Marina%20Online!%20">
-          <img style="scale:0.3; margin-top: -7vh; margin-left: -5vw; margin-right:-6vw; position: relative;" src="Assets/whatsappglobo.png" alt="Logotipo de Whatsapp"></a></li>
-           -->
+
+
+
+
+                    <li class="submenuitem"><a class="submenuitem2" href="#anclahorarios">
+                      <div class="submenuitemtexto">
+                        <strong>HORARIOS</strong>
+                      </div>
+                      <i class="material-icons">schedule</i>
+  
+                      </a></li>
+                    
+                    
+
+
+                    <li class="submenuitem">
+                      <a class="submenuitem2" href="mailto:esther@ondamarina.online?subject=Contacto%20Web:Introduce%20tu%20asunto%20aquí&body=Hola,%20Esther:">
+                      <div class="submenuitemtexto">
+                        <strong>CONTACTA POR CORREO</strong>
+                      </div>
+                      <i class="material-icons">mail</i>
+
+                      </a></li>
+
+
+                    <li class="submenuitem">          
+                      <a class="submenuitem2" href="https://wa.me/34611803831?text=Hola,%20Onda%20Marina%20Online!%20">
+                        <div class="submenuitemtexto">
+                          <strong>CONTACTA POR WHATSAPP</strong>
+                        </div>
+                        <img src="Assets/mapalocalizaciones/whatsapplogowhite.png" alt="Logotipo de Whatsapp">
+
+                        </a></li>
+
+
+                        <li class="submenuitem">          
+                          <a class="submenuitem2" href="https://youtube.com/@OndaMarinaOnline?si=mmjn56ooY-LdnAPa">
+                            <div class="submenuitemtexto">
+                              <strong>VIDEOS</strong>
+                            </div>
+                            <span class="material-symbols-outlined">
+                              smart_display
+                              </span>    
+                            </a></li>
+
+
+                  
+                
+           
                  
               </ul>
           </li>
@@ -71,40 +147,31 @@
 
           
       
-        <section class="reproductor">
-
-          <section class="navegadormomentodirecto">
-            <img class="botonclasico" id="botondirecto" src="Assets/playwhite.png" alt="Botón circular de directo animado">
-            <p id="directo">DIRECTO</p>
-        </section>
+        <section class="reproductor">  
   
   
-  
-          <article class="mascara">
+         <article class="mascara">
             <article class="radiotexto">
+
+
+              <i style="color: #fafafa;"  class="material-icons">info</i>
+
+
                 <div id="programaActual"> 
                 </div>
+
+                <i style="color: #fafafa;"  class="material-icons">forward</i>
+
+  
+                <div id="programaSiguiente"> 
+                </div>
+
+                <div id="rotativoInformativo">
+                  <img style="width: 50px;filter: brightness(100);" src="Assets/logofm.png" alt="Logo frecuencia FM">
+                  <h3 style="font-size: 14px; align-items: center;">Y EN BREVES... ¡TENDREMOS FRECUENCIA!</h3>
+                </div>
              
-            </article></article>
-  
-            <!-- <img class="divisorreproductor" src="Assets/mapalocalizaciones/unionwhite.png" alt=""> -->
-  
-         
-           
-    
-          <section class="controles">
-            <div class="icono" id="treintatras">
-                <img id="imagen-diez-segundos-atras" src="Assets/10adelantewhite.png" alt="">
-            </div>
-  
-            <div class="icono" id="fotoplay">
-                <img id="imagen-reproducir-pausar" src="Assets/playwhite.png" alt="Reproducir">
-            </div>
-  
-            <div class="icono" id="treintadelante">
-                <img id="imagen-en-vivo" src="Assets/backwhite.png" alt="">
-              </div>
-  
+            </article></article> 
   
              
             </section> 
@@ -124,12 +191,23 @@
   </video>
 
   
+  <article class="anuncio" id="anuncio">    
+        
+    <a href="mailto:esther@ondamarina.online?subject=Publicidad en Onda Marina Online%20&body=Hola Esther:%0D%0A%0D%0A%20Me gustaría%20informarme%20sobre%20los%20espacios%20publicitarios%20ofertados%20en%20Onda%20Marina%20Online.%0D%0A%0D%0A%20Un%20saludo." id="anuncio1" style="display:flex; flex-direction:row; align-items:center; gap:20px;">
+      <span style="color: #2F75A2;" class="material-symbols-outlined">
+        ad_group
+        </span>
+      <h2>PUBLICÍTATE EN ONDA MARINA ONLINE</h2>
+    </a>
+
+      </article>
+  
       <div class="quienesomostexto">
         <h2 style="color: #fafafa;">QUIÉNES SOMOS</h2>
         <p>Onda Marina Online es la radio que estabas esperando. <br> Una radio online libre e independiente con especial atención al municipio de Santa Cruz de Bezana (Cantabria)
 
         </p>
-        <img class="divisorportada" src="Assets/unionwhitealt.png" alt="">
+        <img class="divisorportada" style="position: relative; top: 20px;" src="Assets/unionwhitealt.png" alt="">
 
       </div>
       <!-- <img src="https://picsum.photos/1920/1080" alt=""> -->
@@ -138,7 +216,7 @@
     <a id="anclahorarios" style="z-index: -1;"></a>
 
 
-
+<main>
 
 <section class="cards">
 
@@ -979,24 +1057,24 @@
 
 
   <div class="programastexto" style="z-index: 3;">
-    <h2>HORARIOS DE PROGRAMAS</h2>
+    <h2>HORARIO DE PROGRAMAS</h2>
     <p>Los horarios de los programas en parrilla de Onda Marina Online. 
     </p>
   </div>
 
 
-  <a id="programacioncompletalink" style="z-index: 1;"  href="Assets/horarioprovisional.pdf" target="_blank"><div class="masprogramas">DESCARGA EL PDF CON LA PROGRAMACIÓN COMPLETA</div></a>
+  <a id="programacioncompletalink" style="z-index: 1;"  href="Assets/horarioprovisional.pdf" target="_blank"><div class="masprogramas" id="programalink">DESCARGA EL PDF CON LA PROGRAMACIÓN COMPLETA</div></a>
 
   <img class="divisor" style="z-index: 4; height: 30px;" src="Assets/mapalocalizaciones/Union.png" alt="">
 
 
-        <section style="margin-bottom: 100px; z-index: -1;" class="mapa">
+        <section class="mapa">
           <article class="mapatexto">
             <h2>MAPA DE ESTUDIOS DE GRABACIÓN</h2>
             <p>La producción en Onda Marina Online no está centralizada, tenemos distintos puntos en la cornisa cantábrica desde los que se emiten los distintos programas en parrilla. Descúbrelos.
             </p>
           </article>
-          <article class="mapamapa">
+          <article class="mapamapa" style="z-index: -1;">
             <img class="mapaimagen" src="Assets/mapalocalizaciones/fondomapa.png" alt="Mapa de localizaciones">
             
 
@@ -1315,22 +1393,10 @@
          </div>
         
 
-         <article class="contacto" id="contacto">
-          <h2>CONTACTA CON NOSOTROS</h2>
-          <div class="contactoderecha">
-          <a class="contactotexto" href="https://wa.me/34611803831?text=Hola,%20Onda%20Marina%20Online!%20">
-          <img src="Assets/mapalocalizaciones/whatsapplogowhite.png" alt="Logotipo de Whatsapp">
-          </a>
-
-          <a class="contactotexto" href="mailto:esther@ondamarina.online?subject=Contacto%20Web:Introduce%20tu%20asunto%20aquí&body=Hola,%20Esther:">
-          
-            <img src="Assets/mapalocalizaciones/mailogowhite.png" alt="Logotipo de Mail">
-            </a>
-          </div>
-            </article>
-
 
             
+       
+
          
         
                 
@@ -1356,24 +1422,27 @@
 
        
 
+        <footer>
 
+          <p>ONDA MARINA. 2024.</p>
+        </footer>
+
+      </main>
 
  <!-- los scripts mejor aquí si no usas window.onload() -->
           
  <script src="Assets/scripts/horario.js"></script>
- <script  src="Assets/scripts/scrologo.js"></script>
+ <!-- <script  src="Assets/scripts/scrologo.js"></script> -->
 
  <script src="Assets/scripts/howler.js"></script>
  <script src="Assets/scripts/reproductor.js"></script>
  <script src="Assets/scripts/procesar_formulario.php"></script>
  <script src="Assets/scripts/leermas.js"></script>
+ <script src="Assets/scripts/botonmenu.js"></script>
 
 
 
- <footer style="margin-bottom: 20px;">
  
-  <p>ONDA MARINA. 2023.</p>
-</footer>
         
     </body>
 

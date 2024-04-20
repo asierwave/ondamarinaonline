@@ -29,7 +29,7 @@ rd2.addEventListener('click', function() {
 //Si la pantalla es menor de 800, movil, al cargar
 
   if (window.innerWidth < 800) {
-    rd2.style.top='350px';
+    rd2.style.top='26rem';
     rd2.style.width='70vw';
 
 

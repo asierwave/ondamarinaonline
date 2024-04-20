@@ -1,86 +1,61 @@
-function mostrarProgramaActual() {
+function mostrarProgramasActuales() {
   var ahora = new Date();
-  var horaActual = ahora.getHours() + ':' + (ahora.getMinutes() < 10 ? '0' : '') + ahora.getMinutes();
+  var horaActual = ahora.getHours() * 60 + ahora.getMinutes(); // Convertir la hora actual a minutos
   var diaSemanaActual = ahora.getDay() || 0;
 
   var tablaProgramacion = document.getElementById("tablaProgramacion");
   var programaActual = ""; // Inicialmente no hay programa actual
+  var programaSiguiente = ""; // Inicialmente no hay programa siguiente
 
   // Iterar sobre las filas de la tabla (a partir de la segunda fila)
   for (var i = 2; i < tablaProgramacion.rows.length; i++) {
     var fila = tablaProgramacion.rows[i];
     var horaPrograma = fila.cells[0].textContent;
     var programa = fila.cells[diaSemanaActual].textContent; // Usar el día de la semana actual como índice
-
     var horas = horaPrograma.split(" - ");
     var horaInicio = horas[0];
     var horaFin = horas[1];
+    var minutosInicio = convertirHoraAMinutos(horaInicio);
+    var minutosFin = convertirHoraAMinutos(horaFin);
 
-    if (horaActual >= horaInicio && horaActual <= horaFin) {
+    if (horaActual >= minutosInicio && horaActual <= minutosFin) {
       programaActual = programa;
+      // Obtener el programa siguiente si existe
+      if (i + 1 < tablaProgramacion.rows.length) {
+        var siguienteFila = tablaProgramacion.rows[i + 1];
+        programaSiguiente = siguienteFila.cells[diaSemanaActual].textContent;
+      }
       fila.classList.add("horaActual"); // Agregar la clase de estilo para resaltar la fila actual
       break; // Salir del bucle una vez que se encuentre el programa actual
     }
   }
 
-  // Actualizar el contenido del elemento HTML con el programa actual o el mensaje predeterminado
+  // Actualizar el contenido del elemento HTML con los programas actuales
   var programaActualElement = document.getElementById("programaActual");
   if (programaActual.trim() === "") {
-    programaActualElement.textContent = "AHORA: MÚSICA 24H"; // Mensaje predeterminado
+    programaActualElement.innerHTML = "<strong>AHORA:</strong>"+ " MÚSICA 24H"; // Mensaje predeterminado
   } else {
-    programaActualElement.textContent = "AHORA: " + programaActual;
+    programaActualElement.innerHTML = "<strong>AHORA</strong>"+ ": " + programaActual;
+  }
+
+  var programaSiguienteElement = document.getElementById("programaSiguiente");
+  if (programaSiguiente.trim() === "") {
+    programaSiguienteElement.innerHTML = "<strong>DESPUÉS:</strong>"+ " MÚSICA 24H"; // Mensaje predeterminado si no hay programa siguiente
+  } else {
+    programaSiguienteElement.innerHTML = "<strong>DESPUÉS</strong>" + ": " + programaSiguiente;
   }
 }
 
+function convertirHoraAMinutos(hora) {
+  var partesHora = hora.split(":");
+  var horas = parseInt(partesHora[0]);
+  var minutos = parseInt(partesHora[1]);
+  return horas * 60 + minutos; // Convertir la hora a minutos
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  mostrarProgramaActual();
+  mostrarProgramasActuales();
 });
 
-// Llamar a la función para mostrar el programa actual
-mostrarProgramaActual();
-
-
-
-
-
-
-
-// function mostrarProgramaActual() {
-//   var ahora = new Date();
-//   var horaActual = ahora.getHours() + ':' + (ahora.getMinutes() < 10 ? '0' : '') + ahora.getMinutes();
-//   var diaSemanaActual = ahora.getDay();
-
-//   var tablaProgramacion = document.getElementById("tablaProgramacion");
-//   var programaActual = ""; // Inicialmente no hay programa actual
-
-//   // Iterar sobre las filas de la tabla (a partir de la segunda fila)
-//   for (var i = 1; i < tablaProgramacion.rows.length; i++) {
-//     var fila = tablaProgramacion.rows[i];
-//     var horaPrograma = fila.cells[0].textContent;
-//     var programa = fila.cells[diaSemanaActual].textContent; // Usar el día de la semana actual como índice
-
-//     var horas = horaPrograma.split(" - ");
-//     var horaInicio = horas[0];
-//     var horaFin = horas[1];
-
-//     if (horaActual >= horaInicio && horaActual <= horaFin) {
-//       programaActual = programa;
-//       break; // Salir del bucle una vez que se encuentre el programa actual
-//     }
-//   }
-
-//   // Actualizar el contenido del elemento HTML con el programa actual o el mensaje predeterminado
-//   var programaActualElement = document.getElementById("programaActual");
-//   if (programaActual.trim() === "") {
-//     programaActualElement.textContent = "AHORA: MÚSICA 24H"; // Mensaje predeterminado
-//   } else {
-//     programaActualElement.textContent = "AHORA: " + programaActual;
-//   }
-// }
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   mostrarProgramaActual();
-// });
-
-// // Llamar a la función para mostrar el programa actual
-// mostrarProgramaActual();
+// Llamar a la función para mostrar los programas actuales
+mostrarProgramasActuales();

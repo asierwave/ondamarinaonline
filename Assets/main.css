@@ -75,12 +75,6 @@ padding: 0;
 
 }
 
-.divisorreproductor {
-  display: none;
-  width: auto;
-  height:40px;
-  margin: 20px 0;
-}
 
 
 a {
@@ -144,7 +138,6 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  gap: 20px;
   overflow-x: hidden;
   
 }
@@ -155,7 +148,7 @@ body {
     display: flex;
     position:fixed;
     background: none;
-    top: -3px; 
+    top: 0; 
     justify-content: space-between; 
     gap: 12px;
     align-items: center; 
@@ -163,14 +156,15 @@ body {
     flex-direction: column;
     width: 100vw;
     margin: 0;
-    padding:20px 0 20px 0;
+    padding:20px 0 70px 0;
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
     /* transition: background 4s cubic-bezier(0.075, 0.82, 0.165, 1); */
     background: transparent;
     filter: blur(40);
-    z-index: 0;
+    z-index: 30;
+    background-color: #2F75A2;
   } 
 
   
@@ -178,42 +172,70 @@ body {
 /* NAV */
 
 .menu {
-  position: relative;
+  position: absolute;
+  right:6vw;
   cursor: pointer;
-  z-index: 4;
+  z-index: 9999;
 }
 
 .submenu {
   display: flex;
-  gap: 12px;
-  opacity: 0;
-  padding-right: 20px;
-  padding-top: 0;
-  top: 0;
   position: absolute;
-  right: 100%;
+  top: 6vh;
+  right: -24vw;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  opacity: 1;
   font-size: 18px;
   letter-spacing: 0.319vw;
-  transition: opacity 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: right 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   cursor: pointer;
+  z-index: 999999;
 }
 
 
 .submenuitem {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: auto;
+  backdrop-filter: blur(40px);
   font-size: 18px;
+  border-radius: 100px;
+  background-color:#2f76a275;
+
+
+}
+
+.submenuitemtexto {
+  width: 0;
+  overflow: hidden;
+  transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .submenuitem2 {
-  font-size: 16px;
-  align-self: flex-end;
+  display: flex;
+  font-size: 14px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
   color: #fafafa;
-  background: #2F75A2;
-  padding: 10px 10px;
-  border-radius: 3px;
+  background-color: transparent;
 }
 
-.menu:hover .submenu {
-  opacity: 1;
+.submenuitem img {
+  width: 25px;
+}
+
+.menu.clicked .submenu {
+  right: -0.5vw;
+}
+
+.submenuitem.clicked .submenuitemtexto {
+  width:auto;
+  margin-right: 10px;
+
 }
 
 .menu:hover .submenu .opciones {
@@ -248,24 +270,6 @@ body {
   
   
   }
-
-
-    .textoCambiante {
-      animation: moverTexto 8s linear infinite;
-      white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-      overflow-x: hidden; /* Oculta el texto que se desborda del contenedor */
-      position: absolute;
-      width: auto;
-    }
-
-    @keyframes moverTexto {
-      0% {
-        transform: translateX(700px);
-    }
-    100% {
-        transform: translateX(-700px);
-    }
-}
 
 
   .logo {
@@ -303,7 +307,7 @@ body {
   gap: 20px;
   position: relative; /* Añade esto para posicionar el contenido en relación con el video */
   transition: margin-bottom 2s cubic-bezier(0.39, 0.575, 0.565, 1);
-  z-index: -1;
+  z-index: 0;
 }
 
 #video-background {
@@ -319,19 +323,19 @@ body {
 
 .quienesomostexto {
   display: flex;
+  position: fixed;
+  top: 320px;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
-  gap: 2vh;
-  color: #fafafa;
+  gap: 20px;
   background: #fafafa00;
+  color: white;
   order: 2;
-  border-radius: 0;
-  margin: 14.5vw 0vw;
-  padding: 8vw 10vw 8vw 10vw;
-  z-index: 0;
+  border-radius: 0px;
+  padding: 0 10vw;
 
 
 }
@@ -354,16 +358,16 @@ body {
   z-index: -1;
 }
 
-/*programas y cards de horarios información intro */
+/*programas y cards de 
+ información intro */
 
 .programastexto {
 display: flex;
 flex-direction: column;
-margin: 0;
-width: 100vw;
+width: 100%;
 justify-content: space-between;
 gap: 20px;
-padding: 0 11vw;
+padding: 80px 11vw;
 
 }
 
@@ -376,11 +380,6 @@ padding: 0 11vw;
   transform: rotate(90deg);
   transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
   
-}
-
-.reproductor:hover #botondirecto {
-  transform: rotate(0deg);
-  scale: 1.1;
 }
 
   /*card*/
@@ -396,7 +395,7 @@ padding: 0 11vw;
     gap: 0;
     border-radius: 8px;
     scale: 0.9;
-    z-index: -1;
+    z-index: 2;
 
 
 
@@ -418,7 +417,6 @@ padding: 0 11vw;
     padding: 25px 100px 20px 40px;
     border: 0px solid rgb(255, 255, 255);
     border-radius: 0 12px ;
-    background-color: #FAFAFA;
     
 }
 
@@ -530,6 +528,15 @@ padding: 0 11vw;
 
   transition: box-shadow 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), height 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transition: font-size 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), padding 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+
+}
+
+#programalink {
+  width: 80%;
+  justify-content: center;
+  padding: 14px 11vw;
+  margin: 0 11vw;
 
 
 }
@@ -812,7 +819,10 @@ overflow-x: auto;
     width: 100vw; /* Ajusta el ancho del grid al contenido */
     overflow-x: auto; /* Permite hacer scroll horizontal */
     padding: 0 7vw;
-    z-index:0;
+    z-index:444;
+    background-color:#2f76a20a;
+
+
 
 }
 
@@ -865,6 +875,8 @@ overflow-x: auto;
   padding: 0 10vw 0 10vw;
   height: auto;
   gap: 40px;
+  z-index: 99999;
+  margin-bottom: 100px;
 
 }
 
@@ -901,6 +913,7 @@ h2 {
 .mapamapa {
   display: flex;
   position: relative;
+  z-index: +9999;
 }
 
 .cardmapa {
@@ -915,6 +928,7 @@ h2 {
   right: 50vw;
   top: 10vw;
   gap: 3vw;
+  z-index: 9999;
 }
 
 
@@ -964,6 +978,7 @@ h2 {
   background-color: #2F75A2;
   border-radius: 4px;
   transition: padding 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 99999;
 
 }
 
@@ -1017,18 +1032,18 @@ h2 {
 /* footer */
 
 footer {
-  background-color: #fafafa00; /* Color de fondo del footer */
-  color: #2F75A2; /* Color del texto en el footer */
+  background-color: #2c2c2c; /* Color de fondo del footer */
+  color: #fafafa; /* Color del texto en el footer */
   display: flex;
   justify-content: center;
   letter-spacing: 0.375rem;
   align-items: center;
   text-justify: center;
   flex-direction: row;
-  padding: 0 0 20px 0;
+  padding:40px 0;
   margin: 0;
   width: 100vw;
-  z-index: 1;
+  z-index: 0;
   /* border-top: 1px solid #2F75A2; */
 }
 
@@ -1036,26 +1051,23 @@ footer {
 /* header y reproductor */
 
   .reproductor {  
-    position: absolute;
-    right: 0;
-    top: 120px;
+    display: flex;
+    position: fixed;
+    top: 146px;
     display: flex;
     flex-direction: row;
-    background: none;
-    width:70vw;
+    width:100vw;
+    gap: 1vw;
     height: auto;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 100px;
     height: auto;
-    max-height: 160px;
-    padding:8px 4% 8px 3%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 10px 0 0 10px;
-    transition: width 4s cubic-bezier(0.19, 1, 0.22, 1), gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
+    border-radius: 20px;
+    transition: gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
     cursor: pointer;
-    overflow: hidden;
-    z-index: 4;
+    z-index: 0;
+    box-shadow:inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+
 
     }
 
@@ -1064,15 +1076,19 @@ footer {
 
     .mascara {
       border: 0px red solid;
+      position: absolute;
       display: flex;
       opacity: 100;
-      clip-path: inset(0% 1% 0% 1%);
-      background: #fafafa00;
+      /* clip-path: inset(0% 1% 0% 1%); */
       width: 100%; /*No entiendo por que pero funciona */
       justify-content: center;
       align-items: center;
       height: auto;
-      overflow-x: hidden;
+      background-color: #2c2c2c;
+      box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+
+
+      z-index: 99999;
 
 
     }
@@ -1080,39 +1096,77 @@ footer {
         
             .radiotexto {
               display: flex;
-              height: auto;
               width: 100%;
-              font-size: 6vh;
+              height: auto;
+              font-size: 14px;
               align-items: center;
               position: relative;
-              overflow-x: hidden; /* Para ocultar cualquier contenido que se desborde */
+              white-space: nowrap; /* Evita que el texto se desborde */
+              animation: moverTexto 30s linear infinite;
 
             }
 
             @keyframes moverTexto {
-                0% {
-                transform: translateX(700px);
-            }
-            100% {
-                transform: translateX(-700px);
-            }
-            }
+              0% {
+                  transform: translateX(150%);
+              } 
+              100% {
+                  transform: translateX(-150%);
+              }
+          }
         
             #programaActual {
                 border: 0px red solid;
                 display: flex;
-                animation: moverTexto 8s linear infinite;
+                /* animation: moverTexto 20s linear infinite; */
                 letter-spacing: 4pt;
                 white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
                 margin: 0;
-                width: 200%;
                 height: auto;
+                padding: 16px;
+                background-color: #fafafa00;
+                border-radius: 200px;
                 z-index: -1;
-                font-size: 20px;
-                -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
+                font-size: 14px;
                 color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
                
             }
+
+            #programaSiguiente {
+              border: 0px red solid;
+              display: flex;
+              /* animation: moverTexto 20s linear infinite; */
+              letter-spacing: 4pt;
+              white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+              margin: 0;
+              height: auto;
+              padding: 16px;
+              background-color: #fafafa00;
+              border-radius: 200px;
+              z-index: -1;
+              font-size: 14px;
+              color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
+             
+          }
+
+          #rotativoInformativo {
+            border: 0px red solid;
+            display: flex;
+            /* animation: moverTexto 20s linear infinite; */
+            letter-spacing: 4pt;
+            align-items: center;
+            white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+            margin: 0;
+            gap: 10px;
+            height: auto;
+            padding: 0 10px;
+            border-radius: 200px;
+            z-index: -1;
+            font-size: 14px;
+            color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
+           
+        }
+      
         
             
             /* TEXTO REPRODUCTOR TABLA */
@@ -1268,18 +1322,32 @@ footer {
 
     .controles {
         display: flex;
-        order:3;
+        position: fixed;
+        top: 32px;
+        right: 160px;
         justify-content: space-between;
         align-items: center;
         gap: 20px;
         flex-direction: row;
         width: auto;
-        background-color: black;
         height: auto;
-        background-color:rgba(255, 255, 255, 0);
+        background-color:rgba(255, 255, 255, 0.199);
         border: 0px solid #FAFAFA;
         white-space: nowrap;
+        align-items: center;
+        width: auto;
+        padding: 14px 20px;
+        backdrop-filter: blur(40px);
+        font-size: 18px;
+        border-radius: 100px;
+        z-index: 80;
         
+    }
+
+    .controlestexto {
+      font-size: 14px;
+       color: #fafafa;
+       letter-spacing: 0.375em;
     }
 
 
@@ -1308,8 +1376,7 @@ footer {
 
             #imagen-diez-segundos-atras {
                 display:flex;
-                height:29px;
-                color: red;
+                height:30px;
                 justify-content: center;
                 align-items: center;
                 cursor:pointer;
@@ -1330,8 +1397,7 @@ footer {
 
             #imagen-reproducir-pausar {
                 display:flex;
-                height:27px;
-                color: red;
+                height:30px;
                 justify-content: center;
                 align-items: center;
                 cursor:pointer;
@@ -1349,8 +1415,7 @@ footer {
 
             #imagen-en-vivo {
                 display:flex;
-                height:29px;
-                color: red;
+                height:30px;
                 align-items: center;
                 cursor:pointer;
 
@@ -1366,7 +1431,6 @@ footer {
         border: 0px solid #FAFAFA;
         background-color: #fafafa00;
         background-image: linear-gradient(121deg, rgba(250,250,250,1) 0%, rgba(250,250,250,0) 90%); /* Define el gradiente de color */
-        -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
         color: transparent; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
         border-radius: 200px;
         letter-spacing: 4pt;
@@ -1376,7 +1440,7 @@ footer {
     }
 
 
-   .contenido #horarios {
+   .contenido {
       height: auto;
       padding:0;
       box-shadow: none;
@@ -1386,7 +1450,7 @@ footer {
 
     }
 
-   .contenedor #horarios {
+   .contenedor {
       display: none;
       margin-top: 100px;
       height: auto;
@@ -1551,50 +1615,121 @@ h4 {
   gap: 20px;
 }
 
+main {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  z-index: 0;
+  background-color: #fafafa;
+}
+
+/* anuncio */
+
+.anuncio {
+  display: flex;
+  position: fixed;
+  top: 540px;
+  left: 10vw;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  height: 12vh;
+  flex-direction: row;
+  z-index: 80;
+}
+
+.anuncio img {
+  display: flex;
+  width: 12vw;
+}
+
+
+.anuncio h2 {
+  color: #2F75A2;
+  font-size: 14px;
+  white-space: wrap;
+}
+
+.anuncio a {
+  border: 1px solid #fafafa;
+  padding: 10px;
+  border-radius: 100px;
+}
 
 
 
-
-
-
-
-
-@media (max-width: 1150px) {
-
-
-
-
-
-  #directo {
-    display: display;
-    gap: 1em;
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin:0;
-    font-size: 20px;
-    color: #fafafa;
-    letter-spacing: 4pt;
-    align-items: center;
-    font-weight:800;
+#anuncio1 {
+top: 10px;
+padding: 1vw 2vw;
+right: 180px;
+background-color: #FAFAFA;
+transition: scale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+box-shadow:2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+overflow-x: hidden;
 
 }
 
- 
-
-
-
-
-
+#anuncio1:hover {
+scale: 1.05;
 
 }
+
+
+#anuncio1 h2 {
+  color: #2F75A2;
+}
+
+#anuncio2 {
+  background-color: #fafafa;
+  left: 400px;
+  bottom:40px ;
+}
+
+#anuncio2:hover {
+  scale: 1.05;
+  transition: scale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  }
+
+
+
+
+
 
   @media (max-width: 800px) {
+
+
  
     body {
-      z-index: 1;
+      z-index: 4;
 
     }
+
+
+    .anuncio {
+        display: flex;
+        position: relative;
+        top:264px;
+        left: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 12vh;
+        flex-direction: row;
+        z-index: 1;
+      
+    }
+
+
+    #anuncio1 {
+      position: sticky;
+      padding: 20px;
+      border-radius: 0;
+      z-index: 9999;
+    
+  }
+
 
     .partetextualcard {
       margin-top: 0;
@@ -1612,8 +1747,8 @@ h4 {
     }
 
     .card img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 
     }
 
@@ -1625,81 +1760,11 @@ h4 {
     }
 
     .logo img {
-      width: 60px ;
+      width: 70px ;
   
     }
 
 
-    .mascara {
-      display: flex;
-      opacity: 100;
-      clip-path: inset(0% 1% 0% 1%);
-      background: #fafafa00;
-      width: 100%; /*No entiendo por que pero funciona */
-      justify-content: center;
-      align-items: left;
-      height: 50px;
-      z-index: -1;
-
-
-    }
-
-    .radiotexto {
-      display: flex;
-      height: 50px;
-      width: 100%;
-      font-size: 6vh;
-      align-items: center;
-      position: relative;
-      justify-content: center;
-      z-index: 1;
-
-
-
-    }
-
-    @keyframes moverTexto {
-        0% {
-        transform: translateX(700px);
-        transform: translateY(0px);
-
-    }
-    100% {
-        transform: translateX(700px);
-        transform: translateY(0px);
-    }
-    }
-
-    #programaActual {
-        display: flex;
-        animation: moverTexto 10s linear infinite;
-        letter-spacing: 4pt;
-        white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-        padding:14px 2px;
-        align-items: left;
-        justify-content: center;
-        width: 100%;
-        height: 50px;
-        z-index: -1;
-        font-size:16px;
-        -webkit-background-clip: text; /* Aplica el gradiente de color al texto en navegadores webkit (Safari y Chrome) */
-        color: #fafafa; /* Hace que el texto sea transparente para que se muestre el gradiente de color de fondo */
-    }
-
-
-    .navegadormomentodirecto {
-      order: 1;
-      height: 20px;
-    }
-
-    .mascara {
-      order: 2;
-    }
-
-    .controles {
-      order: 3;
-      height: 30px;
-    }
 
     #contactotextoflotante {
       display: flex;
@@ -1711,6 +1776,21 @@ h4 {
       
       }
 
+      .controles {
+        flex-direction: row;
+        right: 25%;
+        top: 2.5%;
+        background-color:rgba(255, 255, 255, 0.199);
+
+      }
+
+      .controlestexto {
+        display: none;
+        font-size: 14px;
+         color: #fafafa;
+         letter-spacing: 0.375em;
+      }
+
       #contactotextoflotante:hover {
         scale:0.045;
       }
@@ -1720,6 +1800,14 @@ h4 {
       margin-bottom: 0; /*para ajustar el cuerpo*/
       height: auto;
       
+    }
+
+    .menu {
+      top: 5vh;
+    }
+
+    .submenu {
+      top: 20vh;
     }
   
    
@@ -1734,13 +1822,6 @@ h4 {
     }
     
 
-    .divisorreproductor {
-      display: flex;
-      width: auto;
-      height:40px;
-      margin: 20px 0;
-    }
-    
 
     /* .reproductor {
       display: flex;
@@ -1766,29 +1847,6 @@ h4 {
 
     } */
 
-    .reproductor {
-      display: flex;
-      position: fixed;
-      top: 300px;
-      margin: 0 10vw;
-      position: relative;
-      margin-bottom:0;
-      flex-direction: column;
-      height: 600px;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(5px); 
-      gap: 20px;
-      max-height: 160px;
-      padding:8px 7% 40px 7%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 70vw;
-      cursor: pointer;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: top 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-    }
-
 
     
 
@@ -1798,10 +1856,10 @@ h4 {
 
   @keyframes moverTexto {
     0% {
-    transform: translateX(600px);
+    transform: translateX(150%);
 }
 100% {
-    transform: translateX(-600px);
+    transform: translateX(-150%);
 }
 }
 
@@ -1815,8 +1873,6 @@ h4 {
   
   #imagen-diez-segundos-atras {
     display:flex;
-    height:44px;
-    color: red;
     justify-content: center;
     align-items: center;
     cursor:pointer;
@@ -1829,8 +1885,6 @@ h4 {
 
 #imagen-reproducir-pausar {
     display:flex;
-    height:42px;
-    color: red;
     justify-content: center;
     align-items: center;
     cursor:pointer;
@@ -1840,8 +1894,6 @@ h4 {
 
 #imagen-en-vivo {
     display:flex;
-    height:44px;
-    color: red;
     align-items: center;
     cursor:pointer;
 
@@ -1859,12 +1911,13 @@ margin-bottom: 10px;
 
 .quienesomos {
 margin-top: -100px;
+height: 60%;
   padding-top: 0 px;
 }
 
 #video-background {
   position: absolute;
-  top: 0;
+  top: 30px;
   left: -280px;
   scale: 1.4;
   z-index: -1;
@@ -1876,44 +1929,8 @@ margin-top: -100px;
 
 }
 
-.quienesomostexto {
-  display: flex;
-  position: sticky;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  gap: 20px;
-  background: #fafafa00;
-  order: 2;
-  border-radius: 0px;
-  margin: 30vh 20vh;
-  margin-left: 0px;
-  padding: 10vw;
 
 
-}
-
-
-
-.submenuitem2 {
-  font-size: 16px;
-  align-self: flex-end;
-  color: #fafafa;
-  background: #2F75A2;
-  padding: 6px;
-  border-radius: 3px;
-}
-
-
-.submenu {
-  display: flex;
-  flex-direction: column;
-  margin-right: 3vw;
-  top: -2vh;
-  justify-content: flex-end;
-}
 
 }
 
