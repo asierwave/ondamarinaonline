@@ -135,7 +135,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: #fafafa;
+  background-color: #2c2c2c;
   width: 100vw;
   height: auto;
   margin: 0;
@@ -1057,6 +1057,7 @@ footer {
   background-color: #2c2c2c; /* Color de fondo del footer */
   color: #fafafa; /* Color del texto en el footer */
   display: flex;
+  position: sticky;
   justify-content: center;
   letter-spacing: 0.375rem;
   align-items: center;
