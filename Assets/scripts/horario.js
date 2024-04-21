@@ -1,7 +1,7 @@
 function mostrarProgramasActuales() {
   var ahora = new Date();
   var horaActual = ahora.getHours() * 60 + ahora.getMinutes(); // Convertir la hora actual a minutos
-  var diaSemanaActual = ahora.getDay() || 0;
+  var diaSemanaActual = ahora.getDay() || 7; // Cambiar 0 a 7 para tratar el domingo como el día 7
 
   var tablaProgramacion = document.getElementById("tablaProgramacion");
   var programaActual = ""; // Inicialmente no hay programa actual

@@ -59,10 +59,13 @@ padding: 0;
 
 .divisor {
   display: flex;
-  width: auto;
-  height:40px;
-  margin: 60px 20px;
+  position: relative;
+  width: 100vw;
+  height:auto;
+  padding: 70px 0;
+  margin: 0;
   overflow: hidden;
+  filter: brightness(4);
 }
 
 .divisorportada {
@@ -155,6 +158,7 @@ body {
     justify-items: center;
     flex-direction: column;
     width: 100vw;
+    height: 122px;
     margin: 0;
     padding:20px 0 70px 0;
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
@@ -163,8 +167,12 @@ body {
     /* transition: background 4s cubic-bezier(0.075, 0.82, 0.165, 1); */
     background: transparent;
     filter: blur(40);
-    z-index: 30;
+    z-index: 8;
     background-color: #2F75A2;
+    background-image: url('/Assets/cabecerafondo.png');
+    background-size: cover; /* Adjusts the size of the background image to cover the entire container */
+    background-position: center -260px; /* Positions the background image at the center horizontally and 300 pixels from the top vertically */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
   } 
 
   
@@ -181,7 +189,7 @@ body {
 .submenu {
   display: flex;
   position: absolute;
-  top: 6vh;
+  top: 160px;
   right: -24vw;
   flex-direction: column;
   align-items: flex-end;
@@ -209,9 +217,10 @@ body {
 }
 
 .submenuitemtexto {
-  width: 0;
+  width: auto;
+  max-width: 0;
   overflow: hidden;
-  transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: max-width 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .submenuitem2 {
@@ -232,8 +241,9 @@ body {
   right: -0.5vw;
 }
 
-.submenuitem.clicked .submenuitemtexto {
+.submenuitem:hover .submenuitemtexto {
   width:auto;
+  max-width: 400px;
   margin-right: 10px;
 
 }
@@ -818,12 +828,24 @@ overflow-x: auto;
     flex-direction: row;
     width: 100vw; /* Ajusta el ancho del grid al contenido */
     overflow-x: auto; /* Permite hacer scroll horizontal */
-    padding: 0 7vw;
-    z-index:444;
+    padding: 20px 7vw;
+    z-index:9999;
     background-color:#2f76a20a;
 
 
 
+}
+
+#topcards {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  top: 1000px;
+  left: 0;
+  scale: 1;
+  z-index: 1;
 }
 
 
@@ -1064,9 +1086,8 @@ footer {
     height: auto;
     border-radius: 20px;
     transition: gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
-    cursor: pointer;
-    z-index: 0;
-    box-shadow:inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    /* box-shadow:inset 0 0 5px 0 rgba(0, 0, 0, 0.5); */
 
 
     }
@@ -1088,7 +1109,7 @@ footer {
       box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
 
 
-      z-index: 99999;
+      z-index:0;
 
 
     }
@@ -1098,7 +1119,7 @@ footer {
               display: flex;
               height: auto;
               font-size: 14px;
-              align-items: flex-start;
+              align-items: center;
               position: relative;
               white-space: nowrap; /* Evita que el texto se desborde */
               animation: moverTexto 40s linear infinite;
@@ -1618,7 +1639,7 @@ main {
   width: 100%;
   height: auto;
   justify-content: center;
-  z-index: 0;
+  z-index: 1;
   background-color: #fafafa;
 }
 
@@ -1698,12 +1719,12 @@ scale: 1.05;
   @media (max-width: 800px) {
 
 
- 
-    body {
-      z-index: 4;
+    .main {
+      display: flex;
+      width: 100%;
+      height: auto;
 
     }
-
 
     .anuncio {
         display: flex;
@@ -1717,16 +1738,24 @@ scale: 1.05;
         height: 12vh;
         flex-direction: row;
         z-index: 1;
-      
+    }
+
+
+    .quienesomos {
+      position: relative;
+    }
+
+    .reproductor {
+      z-index: 9999;
     }
 
 
     #anuncio1 {
       position: sticky;
-      padding: 20px;
+      padding: 80px 20px 20px 20px;
+      margin-bottom: 40px;
       border-radius: 0;
       z-index: 9999;
-    
   }
 
 
@@ -1734,7 +1763,6 @@ scale: 1.05;
       margin-top: 0;
       padding: 0;
       padding-top:20px;
-
     }
     
     .card {
@@ -1748,39 +1776,34 @@ scale: 1.05;
     .card img {
     width: 200px;
     height: 200px;
-
     }
 
 
 
     .cabeza {
       padding:0 7vw 0 7vw;
-  
     }
 
     .logo img {
       width: 70px ;
-  
     }
 
 
 
     #contactotextoflotante {
       display: flex;
-      position: fixed;
+      position: sticky;
       bottom: -700px;
       left: 340px;
       scale: 0.04;
       transition: scale 1s cubic-bezier(0.075, 0.82, 0.165, 1)
-      
       }
 
       .controles {
         flex-direction: row;
         right: 25%;
-        top: 2.5%;
+        top: 28px;
         background-color:rgba(255, 255, 255, 0.199);
-
       }
 
       .controlestexto {
@@ -1796,9 +1819,8 @@ scale: 1.05;
 
     header {
       position: fixed;
-      margin-bottom: 0; /*para ajustar el cuerpo*/
       height: auto;
-      
+      width: 100%;
     }
 
     .menu {
@@ -1817,7 +1839,6 @@ scale: 1.05;
       right: 4vw;
       top: 14vw;
       gap: 3vw;
-    
     }
     
 
@@ -1875,8 +1896,6 @@ scale: 1.05;
     justify-content: center;
     align-items: center;
     cursor:pointer;
-
-
 }
 
 
@@ -1899,7 +1918,20 @@ scale: 1.05;
 
 }
 
+#topcards {
+  display: none;
+  top: 1050px;
+  box-shadow:2px 2px 4px 0 rgba(0, 0, 0, 0.2);
 
+}
+
+.anuncio {
+  top: 164px;
+}
+
+.anuncio:hover {
+  z-index: 9999;
+}
 
 #programaActual {
 color: #fafafa;
@@ -1907,50 +1939,4 @@ margin-top: 10px;
 margin-bottom: 10px;
 
 }
-
-.quienesomos {
-margin-top: -100px;
-height: 60%;
-  padding-top: 0 px;
-}
-
-#video-background {
-  position: absolute;
-  top: 30px;
-  left: -280px;
-  scale: 1.4;
-  z-index: -1;
-  pointer-events: none;
-  height: 100%;
-  pointer-events: none;
-  overflow: visible;
-
-
-}
-
-
-
-
-}
-
-
-  
-
-@media (max-width: 500px) {
-  .divisorportada {
-    display: none;
-    width: auto;
-    height:20px;
-    margin: -20vh 20px 0px 20px;
-    overflow: hidden;
-  
-  
   }
-
-  .quienesomos {
-    height: 120vh;
-  }
-
-  }
-
-
