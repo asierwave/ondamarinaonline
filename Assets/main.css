@@ -65,7 +65,7 @@ padding: 0;
   padding: 70px 0;
   margin: 0;
   overflow: hidden;
-  filter: brightness(4);
+  filter: brightness(10);
 }
 
 .divisorportada {
@@ -1833,7 +1833,8 @@ scale: 1.05;
 
 
     .submenu {
-      top: 55vh;
+      top: 40vh;
+      right: -500px;
     }
   
    
