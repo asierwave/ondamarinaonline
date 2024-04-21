@@ -182,6 +182,7 @@ body {
 .menu {
   position: absolute;
   right:6vw;
+  top: 50px;
   cursor: pointer;
   z-index: 9999;
 }
@@ -211,7 +212,7 @@ body {
   backdrop-filter: blur(40px);
   font-size: 18px;
   border-radius: 100px;
-  background-color:#2f76a275;
+  background-color:#2f76a2;
 
 
 }
@@ -1649,11 +1650,11 @@ main {
 .anuncio {
   display: flex;
   position: fixed;
-  top: 540px;
+  top: 560px;
   left: 10vw;
   align-items: center;
   justify-content: space-between;
-  width: 40%;
+  width: 100%;
   height: 12vh;
   flex-direction: row;
   z-index: 80;
@@ -1824,12 +1825,15 @@ scale: 1.05;
       width: 100%;
     }
 
+
+
     .menu {
-      top: 5vh;
+      top: 44px;
     }
 
+
     .submenu {
-      top: 20vh;
+      top: 55vh;
     }
   
    
