@@ -192,18 +192,53 @@
 
       </article>
   
-      <div class="quienesomostexto">
-        <h2 style="color: #fafafa;">QUIÉNES SOMOS</h2>
-        <p>Onda Marina Online es la radio que estabas esperando. <br> Una radio online libre e independiente con especial atención al municipio de Santa Cruz de Bezana (Cantabria)
+      <article class="quienesomostexto">
+        <h2 id="xlsquienesomostitulo" style="color: #fafafa;">QUIÉNES SOMOS</h2>
+        <p id="xlsquienesomosparrafo">Onda Marina Online es la radio que estabas esperando. <br> Una radio online libre e independiente con especial atención al municipio de Santa Cruz de Bezana (Cantabria)
 
         </p>
         <img class="divisorportada" style="position: relative; top: 20px;" src="Assets/unionwhitealt.png" alt="">
 
-      </div>
+      </article>
       <!-- <img src="https://picsum.photos/1920/1080" alt=""> -->
 
 
+      <article style="position: absolute; z-index: 9999;" id="turnosContainer">
+
+        <div id="cliente"></div>
+        <div id="modelo"></div>
+        <div id="problema"></div>
+        <div id="problema"></div>
+        
+      </article>
+
+
+
     </section>
+
+
+
+
+  <!-- GOOGLE SHEET INCORPORACION -->
+
+    <section>
+      <div id="turnosContainer"></div>
+      <div id="detalleContainer" class="escondido">
+        <h2 id="cliente">Nombre</h2>
+        <p>Modelo: <span id="modelo"></span></p>
+        <p>Problema: <span id="problema"></span></p>
+        <div>
+          <label for="comentario">Comentario del técnico: </label>
+          <input name="comentario" id="comentario"></input>
+        </div>
+        <button id="finalizar">Marcar finalizado</button>
+      </div>
+    </section>
+
+
+
+
+
 
     <!-- <img id="topcards" src="Assets/topcards.png" alt="Tope de sección cards, para transición"> -->
 
@@ -836,7 +871,7 @@
   
   <!-- GENTE DIVERTIDA -->
   <div class="card">
-    <img src="Assets/gentedivertida.jpeg" alt="Imagen">
+    <img src="Assets/logonocover.png" alt="Imagen">
     <div class="partetextualcard">
     <h2>GENTE DIVERTIDA</h2>
     <div class="days">
@@ -1386,6 +1421,29 @@
     </footer>
 
 
+
+
+
+
+
+ <!-- AUTENTICACIÓN GOOGLE SHEET DATABASE CONEXIÓN -->
+
+
+    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+    <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
+
+    <script async defer src="Assets/scripts/auth.js"></script>
+    <script async defer src="Assets/scripts/index.js"></script>
+    <script async defer src="Assets/scripts/sheets.js"></script>
+
+
+
  <!-- los scripts mejor aquí si no usas window.onload() -->
           
  <script src="Assets/scripts/horario.js"></script>
@@ -1393,9 +1451,9 @@
 
  <script src="Assets/scripts/howler.js"></script>
  <script src="Assets/scripts/reproductor.js"></script>
- <script src="Assets/scripts/procesar_formulario.php"></script>
  <script src="Assets/scripts/leermas.js"></script>
  <script src="Assets/scripts/botonmenu.js"></script>
+
 
   </body>
 </html>
