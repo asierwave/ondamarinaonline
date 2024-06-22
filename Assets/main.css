@@ -428,7 +428,7 @@ body {
   top: 30vh;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 40%;
   height: auto;
   max-width: 100%;
   gap: 20px;
@@ -1885,6 +1885,10 @@ scale: 1.05;
 
     .quienesomos {
       position: relative;
+    }
+
+    .quienesomostexto {
+      width: 100%;
     }
 
     .reproductor {
