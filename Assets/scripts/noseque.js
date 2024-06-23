@@ -237,126 +237,128 @@ function cargarDatosDesdeGoogleSheets() {
         // Verificar que hay algo en el array
         if (arrayDeObjetos !== null) {
           // Asignar valores al texto e imágenes
-          quienesSomosTitulo.textContent = arrayDeObjetos[0].titulo;
-          quienesSomosDescripcion.textContent = arrayDeObjetos[0].descripcion;
+          quienesSomosTitulo.innerHTML = arrayDeObjetos[0].titulo;
+          quienesSomosDescripcion.innerHTML = arrayDeObjetos[0].descripcion;
 
 
       
-          elRinconTitulo.textContent = arrayDeObjetos[1].titulo;
-          elRinconDescripcion.textContent = arrayDeObjetos[1].descripcion;
-          elRinconHorario1.textContent = arrayDeObjetos[1].horario1;
-          elRinconHorario2.textContent = arrayDeObjetos[1].horario2;
+          elRinconTitulo.innerHTML = arrayDeObjetos[1].titulo;
+          elRinconDescripcion.innerHTML = arrayDeObjetos[1].descripcion;
+          elRinconHorario1.innerHTML = arrayDeObjetos[1].horario1;
+          elRinconHorario2.innerHTML = arrayDeObjetos[1].horario2;
           elRinconHorarioR = arrayDeObjetos[1].horarior;
-          elRinconDuracion.textContent = arrayDeObjetos[1].duracion;
-          elRinconEtiqueta.textContent = arrayDeObjetos[1].etiqueta;
+          elRinconDuracion.innerHTML = arrayDeObjetos[1].duracion;
+          elRinconEtiqueta.innerHTML = arrayDeObjetos[1].etiqueta;
           
 
-          lasOndasTitulo.textContent = arrayDeObjetos[2].titulo;
-          lasOndasDescripcion.textContent = arrayDeObjetos[2].descripcion;
-          lasOndasHorario1.textContent = arrayDeObjetos[2].horario1;
-          lasOndasHorario2.textContent = arrayDeObjetos[2].horario2;
-          lasOndasHorarioR.textContent = arrayDeObjetos[2].horarior;
-          lasOndasDuracion.textContent = arrayDeObjetos[2].duracion;
-          lasOndasEtiqueta.textContent = arrayDeObjetos[2].etiqueta;
+          lasOndasTitulo.innerHTML = arrayDeObjetos[2].titulo;
+          lasOndasDescripcion.innerHTML = arrayDeObjetos[2].descripcion;
+          lasOndasHorario1.innerHTML = arrayDeObjetos[2].horario1;
+          lasOndasHorario2.innerHTML = arrayDeObjetos[2].horario2;
+          lasOndasHorarioR.innerHTML = arrayDeObjetos[2].horarior;
+          lasOndasDuracion.innerHTML = arrayDeObjetos[2].duracion;
+          lasOndasEtiqueta.innerHTML = arrayDeObjetos[2].etiqueta;
 
-          elDesvanTitulo.textContent = arrayDeObjetos[3].titulo;
-          elDesvanDescripcion.textContent = arrayDeObjetos[3].descripcion;
-          elDesvanHorario1.textContent = arrayDeObjetos[3].horario1;
-          elDesvanHorario2.textContent = arrayDeObjetos[3].horario2;
-          elDesvanHorarioR.textContent = arrayDeObjetos[3].horarior;
-          elDesvanDuracion.textContent = arrayDeObjetos[3].duracion;
-          elDesvanEtiqueta.textContent = arrayDeObjetos[3].etiqueta;
+          elDesvanTitulo.innerHTML = arrayDeObjetos[3].titulo;
+          elDesvanDescripcion.innerHTML = arrayDeObjetos[3].descripcion;
+          elDesvanHorario1.innerHTML = arrayDeObjetos[3].horario1;
+          elDesvanHorario2.innerHTML = arrayDeObjetos[3].horario2;
+          elDesvanHorarioR.innerHTML = arrayDeObjetos[3].horarior;
+          elDesvanDuracion.innerHTML = arrayDeObjetos[3].duracion;
+          elDesvanEtiqueta.innerHTML = arrayDeObjetos[3].etiqueta;
 
-          lasTertuliasTitulo.textContent = arrayDeObjetos[4].titulo;
-          lasTertuliasDescripcion.textContent = arrayDeObjetos[4].descripcion;
-          lasTertuliasHorario1.textContent = arrayDeObjetos[4].horario1;
-          lasTertuliasHorario2.textContent = arrayDeObjetos[4].horario2;
-          lasTertuliasHorarioR.textContent = arrayDeObjetos[4].horarior;
-          lasTertuliasDuracion.textContent = arrayDeObjetos[4].duracion;
-          lasTertuliasEtiqueta.textContent = arrayDeObjetos[4].etiqueta;
+          lasTertuliasTitulo.innerHTML = arrayDeObjetos[4].titulo;
+          lasTertuliasDescripcion.innerHTML = arrayDeObjetos[4].descripcion;
+          lasTertuliasHorario1.innerHTML = arrayDeObjetos[4].horario1;
+          lasTertuliasHorario2.innerHTML = arrayDeObjetos[4].horario2;
+          lasTertuliasHorarioR.innerHTML = arrayDeObjetos[4].horarior;
+          lasTertuliasDuracion.innerHTML = arrayDeObjetos[4].duracion;
+          lasTertuliasEtiqueta.innerHTML = arrayDeObjetos[4].etiqueta;
 
-          laTabernaTitulo.textContent = arrayDeObjetos[5].titulo;
-          laTabernaDescripcion.textContent = arrayDeObjetos[5].descripcion;
-          laTabernaHorario1.textContent = arrayDeObjetos[5].horario1;
-          laTabernaHorario2.textContent = arrayDeObjetos[5].horario2;
-          laTabernaHorarioR.textContent = arrayDeObjetos[5].horarior;
-          laTabernaDuracion.textContent = arrayDeObjetos[5].duracion;
-          laTabernaEtiqueta.textContent = arrayDeObjetos[5].etiqueta;
+          laTabernaTitulo.innerHTML = arrayDeObjetos[5].titulo;
+          laTabernaDescripcion.innerHTML = arrayDeObjetos[5].descripcion;
+          laTabernaHorario1.innerHTML = arrayDeObjetos[5].horario1;
+          laTabernaHorario2.innerHTML = arrayDeObjetos[5].horario2;
+          laTabernaHorarioR.innerHTML = arrayDeObjetos[5].horarior;
+          laTabernaDuracion.innerHTML = arrayDeObjetos[5].duracion;
+          laTabernaEtiqueta.innerHTML = arrayDeObjetos[5].etiqueta;
 
-          laSendaTitulo.textContent = arrayDeObjetos[6].titulo;
-          laSendaDescripcion.textContent = arrayDeObjetos[6].descripcion;
-          laSendaHorario1.textContent = arrayDeObjetos[6].horario1;
-          laSendaHorario2.textContent = arrayDeObjetos[6].horario2;
-          laSendaHorarioR.textContent = arrayDeObjetos[6].horarior;
-          laSendaDuracion.textContent = arrayDeObjetos[6].duracion;
-          laSendaEtiqueta.textContent = arrayDeObjetos[6].etiqueta;
+          laSendaTitulo.innerHTML = arrayDeObjetos[6].titulo;
+          laSendaDescripcion.innerHTML = arrayDeObjetos[6].descripcion;
+          laSendaHorario1.innerHTML = arrayDeObjetos[6].horario1;
+          laSendaHorario2.innerHTML = arrayDeObjetos[6].horario2;
+          laSendaHorarioR.innerHTML = arrayDeObjetos[6].horarior;
+          laSendaDuracion.innerHTML = arrayDeObjetos[6].duracion;
+          laSendaEtiqueta.innerHTML = arrayDeObjetos[6].etiqueta;
 
-          deUnTiempoTitulo.textContent = arrayDeObjetos[7].titulo;
-          deUnTiempoDescripcion.textContent = arrayDeObjetos[7].descripcion;
-          deUnTiempoHorario1.textContent = arrayDeObjetos[7].horario1;
-          deUnTiempoHorario2.textContent = arrayDeObjetos[7].horario2;
-          deUnTiempoHorarioR.textContent = arrayDeObjetos[7].horarior;
-          deUnTiempoDuracion.textContent = arrayDeObjetos[7].duracion;
-          deUnTiempoEtiqueta.textContent = arrayDeObjetos[7].etiqueta;
+          deUnTiempoTitulo.innerHTML = arrayDeObjetos[7].titulo;
+          deUnTiempoDescripcion.innerHTML = arrayDeObjetos[7].descripcion;
+          deUnTiempoHorario1.innerHTML = arrayDeObjetos[7].horario1;
+          deUnTiempoHorario2.innerHTML = arrayDeObjetos[7].horario2;
+          deUnTiempoHorarioR.innerHTML = arrayDeObjetos[7].horarior;
+          deUnTiempoDuracion.innerHTML = arrayDeObjetos[7].duracion;
+          deUnTiempoEtiqueta.innerHTML = arrayDeObjetos[7].etiqueta;
 
-          arribaQueEsTitulo.textContent = arrayDeObjetos[8].titulo;
-          arribaQueEsDescripcion.textContent = arrayDeObjetos[8].descripcion;
-          arribaQueEsHorario1.textContent = arrayDeObjetos[8].horario1;
-          arribaQueEsHorario2.textContent = arrayDeObjetos[8].horario2;
-          arribaQueEsHorarioR.textContent = arrayDeObjetos[8].horarior;
-          arribaQueEsDuracion.textContent = arrayDeObjetos[8].duracion;
-          arribaQueEsEtiqueta.textContent = arrayDeObjetos[8].etiqueta;
+          arribaQueEsTitulo.innerHTML = arrayDeObjetos[8].titulo;
+          arribaQueEsDescripcion.innerHTML = arrayDeObjetos[8].descripcion;
+          arribaQueEsHorario1.innerHTML = arrayDeObjetos[8].horario1;
+          arribaQueEsHorario2.innerHTML = arrayDeObjetos[8].horario2;
+          arribaQueEsHorarioR.innerHTML = arrayDeObjetos[8].horarior;
+          arribaQueEsDuracion.innerHTML = arrayDeObjetos[8].duracion;
+          arribaQueEsEtiqueta.innerHTML = arrayDeObjetos[8].etiqueta;
 
-          cuatroTerciosTitulo.textContent = arrayDeObjetos[9].titulo;
-          cuatroTerciosDescripcion.textContent = arrayDeObjetos[9].descripcion;
-          cuatroTerciosHorario1.textContent = arrayDeObjetos[9].horario1;
-          cuatroTerciosHorario2.textContent = arrayDeObjetos[9].horario2;
-          cuatroTerciosHorarioR.textContent = arrayDeObjetos[9].horarior;
-          cuatroTerciosDuracion.textContent = arrayDeObjetos[9].duracion;
-          cuatroTerciosEtiqueta.textContent = arrayDeObjetos[9].etiqueta;
+          cuatroTerciosTitulo.innerHTML = arrayDeObjetos[9].titulo;
+          cuatroTerciosDescripcion.innerHTML = arrayDeObjetos[9].descripcion;
+          cuatroTerciosHorario1.innerHTML = arrayDeObjetos[9].horario1;
+          cuatroTerciosHorario2.innerHTML = arrayDeObjetos[9].horario2;
+          cuatroTerciosHorarioR.innerHTML = arrayDeObjetos[9].horarior;
+          cuatroTerciosDuracion.innerHTML = arrayDeObjetos[9].duracion;
+          cuatroTerciosEtiqueta.innerHTML = arrayDeObjetos[9].etiqueta;
 
-          genteDivertidaTitulo.textContent = arrayDeObjetos[10].titulo;
-          genteDivertidaDescripcion.textContent = arrayDeObjetos[10].descripcion;
-          genteDivertidaHorario1.textContent = arrayDeObjetos[10].horario1;
-          genteDivertidaHorario2.textContent = arrayDeObjetos[10].horario2;
-          genteDivertidaHorarioR.textContent = arrayDeObjetos[10].horarior;
-          genteDivertidaDuracion.textContent = arrayDeObjetos[10].duracion;
-          genteDivertidaEtiqueta.textContent = arrayDeObjetos[10].etiqueta;
+          genteDivertidaTitulo.innerHTML = arrayDeObjetos[10].titulo;
+          genteDivertidaDescripcion.innerHTML = arrayDeObjetos[10].descripcion;
+          genteDivertidaHorario1.innerHTML = arrayDeObjetos[10].horario1;
+          genteDivertidaHorario2.innerHTML = arrayDeObjetos[10].horario2;
+          genteDivertidaHorarioR.innerHTML = arrayDeObjetos[10].horarior;
+          genteDivertidaDuracion.innerHTML = arrayDeObjetos[10].duracion;
+          genteDivertidaEtiqueta.innerHTML = arrayDeObjetos[10].etiqueta;
 
-          elBoleroTitulo.textContent = arrayDeObjetos[11].titulo;
-          elBoleroDescripcion.textContent = arrayDeObjetos[11].descripcion;
-          elBoleroHorario1.textContent = arrayDeObjetos[11].horario1;
-          elBoleroHorario2.textContent = arrayDeObjetos[11].horario2;
-          elBoleroHorarioR.textContent = arrayDeObjetos[11].horarior;
-          elBoleroDuracion.textContent = arrayDeObjetos[11].duracion;
-          elBoleroEtiqueta.textContent = arrayDeObjetos[11].etiqueta;
+          elBoleroTitulo.innerHTML = arrayDeObjetos[11].titulo;
+          elBoleroDescripcion.innerHTML = arrayDeObjetos[11].descripcion;
+          elBoleroHorario1.innerHTML = arrayDeObjetos[11].horario1;
+          elBoleroHorario2.innerHTML = arrayDeObjetos[11].horario2;
+          elBoleroHorarioR.innerHTML = arrayDeObjetos[11].horarior;
+          elBoleroDuracion.innerHTML = arrayDeObjetos[11].duracion;
+          elBoleroEtiqueta.innerHTML = arrayDeObjetos[11].etiqueta;
 
-          luchaGigantesTitulo.textContent = arrayDeObjetos[12].titulo;
-          luchaGigantesDescripcion.textContent = arrayDeObjetos[12].descripcion;
-          luchaGigantesHorario1.textContent = arrayDeObjetos[12].horario1;
-          luchaGigantesHorario2.textContent = arrayDeObjetos[12].horario2;
-          luchaGigantesHorarioR.textContent = arrayDeObjetos[12].horarior;
-          luchaGigantesDuracion.textContent = arrayDeObjetos[12].duracion;
-          luchaGigantesEtiqueta.textContent = arrayDeObjetos[12].etiqueta;
+          luchaGigantesTitulo.innerHTML = arrayDeObjetos[12].titulo;
+          luchaGigantesDescripcion.innerHTML = arrayDeObjetos[12].descripcion;
+          luchaGigantesHorario1.innerHTML = arrayDeObjetos[12].horario1;
+          luchaGigantesHorario2.innerHTML = arrayDeObjetos[12].horario2;
+          luchaGigantesHorarioR.innerHTML = arrayDeObjetos[12].horarior;
+          luchaGigantesDuracion.innerHTML = arrayDeObjetos[12].duracion;
+          luchaGigantesEtiqueta.innerHTML = arrayDeObjetos[12].etiqueta;
 
-          elRaroTitulo.textContent = arrayDeObjetos[13].titulo;
-          elRaroDescripcion.textContent = arrayDeObjetos[13].descripcion;
-          elRaroHorario1.textContent = arrayDeObjetos[13].horario1;
-          elRaroHorario2.textContent = arrayDeObjetos[13].horario2;
-          elRaroHorarioR.textContent = arrayDeObjetos[13].horarior;
-          elRaroDuracion.textContent = arrayDeObjetos[13].duracion;
-          elRaroEtiqueta.textContent = arrayDeObjetos[13].etiqueta;
+          elRaroTitulo.innerHTML = arrayDeObjetos[13].titulo;
+          elRaroDescripcion.innerHTML = arrayDeObjetos[13].descripcion;
+          elRaroHorario1.innerHTML = arrayDeObjetos[13].horario1;
+          elRaroHorario2.innerHTML = arrayDeObjetos[13].horario2;
+          elRaroHorarioR.innerHTML = arrayDeObjetos[13].horarior;
+          elRaroDuracion.innerHTML = arrayDeObjetos[13].duracion;
+          elRaroEtiqueta.innerHTML = arrayDeObjetos[13].etiqueta;
 
-          mapaTitulo.textContent = arrayDeObjetos[18].titulo;
-          mapaDescripcion.textContent = arrayDeObjetos[18].descripcion;
+          mapaTitulo.innerHTML = arrayDeObjetos[18].titulo;
+          mapaDescripcion.innerHTML = arrayDeObjetos[18].descripcion;
 
-          footerTitulo.textContent = arrayDeObjetos[19].titulo;
-          //   footerDescripcion.textContent = arrayDeObjetos[19].descripcion;
+          footerTitulo.innerHTML = arrayDeObjetos[19].titulo;
+          //   footerDescripcion.innerHTML = arrayDeObjetos[19].descripcion;
         } else {
           console.error(
             "No se encuentran datos o no se puede conectar con el array"
           );
         }
+
+
 
         /////////////////////////
       },
