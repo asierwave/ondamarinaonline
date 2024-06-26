@@ -1109,8 +1109,8 @@ p {
 
    /*slider */
    #audio-slider {
-    position: absolute;
-    top: 13.1vh;
+    position: relative;
+    top: -2.9vh;
     z-index: 999999;
 
   }
@@ -2109,8 +2109,8 @@ scale: 1.05;
 
    /*slider */
    #audio-slider {
-    position: absolute;
-    top: 12.4vh;
+    position: relative;
+    top: -3.6vh;
     z-index: 999999;
 
   }
