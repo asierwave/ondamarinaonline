@@ -8,11 +8,9 @@ iconosPlay.forEach(iconoPlay => {
     const streamURL = this.closest('.programareciente').dataset.streamurl || defaultStreamURL;
     miAudio.src = streamURL;
 
-    // Realiza la solicitud HTTP usando Fetch
     fetch(streamURL)
       .then(response => response.text())
       .then(html => {
-        // Utiliza el DOM del navegador para manipular el HTML
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
@@ -22,7 +20,6 @@ iconosPlay.forEach(iconoPlay => {
         console.log('Texto del podcast:', textoPodcast);
         console.log('Descripción del podcast:', descripcionPodcast);
 
-        // Continúa con la reproducción de audio o cualquier otra lógica que necesites
         miAudio.play();
       })
       .catch(error => {
@@ -31,229 +28,114 @@ iconosPlay.forEach(iconoPlay => {
   });
 });
 
-// Resto del código del reproductor de audio...
-
-// Agrega un manejador de eventos para el botón de reproducción/pausa
 const botonFotoplay = document.getElementById('imagen-reproducir-pausar');
 let estaReproduciendo = false;
 
-
-
-
-
 botonFotoplay.addEventListener('click', function () {
-  if (window.scrollY < 443) {
-    if (estaReproduciendo) {
-      miAudio.pause(); // Pausa la transmisión si está reproduciéndose
-      botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Reproducir"
-      estaReproduciendo = false;
-
-  
-    } else {
-      miAudio.play(); // Reproduce la transmisión si está pausada
-      botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Pausar"
-      estaReproduciendo = true;
-
-  }
-} else {
-
-  if (estaReproduciendo) {
-    miAudio.pause(); // Pausa la transmisión si está reproduciéndose
-    botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Reproducir"
-    estaReproduciendo = false;
-
-
-  } else {
-    miAudio.play(); // Reproduce la transmisión si está pausada
-    botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Pausar"
+  if (miAudio.paused) {
+    miAudio.play();
     estaReproduciendo = true;
-
-}
-
-}
-
+  } else {
+    miAudio.pause();
+    estaReproduciendo = false;
+  }
+  actualizarEstadoReproduccion(estaReproduciendo); // Actualiza el estado de reproducción
 });
-
 
 window.addEventListener('scroll', function () {
-  // Verificar la posición del scroll
-  if (window.scrollY < 443) {
-    if (estaReproduciendo) {
-      botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Reproducir"
-
-  
-    } else {
-      botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Pausar"
-
-  }
-  } else {
-    
-  if (estaReproduciendo) {
-    botonFotoplay.setAttribute('src', 'Assets/pausewhite.png'); // Cambia la imagen a "Reproducir"
-
-
-  } else {
-    botonFotoplay.setAttribute('src', 'Assets/playwhite.png'); // Cambia la imagen a "Pausar"
-
-}
-  }
+  actualizarEstadoReproduccion(estaReproduciendo);
 });
 
- 
-  
-
-
-// Agrega un manejador de eventos para retroceder 10 segundos
 const botonDiezSegundosAtras = document.getElementById('imagen-diez-segundos-atras');
-botonDiezSegundosAtras.addEventListener('click', retroceder10Segundos);
+botonDiezSegundosAtras.addEventListener('click', function() {
+  miAudio.currentTime -= 10;
+});
 
-function retroceder10Segundos() {
-  miAudio.currentTime -= 10; // Retrocede 10 segundos
-}
-
-// Agrega un manejador de eventos para volver al último momento cargado en el búfer
 const botonEnVivo = document.getElementById('imagen-en-vivo');
-botonEnVivo.addEventListener('click', volverAlEnVivo);
-
-function volverAlEnVivo() {
-  // Ajusta la implementación según tus necesidades exactas
-  // Para volver al último momento cargado en el búfer, simplemente configura la reproducción desde ese momento
+botonEnVivo.addEventListener('click', function() {
   miAudio.currentTime = lastBufferedTime;
   miAudio.play();
-}
+});
 
-// Agrega un manejador de eventos para rastrear el último momento cargado en el búfer
+let lastBufferedTime = 0;
 miAudio.addEventListener('progress', function () {
   if (miAudio.buffered.length > 0) {
     lastBufferedTime = miAudio.buffered.end(miAudio.buffered.length - 1);
+    actualizarSliderBuffer();
   }
 });
- 
- 
- 
- 
- //1
- 
- 
- // // Crea un elemento de audio
-  // const miAudio = new Audio();
 
-  // // Configura la fuente de audio predeterminada
-  // let defaultStreamURL = 'https://servidor40.brlogic.com:7004/live';
-  // miAudio.src = defaultStreamURL;
+miAudio.addEventListener('timeupdate', function () {
+  actualizarSliderTiempo();
+});
 
-  // // Manejador de eventos para cada icono de reproducción
-  // const iconosPlay = document.querySelectorAll('.iconoplay');
-  // iconosPlay.forEach(iconoPlay => {
-  //   iconoPlay.addEventListener('click', function () {
-  //     // Obtén la URL específica del atributo de datos del grupo actual
-  //     const streamURL = this.closest('.programareciente').dataset.streamurl || defaultStreamURL;
-  //     // Actualiza el streamURL
-  //     miAudio.src = streamURL;
-  //     // Reproduce la transmisión
-  //     miAudio.play();
-  //   });
-  // });
+const audioSlider = document.getElementById('audio-slider');
 
-  // // Resto del código del reproductor de audio...
+// Variable para almacenar la última posición de reproducción
+let lastSeekTime = 0;
 
-  // // Agrega un manejador de eventos para el botón de reproducción/pausa
-  // const botonFotoplay = document.getElementById('imagen-reproducir-pausar');
-  // let estaReproduciendo = false;
+// Event listener para el slider de audio
+audioSlider.addEventListener('input', function () {
+  const seekTime = parseFloat(audioSlider.value);
 
-  // botonFotoplay.addEventListener('click', function () {
-  //   if (estaReproduciendo) {
-  //     miAudio.pause(); // Pausa la transmisión si está reproduciéndose
-  //     botonFotoplay.setAttribute('src', 'Assets/adelante.png'); // Cambia la imagen a "Reproducir"
-  //     estaReproduciendo = false;
-  //   } else {
-  //     miAudio.play(); // Reproduce la transmisión si está pausada
-  //     botonFotoplay.setAttribute('src', 'Assets/pause.png'); // Cambia la imagen a "Pausar"
-  //     estaReproduciendo = true;
-  //   }
-  // });
+  // Restringir el movimiento del slider según el tiempo bufferizado y el tiempo actual del audio
+  if (seekTime > lastBufferedTime) {
+    audioSlider.value = lastBufferedTime;
+  } else if (seekTime > miAudio.currentTime) {
+    audioSlider.value = miAudio.currentTime;
+  }
 
-  // // Agrega un manejador de eventos para retroceder 10 segundos
-  // const botonDiezSegundosAtras = document.getElementById('imagen-diez-segundos-atras');
-  // botonDiezSegundosAtras.addEventListener('click', retroceder10Segundos);
+  lastSeekTime = parseFloat(audioSlider.value); // Guarda la última posición de reproducción
 
-  // function retroceder10Segundos() {
-  //   miAudio.currentTime -= 10; // Retrocede 10 segundos
-  // }
+  // Si el audio no está en pausa, reanuda la reproducción después de cambiar la posición
+  if (!miAudio.paused) {
+    miAudio.pause(); // Pausa el audio antes de cambiar la posición
+  }
+  miAudio.currentTime = lastSeekTime;
+  miAudio.play(); // Reanuda la reproducción desde la nueva posición
+});
 
-  // // Agrega un manejador de eventos para volver al último momento cargado en el búfer
-  // const botonEnVivo = document.getElementById('imagen-en-vivo');
-  // botonEnVivo.addEventListener('click', volverAlEnVivo);
+function actualizarSliderBuffer() {
+  const duration = miAudio.duration;
 
-  // function volverAlEnVivo() {
-  //   // Ajusta la implementación según tus necesidades exactas
-  //   // Para volver al último momento cargado en el búfer, simplemente configura la reproducción desde ese momento
-  //   miAudio.currentTime = lastBufferedTime;
-  //   miAudio.play();
-  // }
+  // Limitar el buffer máximo a la duración del audio
+  if (lastBufferedTime > duration) {
+    lastBufferedTime = duration;
+  }
 
-  // // Agrega un manejador de eventos para rastrear el último momento cargado en el búfer
-  // miAudio.addEventListener('progress', function () {
-  //   if (miAudio.buffered.length > 0) {
-  //     lastBufferedTime = miAudio.buffered.end(miAudio.buffered.length - 1);
-  //   }
-  // });
+  audioSlider.max = lastBufferedTime;
+  audioSlider.value = miAudio.currentTime;
+}
+
+function actualizarSliderTiempo() {
+  const currentTime = miAudio.currentTime;
+
+  // Actualiza el slider solo si no se está cambiando manualmente (seeking)
+  if (!audioSlider.getAttribute('seeking')) {
+    audioSlider.value = currentTime;
+  }
+
+  actualizarEstadoReproduccion(!miAudio.paused);
+}
+
+function actualizarEstadoReproduccion(estaReproduciendo) {
+  if (estaReproduciendo) {
+    botonFotoplay.setAttribute('src', 'Assets/pausewhite.png');
+  } else {
+    botonFotoplay.setAttribute('src', 'Assets/playwhite.png');
+  }
+}
 
 
-//2
+function actualizarSliderBuffer() {
+  const duration = miAudio.duration;
+  let bufferProgress = 0;
 
-// // Crea un elemento de audio
-// const miAudio = new Audio();
+  if (lastBufferedTime > 0 && duration > 0) {
+    bufferProgress = (lastBufferedTime / duration) * 100;
+  }
 
-// // URL de la transmisión en vivo de audio
-// const streamURL = 'https://go.ivoox.com/sq/2312714'; // Reemplaza con la URL correcta de la transmisión en vivo
-
-// // Configura la fuente de audio
-// miAudio.src = streamURL;
-
-// // Agrega un manejador de eventos para el botón de reproducción/pausa
-// const botonFotoplay = document.getElementById('imagen-reproducir-pausar');
-// let estaReproduciendo = false;
-
-// botonFotoplay.addEventListener('click', function () {
-//   if (estaReproduciendo) {
-//     miAudio.pause(); // Pausa la transmisión si está reproduciéndose
-//     botonFotoplay.setAttribute('src', 'Assets/adelante.png'); // Cambia la imagen a "Reproducir"
-//     estaReproduciendo = false;
-//   } else {
-//     miAudio.play(); // Reproduce la transmisión si está pausada
-//     botonFotoplay.setAttribute('src', 'Assets/pause.png'); // Cambia la imagen a "Pausar"
-//     estaReproduciendo = true;
-//   }
-// });
-
-// // Agrega un manejador de eventos para retroceder 10 segundos
-// const botonDiezSegundosAtras = document.getElementById('imagen-diez-segundos-atras');
-// botonDiezSegundosAtras.addEventListener('click', retroceder10Segundos);
-
-// function retroceder10Segundos() {
-//   miAudio.currentTime -= 10; // Retrocede 10 segundos
-// }
-
-// // Agrega un manejador de eventos para volver al último momento cargado en el búfer
-// const botonEnVivo = document.getElementById('imagen-en-vivo');
-// botonEnVivo.addEventListener('click', volverAlEnVivo);
-
-// function volverAlEnVivo() {
-//   // Ajusta la implementación según tus necesidades exactas
-//   // Para volver al último momento cargado en el búfer, simplemente configura la reproducción desde ese momento
-//   miAudio.currentTime = lastBufferedTime;
-//   miAudio.play();
-// }
-
-// // Agrega un manejador de eventos para rastrear el último momento cargado en el búfer
-// miAudio.addEventListener('progress', function () {
-//   if (miAudio.buffered.length > 0) {
-//     lastBufferedTime = miAudio.buffered.end(miAudio.buffered.length - 1);
-//   }
-// });
-
-
-
-
-
+  // Actualiza el ancho del elemento de progreso del buffer
+  const bufferProgressBar = document.getElementById('buffer-progress');
+  bufferProgressBar.style.width = `${bufferProgress}%`;
+}

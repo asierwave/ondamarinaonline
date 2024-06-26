@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
 
 
@@ -50,8 +51,13 @@
 
 
     <body>
-       
+
       <header>
+
+
+<!-- Controles del audio -->
+<input type="range" id="audio-slider" min="0" value="0" step="0.01">
+
 
        
         <section class="cabeza">
@@ -123,9 +129,12 @@
          
         </section>
 
+
       </header>
 
       <section class="reproductor">  
+
+
   
   
         <article class="mascara">
@@ -270,7 +279,7 @@
          
 
   <!-- El rincón de Mauri -->
-  <div class="card" id="#anclahorarios">
+  <div class="card" data-podcast-id="3wjZWGS70z8gXbsg7IEAHS" id="#anclahorarios">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218183&authkey=%21AEXiQDFJlKrghrE&width=892&height=719" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardelrincondemaurititulo">EL RINCÓN <br> DE MAURI</h2>
@@ -282,57 +291,37 @@
         <div class="descriptionon" id="xlscardelrincondemaurihorario1">V 13h</div>
         <div class="descriptionon" id="xlscardelrincondemaurihorario2">S 14h</div>
   
-        <div class="descriptionon descriptiononalt" id="xlscardelrincondemauriduracion">60'</div>
-        <div class="descriptionon descriptiononalt" id="xlscardelrincondemaurietiqueta">LOCAL</div>
+        <div class="descriptionon" id="xlscardelrincondemauriduracion">60'</div>
+        <div class="descriptionon" id="xlscardelrincondemaurietiqueta">LOCAL</div>
   
         <div class="dayoff">D</div>
         <!-- <div class="hours">21h</div> -->
     </div>
-  
-  
-    <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/3wjZWGS70z8gXbsg7IEAHS" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://go.ivoox.com/sq/2381808" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-      </div>
-  
-      <div class="programasrecientes">
-       
-        <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
-    
-  
-    <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-      <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-      <div class="programarecientetexto">
-        <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-        <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-      </div>
-    </div>
-  
-   <div class="todoslosprogramas">Cargar todos los programas</div>
-  
-  </div>
 
-      <div class="grupocarddescripcion">
-        <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-        <p class="parrafoleermas" id="xlscardelrincondemauridescripcion"> <br></p> 
-    
-           <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-          </div>
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardelrincondemauridescripcion"> <br></p> 
+  
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+  
+  
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+    <div class="episodes-container programasrecientes" id="episodes-elrincondemauri">
+     
+  <!-- Rellenado dinámicamente -->
+
+</div>
+
+   
+    <div class="botonesplataforma">
+      <a href="https://open.spotify.com/show/3wjZWGS70z8gXbsg7IEAHS" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://go.ivoox.com/sq/2381808" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      </div>
+
+   
   </div>
       
   </div>
@@ -340,7 +329,7 @@
       
   <!-- Las ondas de la Marina-->
   
-      <div class="card">
+      <div class="card" data-podcast-id="33vkMWpNEVGnVdVvD6MNis">
         <img id="xlscardlasondasdelamarinaimg" src="https://onedrive.live.com/embed?resid=dbba286468987427%21218190&authkey=%21AEli0NqFJPhGNtc&width=720&height=720" alt="Imagen">
         <div class="partetextualcard">
         <h2 id="xlscardlasondasdelamarinatitulo">LAS ONDAS <br>DE LA MARINA</h2>
@@ -352,51 +341,12 @@
             <div class="dayoff" id="xlscardlasondasdelamarinahorarior">D 19h (R)</div>
     
             <div class="dayoff" id="xlscardlasondasdelamarinaduracion"></div>
-            <div class="descriptionon descriptiononalt" style="background-color: #2c2c2c;" id="xlscardlasondasdelamarinaetiqueta"></div>
+            <div class="descriptionon descriptiononalt" style="background-color: #2c2c2c; border: none;" id="xlscardlasondasdelamarinaetiqueta"></div>
          
   
         </div>
-        <div class="botonesplataforma">
-          <a href="https://open.spotify.com/show/33vkMWpNEVGnVdVvD6MNis" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-          <a href="https://go.ivoox.com/sq/2307860" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
 
-         
-          <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-        </div>
-  
 
-        <div class="programasrecientes">
-       
-          <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-            <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-            <div class="programarecientetexto">
-              <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-              <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-            </div>
-          </div>
-        
-    
-        <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-    
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
-    
-     <div class="todoslosprogramas">Cargar todos los programas</div>
-    
-    </div>
-  
         <div class="grupocarddescripcion">
           <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
           <p class="parrafoleermas" id="xlscardlasondasdelamarinadescripcion"></p> 
@@ -404,6 +354,29 @@
   
   
       </div>
+
+<!-- 
+        <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+          PROGRAMAS MAS RECIENTES</div> -->
+  
+
+        <!-- <div class="episodes-container programasrecientes" id="episodes-lasondasdelamarina">
+       
+         Rellenado dinámicamente
+    
+        </div> -->
+  
+     
+
+
+        <div class="botonesplataforma">
+          <a href="https://open.spotify.com/show/33vkMWpNEVGnVdVvD6MNis" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+          <a href="https://go.ivoox.com/sq/2307860" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+
+         
+          <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
   
     </div> </div>
   
@@ -411,7 +384,7 @@
   
   
   <!-- El DESVÁN-->
-  <div class="card">
+  <div class="card" data-podcast-id="33vkMWpNEVGnVdVvD6MNis">
     <img id="xlscardeldesvanimg" src="https://onedrive.live.com/embed?resid=dbba286468987427%21218185&authkey=%21AEOcF3TY6d9b3ig&width=796&height=796" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardeldesvantitulo"> <br></h2>
@@ -427,55 +400,39 @@
         <div class="dayoff">D</div>
   
   
-        <div class="descriptionon descriptiononalt" id="xlscardeldesvanduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardeldesvanetiqueta"></div>
+        <div class="descriptionon" id="xlscardeldesvanduracion"></div>
+        <div class="descriptionon" id="xlscardeldesvanetiqueta"></div>
   
         <!-- <div class="hours">21h</div> -->
     </div>
-    <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/1F2laNQLfp9mzg574BI8MF" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-desvan_sq_f12277868_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-    </div>
-      
-      <div class="programasrecientes">
-       
-        <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
+
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardeldesvandescripcion"></p> 
     
-  
-    <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-      <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-      <div class="programarecientetexto">
-        <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-        <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-      </div>
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+
+
+    <!-- <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div> -->
+
+
+    <div class="botonesplataforma">
+      <a href="https://open.spotify.com/show/1F2laNQLfp9mzg574BI8MF" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-desvan_sq_f12277868_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
     </div>
+      
+        <!-- <div class="episodes-container programasrecientes" id="episodes-lasondasdelamarina">
+       
+         Rellenado dinámicamente
+    
+        </div> -->
   
-   <div class="todoslosprogramas">Cargar todos los programas</div>
   
-  </div>
-  
-  
-  <div class="grupocarddescripcion">
-    <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-    <p class="parrafoleermas" id="xlscardeldesvandescripcion"></p> 
-  
-       <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-      </div>
+ 
   
   </div>
     
@@ -486,7 +443,7 @@
   
   
   <!-- Tertulias informales-->
-    <div class="card">
+    <div class="card" data-podcast-id="7tRHJOmLdxeBvZ1WcnFwKD">
       <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218179&authkey=%21APgVg3eOQvUVdVU&width=2048&height=2048" alt="Imagen">
       <div class="partetextualcard">
       <h2 id="xlscardlastertuliasinformalestitulo"></h2>
@@ -501,47 +458,13 @@
           <div class="descriptionon" id="xlscardlastertuliasinformaleshorarior"></div>
           <div class="dayoff">D</div>
   
-          <div class="descriptionon descriptiononalt" id="xlscardlastertuliasinformalesduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardlastertuliasinformalesetiqueta"></div>
+          <div class="descriptionon" id="xlscardlastertuliasinformalesduracion"></div>
+        <div class="descriptionon" id="xlscardlastertuliasinformalesetiqueta"></div>
           <!-- <div class="hours">21h</div> -->
       </div>
-      <div class="botonesplataforma">
-        <a href="https://open.spotify.com/show/7tRHJOmLdxeBvZ1WcnFwKD" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-        <a href="https://go.ivoox.com/sq/2309223" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-      </div>
-        
-        <div class="programasrecientes">
-          
-          <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-            <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-            <div class="programarecientetexto">
-              <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-              <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-            </div>
-          </div>
-        
-  
-        <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
-  
-     <div class="todoslosprogramas">Cargar todos los programas</div>
-  
-    </div>
-  
+
+
+
     <div class="grupocarddescripcion">
       <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
       <p class="parrafoleermas" id="xlscardlastertuliasinformalesdescripcion">
@@ -549,6 +472,25 @@
   
          <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
         </div>
+
+
+      <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+        PROGRAMAS MAS RECIENTES</div>
+
+
+   <div class="episodes-container programasrecientes" id="episodes-lastertuliasinformales">
+       
+         <!-- Rellenado dinámicamente -->
+    
+        </div>
+
+
+      <div class="botonesplataforma">
+        <a href="https://open.spotify.com/show/7tRHJOmLdxeBvZ1WcnFwKD" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+        <a href="https://go.ivoox.com/sq/2309223" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      </div>
+        
+  
   
     </div>
         
@@ -556,7 +498,11 @@
   
   
   <!-- La Taberna De los sueños-->
-  <div class="card" id="lataberna">
+  <div class="card" data-podcast-id="2ZAATz3n7Il82afif140L2" id="lataberna">
+    <!-- <div class="cardreproducirultimoprograma">
+      <img class="cardreproducirultimoprogramaimg" src="Assets/playicon.png" style="width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      <h3>REPRODUCIR</h3>
+    </div> -->
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218182&authkey=%21ADH5g6aUYq_eMhw&width=1080&height=1013" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardlatabernadelossuenostitulo"></h2>
@@ -573,56 +519,47 @@
   
         <div class="descriptionon" id="xlscardlatabernadelossuenoshorarior"></div>
   
-        <div class="descriptionon descriptiononalt" id="xlscardlatabernadelossuenosduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardlatabernadelossuenosetiqueta"></div>
+        <div class="descriptionon" id="xlscardlatabernadelossuenosduracion"></div>
+        <div class="descriptionon" id="xlscardlatabernadelossuenosetiqueta"></div>
   
         <div class="dayoff">D</div>
         <!-- <div class="hours">21h</div> -->
     </div>
-    <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/2ZAATz3n7Il82afif140L2?si=4d2a083f9dc34915" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-taberna-suenos_sq_f12311194_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-    </div>
-      <div class="programasrecientes">
-        
-        <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardlatabernadelossuenosdescripcion">
+         </p> 
     
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+
+      <div class="episodes-container programasrecientes" id="episodes-latabernadelossueños">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
+
   
-    <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-      <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-      <div class="programarecientetexto">
-        <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-        <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-      </div>
+  
+        
+ 
+
+
+  
+
+     <div class="botonesplataforma">
+      <a href="https://open.spotify.com/show/2ZAATz3n7Il82afif140L2?si=4d2a083f9dc34915" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-taberna-suenos_sq_f12311194_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
     </div>
+
   
-   <div class="todoslosprogramas">Cargar todos los programas</div>
-  
-  </div>
-  
-  <div class="grupocarddescripcion">
-    <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-    <p class="parrafoleermas" id="xlscardlatabernadelossuenosdescripcion">
-       </p> 
-  
-       <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-      </div>
-  
+
+     
   </div>
     
   </div>
@@ -639,7 +576,7 @@
   
   
   <!-- La Senda Del Vagabundo-->
-  <div class="card">
+  <div class="card" data-podcast-id="2cIwN9ZHInYMnZScbBwQjd">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218180&authkey=%21AC5-UsMDPrP-nC4&width=510&height=511" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardlasendadelvagabundotitulo"></h2>
@@ -651,54 +588,38 @@
         <div class="descriptionon" id="xlscardlasendadelvagabundohorario2"></div>
         <div class="descriptionon" id="xlscardlasendadelvagabundohorarior"></div>
   
-        <div class="descriptionon descriptiononalt" id="xlscardlasendadelvagabundoduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardlasendadelvagabundoetiqueta"></div>
+        <div class="descriptionon" id="xlscardlasendadelvagabundoduracion"></div>
+        <div class="descriptionon" id="xlscardlasendadelvagabundoetiqueta"></div>
   
         <div class="dayoff">D</div>
         <!-- <div class="hours">21h</div> -->
     </div>
-    <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/2cIwN9ZHInYMnZScbBwQjd?si=edbcca4d71a14925" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-senda-del-vagabundo_sq_f12312920_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-      </div>
-      <div class="programasrecientes">
-        
-        <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardlasendadelvagabundodescripcion"></p> 
     
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+        <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+          PROGRAMAS MAS RECIENTES</div>
   
-    <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-      <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-      <div class="programarecientetexto">
-        <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-        <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
+        <div class="episodes-container programasrecientes" id="episodes-lasendadelvagabundo">
+         
+          <!-- Rellenado dinámicamente -->
+     
+         </div>
+   
+
+    <div class="botonesplataforma">
+      <a href="https://open.spotify.com/show/2cIwN9ZHInYMnZScbBwQjd?si=edbcca4d71a14925" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-senda-del-vagabundo_sq_f12312920_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
-    </div>
+
   
-   <div class="todoslosprogramas">Cargar todos los programas</div>
   
-  </div>
-  
-  <div class="grupocarddescripcion">
-    <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-    <p class="parrafoleermas" id="xlscardlasendadelvagabundodescripcion"></p> 
-  
-       <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-      </div>
+ 
   
   </div>
     
@@ -707,7 +628,7 @@
   
   
   <!-- DE UN TIEMPO A ESTA PARTE-->
-  <div class="card">
+  <div class="card" data-podcast-id="41VoepvZcOAMcj3D4CWNqH">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218184&authkey=%21AKnX9gNAQMMzZKU&width=350&height=350" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscarddeuntiempoaestapartetitulo"></h2>
@@ -718,47 +639,26 @@
         <div class="descriptionon" id="xlscarddeuntiempoaestapartehorarior"></div>
         <!-- <div class="hours">21h</div> -->
   
-        <div class="descriptionon descriptiononalt" id="xlscarddeuntiempoaestaparteduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscarddeuntiempoaestaparteetiqueta"></div>
+        <div class="descriptionon" id="xlscarddeuntiempoaestaparteduracion"></div>
+        <div class="descriptionon" id="xlscarddeuntiempoaestaparteetiqueta"></div>
   
     </div>
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS RECIENTES</div>
+
+      <div class="episodes-container programasrecientes" id="episodes-deuntiempoaestaparte">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
   
     <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/41VoepvZcOAMcj3D4CWNqH" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-de-tiempo-a-esta-parte_sq_f12302952_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      <a href="https://open.spotify.com/show/41VoepvZcOAMcj3D4CWNqH" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-de-tiempo-a-esta-parte_sq_f12302952_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
   
-      <div class="programasrecientes">
-        
-        <div class="programareciente" data-streamurl="https://www.ivoox.com/lucha-gigantes-programa-5-aniversario-audios-mp3_rf_120372996_1.html">
-          <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-          <div class="programarecientetexto">
-            <h3 id="streamtitle">#Episodio 3 | 09/09/23</h3>
-            <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-          </div>
-        </div>
-      
-  
-      <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-        <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-        <div class="programarecientetexto">
-          <h3 id="streamtitle">#Episodio 2 | 07/09/23</h3>
-          <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-        </div>
-      </div>
-    
-  
-    <div class="programareciente" data-streamurl="URL_DEL_EPISODIO_3">
-      <img id="iconoplay" src="Assets/iconoplays.png" alt="Icono play">
-      <div class="programarecientetexto">
-        <h3 id="streamtitle">#Episodio 1 | 03/09/23</h3>
-        <p id="streamdescription">Este es un párrafo de ejemplo. Puedes reemplazarlo con tu propio contenido.</p>
-      </div>
-    </div>
-  
-   <div class="todoslosprogramas">Cargar todos los programas</div>
-  
-  </div>
+     
   
   <div class="grupocarddescripcion">
     <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
@@ -787,22 +687,31 @@
         <div class="dayoff">S</div>
         <div class="dayoff" id="xlscardarribaqueeslahorahorario2"></div>
         <div class="dayoff" id="xlscardarribaqueeslahorahorarior"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardarribaqueeslahoraduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardarribaqueeslahoraetiqueta"></div>
+        <div class="descriptionon" id="xlscardarribaqueeslahoraduracion"></div>
+        <div class="descriptionon" id="xlscardarribaqueeslahoraetiqueta"></div>
         <!-- <div class="hours">21h</div> -->
     </div>
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardarribaqueeslahoradescripcion"></p> 
+    
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
   
+
+    <!-- <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div> -->
+
+     
+
+
     <div class="botonesplataforma">
-      <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
   
-  <div class="grupocarddescripcion">
-    <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-    <p class="parrafoleermas" id="xlscardarribaqueeslahoradescripcion"></p> 
   
-       <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-      </div>
   
   </div>
      
@@ -813,7 +722,7 @@
   
   
   <!-- Cuatro Tercios -->
-  <div class="card">
+  <div class="card" data-podcast-id="2j8rZzEcyzMQANBsTCLOvW">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218189&authkey=%21ACd1UoK-J5NRqN0&width=1264&height=1675" style="object-fit:cover;" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardcuatroterciostitulo"></h2>
@@ -823,22 +732,36 @@
         <div class="dayoff" id="xlscardcuatrotercioshorario2"> X 17h</div>
         <div class="descriptionon" id="xlscardcuatrotercioshorarior"> D 21h (R)</div>
     
-         <div class="descriptionon descriptiononalt" id="xlscardcuatroterciosduracion">60'</div>
-        <div class="descriptionon descriptiononalt" id="xlscardcuatroterciosetiqueta">CINE</div>
+         <div class="descriptionon" id="xlscardcuatroterciosduracion">60'</div>
+        <div class="descriptionon" id="xlscardcuatroterciosetiqueta">CINE</div>
   
     </div> 
+
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardcuatroterciosdescripcion"> <br></p> 
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+      <div class="episodes-container programasrecientes" id="episodes-cuatrotercios">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
+  
+   
   
     <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/2j8rZzEcyzMQANBsTCLOvW" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-flash-deportivo_sq_f12309128_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      <a href="https://open.spotify.com/show/2j8rZzEcyzMQANBsTCLOvW" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-flash-deportivo_sq_f12309128_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
 
+
   
-      <div class="grupocarddescripcion">
-        <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-        <p class="parrafoleermas" id="xlscardcuatroterciosdescripcion"> <br></p> 
-           <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-          </div>
   
    </div>
   </div>
@@ -852,7 +775,7 @@
   
   
   <!-- EL BOLERO DE CANTABRIA -->
-  <div class="card">
+  <div class="card" data-podcast-id="1wsyNT73oeuGSK97jHBNAK">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218186&authkey=%21AFULm9iM0HI1_a8&width=1080&height=1920" style="object-fit:cover;" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardelboleroencantabriatitulo"></h2>
@@ -860,24 +783,37 @@
         <div class="descriptionon" id="xlscardelboleroencantabriahorario1"></div>
         <div class="descriptionon" id="xlscardelboleroencantabriahorario2"></div>
         <div class="descriptionon" id="xlscardelboleroencantabriahorarior"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardelboleroencantabriaduracion"></div>
-        <div class="descriptionon descriptiononalt" id="xlscardelboleroencantabriaetiqueta"></div>
+        <div class="descriptionon" id="xlscardelboleroencantabriaduracion"></div>
+        <div class="descriptionon" id="xlscardelboleroencantabriaetiqueta"></div>
         <!-- <div class="hours">21h</div> -->
     </div>
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardelboleroencantabriadescripcion"></p> 
+  
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+
+      <div class="episodes-container programasrecientes" id="episodes-elboleroencantabria">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
+  
   
     <div class="botonesplataforma">
-      <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
 
-  
-      <div class="grupocarddescripcion">
-        <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-        <p class="parrafoleermas" id="xlscardelboleroencantabriadescripcion"></p> 
     
-           <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-          </div>
-  
+   
   </div>
       
   </div>
@@ -889,7 +825,7 @@
   
   
   <!-- El raro eres tú-->
-  <div class="card">
+  <div class="card" data-podcast-id="5YXrbNUfp3D1PkdZbRxV1F">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218207&authkey=%21AIUHW94bL2Ms4WI&width=3000&height=3000" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardelraroerestutitulo"></h2>
@@ -906,31 +842,46 @@
          <div class="descriptionon" id="xlscardelraroerestuhorario2"></div>
         <div class="descriptionon" id="xlscardelraroerestuhorarior"></div>
   
-        <div class="descriptionon descriptiononalt" id="xlscardelraroerestuduracion"></div>
-        <div class="descriptionon descriptiononalt"  id="xlscardelraroerestuetiqueta"></div>
+        <div class="descriptionon" id="xlscardelraroerestuduracion"></div>
+        <div class="descriptionon"  id="xlscardelraroerestuetiqueta"></div>
 
   
   
     </div>
+
+    <div class="grupocarddescripcion">
+      <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
+      <p class="parrafoleermas" id="xlscardelraroerestudescripcion"> </p> 
+    
+         <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
+        </div>
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+
+      <div class="episodes-container programasrecientes" id="episodes-elraroerestu">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
+  
+
+
     <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/1wsyNT73oeuGSK97jHBNAK" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://go.ivoox.com/sq/2394304" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      <a href="https://open.spotify.com/show/1wsyNT73oeuGSK97jHBNAK" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://go.ivoox.com/sq/2394304" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
       </div>
 
-  
-  <div class="grupocarddescripcion">
-    <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
-    <p class="parrafoleermas" id="xlscardelraroerestudescripcion"> </p> 
-  
-       <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
-      </div>
+
+
   
   </div>
    
   </div>
   
   <!-- LUCHA DE GIGANTES -->
-  <div class="card">
+  <div class="card" data-podcast-id="57Qp1b2d1FBb11QPtvpj72">
     <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218197&authkey=%21AJl8mxZ22LPe5GU&width=2048&height=2048" alt="Imagen">
     <div class="partetextualcard">
     <h2 id="xlscardluchadegigantestitulo"></h2>
@@ -941,24 +892,41 @@
         <div class="descriptionon" id="xlscardluchadegiganteshorario1"> </div>
         <div class="descriptionon" id="xlscardluchadegiganteshorario2"></div>
         <div class="dayoff" id="xlscardluchadegiganteshorarior"> </div>
-        <div class="descriptionon descriptiononalt" id="xlscardluchadegigantesduracion" ></div>
+        <div class="descriptionon" id="xlscardluchadegigantesduracion" ></div>
         <!-- <div class="dayoff descriptiononalt" id="xlscardluchadegigantesetiqueta">OCIO</div> -->
-          <div class="descriptionon descriptiononalt" id="xlscardluchadegigantesetiqueta"></div>
+          <div class="descriptionon" id="xlscardluchadegigantesetiqueta"></div>
 
     </div>
-  
-    <div class="botonesplataforma">
-      <a href="https://open.spotify.com/show/57Qp1b2d1FBb11QPtvpj72" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
-      <a href="https://go.ivoox.com/sq/2312714" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
-      </div>
-  
-  
+
+
+
+
   <div class="grupocarddescripcion">
     <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
     <p class="parrafoleermas" id="xlscardluchadegigantesdescripcion"> <br></p> 
   
        <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
       </div>
+
+
+    <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+      PROGRAMAS MAS RECIENTES</div>
+
+
+      <div class="episodes-container programasrecientes" id="episodes-luchadegigantes">
+       
+        <!-- Rellenado dinámicamente -->
+   
+       </div>
+  
+    <div class="botonesplataforma">
+      <a href="https://open.spotify.com/show/57Qp1b2d1FBb11QPtvpj72" target="_blank"><div class="masprogramas masprogramasspotify"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a>
+      <a href="https://go.ivoox.com/sq/2312714" target="_blank"><div class="masprogramas masprogramasivoox"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a>
+      </div>
+  
+  
+     
+
   
   </div>
     
@@ -966,7 +934,7 @@
      
 
     <!-- GENTE DIVERTIDA -->
-    <div class="card">
+    <div class="card" data-podcast-id="5E5HC5J6RHUvkbDhCqoASd">
       <img src="https://onedrive.live.com/embed?resid=dbba286468987427%21218181&authkey=%21AOoASv5x6V3INCM&width=1080&height=1080" alt="Imagen">
       <div class="partetextualcard">
       <h2 id="xlscardgentedivertidatitulo"></h2>
@@ -974,22 +942,38 @@
           <div class="descriptionon" id="xlscardgentedivertidahorario1"></div>
           <div class="dayoff" id="xlscardgentedivertidahorario2"></div>
           <div class="dayoff" id="xlscardgentedivertidahorarior"></div>
-          <div class="descriptionon descriptiononalt" id="xlscardgentedivertidaduracion"></div>
-          <div class="descriptionon descriptiononalt" id="xlscardgentedivertidaetiqueta"></div>
+          <div class="descriptionon" id="xlscardgentedivertidaduracion"></div>
+          <div class="descriptionon" id="xlscardgentedivertidaetiqueta"></div>
       </div>
-    
-      <div class="botonesplataforma">
-        <!-- <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a> -->
-        <!-- <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a> -->
-        </div>
-    
-    
+
+
+          
     <div class="grupocarddescripcion">
       <!-- <h3>Locuta: <a class="autor" href="">Carlos Toral</a></h3> -->
       <p class="parrafoleermas" id="xlscardgentedivertidadescripcion"></p> 
     
          <!-- <button class="botonleermas" onclick="leerMas(this)">Leer más</button> -->
         </div>
+
+      <div class="masprogramas masprogramasrecientes"> <img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">
+        PROGRAMAS MAS RECIENTES</div>
+
+
+
+        <div class="episodes-container programasrecientes" id="episodes-gentedivertida">
+       
+          <!-- Rellenado dinámicamente -->
+     
+         </div>
+    
+      <div class="botonesplataforma">
+        <!-- <a href="https://open.spotify.com/episode/71wM1DYw38zBfLMiYVFAfN?si=0d2396d8aebb4bc5" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/spotifylogo.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS: SPOTIFY</div></a> -->
+        <!-- <a href="https://www.ivoox.com/podcast-onda-marina-online_sq_f12307860_1.html" target="_blank"><div class="masprogramas"><img src="Assets/mapalocalizaciones/logoivoox.png" style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS: IVOOX</div></a> -->
+        </div>
+    
+
+
+
     
     </div>
       
@@ -1341,11 +1325,11 @@
 
  <script src="Assets/scripts/howler.js"></script>
  <script src="Assets/scripts/reproductor.js"></script>
- <script src="Assets/scripts/procesar_formulario.php"></script>
  <script src="Assets/scripts/leermas.js"></script>
  <script src="Assets/scripts/botonmenu.js"></script>
- <script src="Assets/scripts/noseque.js"></script>
- <script src="Assets/scripts/noseque2.js" defer></script>
+ <script src="Assets/scripts/xlsdatos.js"></script>
+ <script src="Assets/scripts/xlshorario.js" defer></script>
+ <script src="Assets/scripts/spotify.js"></script>
 
 
 
