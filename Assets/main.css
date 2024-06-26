@@ -563,7 +563,7 @@ h2 {
   display: flex;
   width: 100%;
   margin: 0;
-  height: 1000px;
+  height: 800px;
   overflow: hidden;
   flex-direction: column;
   justify-content: left;
@@ -587,10 +587,10 @@ h2 {
 .quienesomostexto {
   display: flex;
   position: relative;
-  top: 25vh;
   flex-direction: column;
   justify-content: center;
   width: 50%;
+  top: 50%;
   height: auto;
   max-width: 100%;
   gap: 20px;
