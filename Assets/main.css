@@ -179,7 +179,7 @@ body {
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.375em;
   color: #2F75A2;
 }
@@ -344,7 +344,7 @@ h2 {
 .quienessomosynoticias {
   display: flex;
   width: 100%;
-  height: fit-content;
+  height: 100vh;
   flex-direction: column;
 
 }
@@ -355,11 +355,12 @@ h2 {
   .noticias {
     display: flex;
     position: relative;
+    overflow-y: auto;
     width: 100%;
-    bottom: 0;
-    height: auto;
-    flex-direction: column;
-    padding: 3rem 7vw 3rem 7vw;
+    height: 40%;
+    flex-direction: row;
+    padding: 1rem 3vw 1rem 3vw;
+    margin: 0;
     background-color: #FAFAFA;
 
 
@@ -370,10 +371,11 @@ h2 {
     display: flex;
     flex-direction: row;
     width: 100%;
-    align-items: CENTER;
-    padding-bottom: 4rem;
-    height: auto;
-    gap: 2vw;
+    align-items: center;
+    padding:1rem;
+    height: fit-content;
+    gap: 1rem;
+    border-radius: 8px;
   }
 
   .noticiamedia {
@@ -563,7 +565,7 @@ h2 {
   display: flex;
   width: 100%;
   margin: 0;
-  height: 800px;
+  height: 60%;
   overflow: hidden;
   flex-direction: column;
   justify-content: left;
@@ -590,8 +592,8 @@ h2 {
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  top: 50%;
-  height: auto;
+  top: 60%;
+  height: 8vh;
   max-width: 100%;
   gap: 20px;
   background: #fafafa00;
@@ -1026,7 +1028,7 @@ padding: 80px 7vw;
 
 
 .card h2 {
-    font-size: 22px;
+    font-size: 24px;
     color: #2F75A2;
     width: 100%;
     letter-spacing: 10px;
@@ -1997,7 +1999,7 @@ main {
 .anuncio {
   display: flex;
   position: fixed;
-  top: 91vh;
+  bottom: 0;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -2026,7 +2028,6 @@ main {
 
 
 #anuncio1 {
-top: 0;
 height: 80px;
 padding: 2vh 7vw;
 width: 100%;
@@ -2085,7 +2086,7 @@ scale: 1.05;
 .quienessomosynoticias {
   display: flex;
   width: 100%;
-  height: 140vh;
+  height: 160vh;
   flex-direction: column;
 
 }
@@ -2122,14 +2123,16 @@ scale: 1.05;
 
     .noticias {
       display: flex;
-      padding: 3rem 7vw 0 7vw;
+      width: 100%;
+      flex-direction: row;
 
 
     }
 
     .noticia {
       display: flex;
-      flex-direction: row;
+      width: 100%;
+      flex-direction: column;
     }
 
     .noticiamedia {
@@ -2154,7 +2157,7 @@ scale: 1.05;
 
 
     .quienesomostexto {
-      top: 35vh;
+      top: 55%;
       width: 100%;
     }
 
@@ -2175,7 +2178,7 @@ scale: 1.05;
 
     .partetextualcard {
       margin-top: 0;
-      padding: 2rem;
+      padding: 1.5rem;
     }
     
     .card {
