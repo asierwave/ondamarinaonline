@@ -657,7 +657,7 @@ padding: 80px 7vw;
 
   .card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     flex-wrap: wrap;
     width: auto;
@@ -674,6 +674,22 @@ padding: 80px 7vw;
 
 
   }
+
+  .partetextualcard {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem;
+    border-radius: 0 12px ;
+    
+}
+
+
+ 
 
 
   .cardreproducirultimoprograma {
@@ -731,18 +747,7 @@ padding: 80px 7vw;
 
 
 
-  .partetextualcard {
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    width: 100%;
-    height: auto;
-    padding: 1.5rem;
-    border-radius: 0 12px ;
-    
-}
+  
 
 .card img {
     width: 100%;
