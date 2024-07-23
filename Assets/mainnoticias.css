@@ -3,6 +3,10 @@
     height: 0;
 }
 
+.reproductor {
+    height: 38px;
+    align-items: center;
+}
 
 
 /* NOTICIA FULL */
