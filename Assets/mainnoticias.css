@@ -17,6 +17,12 @@
     flex-direction: column;
     gap: 3rem;
 }
+
+.noticias > *:nth-child(n+4) {
+    display: flex;
+  }
+
+
 .noticia {
     min-width: 0;
     max-width: 100%;
@@ -65,6 +71,9 @@
 
 @media (max-width: 1300px) {
 
+ .noticias > *:nth-child(n+4) {
+    display: flex;
+  }
 
 .noticiatextual {
     column-count: 2;
@@ -75,6 +84,11 @@
 
 
 @media (max-width: 800px) {
+
+
+    .noticias > *:nth-child(n+4) {
+        display: visible;
+      }
 
     .noticiatextual {
         display: block;
