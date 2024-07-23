@@ -7,7 +7,7 @@
 /* NOTICIA FULL */
 
 .noticias {
-    top: 150px;
+    margin-top: 150px;
     flex-wrap: nowrap;
     flex-direction: column;
     gap: 3rem;
