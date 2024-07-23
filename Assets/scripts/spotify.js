@@ -15,7 +15,7 @@ async function getAccessToken(clientId, clientSecret) {
 }
 
 async function getPodcastEpisodes(token, podcastId) {
-    const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=3`, {
+    const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
@@ -47,6 +47,8 @@ function displayEpisodes(episodes, containerId) {
             <div class="programarecienteimgtitulo">
                 <div class="programarecientesphere">.</div>
                 <h2 class="programarecientetitulo">Programa #${episodeName}</h2>
+</div> 
+               <div class="programarecientesubtitulos">
                 <p class="programarecientedate"><span class="material-symbols-outlined">calendar_month</span>${episodeDate}</p>
                 <p class="programarecienteduracion"><strong><span class="material-symbols-outlined">schedule</span></strong> ${formatDuration(episode.duration_ms)}</p>
             </div>
@@ -194,15 +196,15 @@ const toggleProgramasRecientes = (event) => {
     if (programasRecientes.style.display === 'flex') {
         programasRecientes.style.display = 'none'; // oculta los programas recientes
         BotonAbrirProgramasRecientes.style = 'background-color: #2F75A2';
-        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(90deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">PROGRAMAS RECIENTES';
+        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">PROGRAMAS RECIENTES';
 
         // Pausar la reproducción si está en curso
         pauseEpisode();
 
     } else {
         programasRecientes.style.display = 'flex'; // Muestra los programas recientes
-        BotonAbrirProgramasRecientes.style = 'background-color: #2c2c2c';
-        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/menucierre.png" style="transform: rotate(270deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">CERRAR PROGRAMAS RECIENTES';
+        BotonAbrirProgramasRecientes.style = 'background-color: #2F426;';
+        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/menucierre.png" style="transform: rotate(270deg);width: 40px; height: 30px; margin-left:-2px; margin-right: 6px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">CERRAR RECIENTES';
     }
 };
 

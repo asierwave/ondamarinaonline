@@ -36,7 +36,6 @@
     text-decoration: none;
     list-style:none;
     box-sizing: border-box;
-    border: 0px solid #000000;
     margin-top: 0;
     margin: 0;
     padding: 0;
@@ -78,7 +77,14 @@ padding: 0;
 
 }
 
+.tituloseparador {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 7vw;
+  background-color: #2f76a20a;
 
+}
 
 a {
   color: #fafafa;
@@ -135,15 +141,20 @@ body {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: #2c2c2c;
+  background-color:none;
   width: 100vw;
   height: auto;
   margin: 0;
   padding: 0;
+  z-index: 0;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: none;
   
 }
+
+
+
 
 /* mapa */
 
@@ -313,30 +324,84 @@ h2 {
   header {
     display: flex;
     position:fixed;
-    background: none;
     top: 0; 
-    justify-content: space-between; 
-    gap: 12px;
+    justify-content: flex-start; 
+    gap: 1rem;
     align-items: center; 
     justify-items: center;
     flex-direction: column;
     width: 100vw;
-    height: 122px;
+    height: fit-content;
     margin: 0;
-    padding:20px 0 70px 0;
+    padding:0;
+    background-color: #2F75A2;
     /* background-image: url('fondonavexport.png'); Ruta de la imagen de fondo */
     background-size:cover; /* Ajusta la imagen para que cubra toda la barra de navegación */
     background-repeat:no-repeat; /* Evita la repetición de la imagen */
     /* transition: background 4s cubic-bezier(0.075, 0.82, 0.165, 1); */
-    background: transparent;
     filter: blur(40);
-    z-index: 4;
-    background-color: #2F75A2;
-    background-image: url('/Assets/cabecerafondo.png');
+    z-index: 40;
+    /* background-image: url('/Assets/cabecerafondo.png'); */
     background-size: cover; /* Adjusts the size of the background image to cover the entire container */
-    background-position: center -260px; /* Positions the background image at the center horizontally and 300 pixels from the top vertically */
+    /*background-position: center -300px;  Positions the background image at the center horizontally and 300 pixels from the top vertically */
     background-repeat: no-repeat; /* Prevents the background image from repeating */
   } 
+
+
+
+
+
+/* EQUIPO LOCUTOR */
+
+.equipo {
+  display: flex;
+  flex-direction: column;
+  text-justify: flex-start;
+  width: 100%;
+  align-items: center;
+  height: fit-content;
+  background-color: #fafafa;
+}
+
+.equipoconjunto {
+  display: flex;
+  height: fit-content;
+  width: 100vw;
+  padding: 4rem 3vw;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.equipolocutor {
+  display: flex;
+  width: auto;
+  min-width: 10%;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  transition: scale 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+}
+
+
+.equipolocutor:hover {
+
+  scale: 1.05;
+}
+
+.equipolocutorimg {
+  display: flex;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+
+
+
+
 
 
 /*QUIENES SOMOS + NOTICIAS CONJUNTO */
@@ -344,7 +409,7 @@ h2 {
 .quienessomosynoticias {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   flex-direction: column;
 
 }
@@ -355,58 +420,143 @@ h2 {
   .noticias {
     display: flex;
     position: relative;
-    overflow-y: auto;
     width: 100%;
-    height: 40%;
+    height: auto;
+    justify-content: space-between;
     flex-direction: row;
-    padding: 1rem 3vw 1rem 3vw;
+    flex-wrap: nowrap;
+    padding: 3rem 7vw 3rem 7vw;
     margin: 0;
+    gap: 1rem;
     background-color: #FAFAFA;
-
-
+    overflow: visible;
 
   }
+
+
 
   .noticia {
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    padding:1rem;
+    flex-direction: column;
+    width: auto;
+    min-width: 300px;
+    max-width: 30%;
     height: fit-content;
+    align-items: center;
+    padding:0;
     gap: 1rem;
-    border-radius: 8px;
+    border-radius: 0;
+
+
   }
+
+  .noticiaetiquetas {
+    display: flex;
+    grid-column: span 1; /* Autor y fecha abarca una columna */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-direction: row;
+    height: fit-content;
+    background-color: #b5b5b54f;
+  }
+
 
   .noticiamedia {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 200px;
-    max-width: 400px;
-
-
-
+    width: 100%;
+    height: 400px;
+    max-height: 200px;
+    overflow: hidden;
   }
 
 .noticiavideo {
   display: flex;
   position: relative;
   flex-direction: row;
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
-  height: auto;
-  border-radius: 10px;
+  height: fit-content;
+  border-radius: 0;
 
 }
 
 .noticiatextual {
-  display: flex;
-  width: 100%;
-  gap: 1rem;
+  display: block;
   flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  height: fit-content;
+  column-count: 1;
 
 }
+
+
+.noticiatitular {
+  height: fit-content;
+  font-size: 24px;
+  white-space: wrap;
+  padding: 0 0 1rem 0;
+}
+
+
+.noticialadillo {
+  display: none;
+  padding: 0;
+  height: fit-content;
+}
+
+
+.noticiafecha {
+  display: flex;
+  padding: 0 1rem 0 0;
+  width: fit-content;
+}
+
+.noticiatextualautor {
+display: flex;
+position:relative;
+width: fit-content;
+gap: 1rem;
+height: fit-content;
+align-items: center;
+border-radius: 0;
+
+
+}
+
+.noticiaimagenautor {
+  width: 60px;
+  height: auto;
+  overflow: hidden;
+}
+
+
+.noticiaimagencomplementaria {
+  width: 100%;
+  display: none;
+  overflow: hidden;
+  height: 200px;
+  padding: 0 0 1rem 0;
+}
+
+.noticiatextualentradilla {
+  padding: 1rem 0;
+  height: fit-content;
+  line-height: 1.5;
+  border-bottom: none;
+}
+
+
+.noticiatextualp {
+  display: none;
+  height: fit-content;
+  padding: 1rem 0;
+  transition: max-height 0.5s ease-out;
+}
+
 
 
 
@@ -416,11 +566,9 @@ h2 {
 /* NAV */
 
 .menu {
-  position: absolute;
-  right:6vw;
-  top: 50px;
+  position: relative;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 99999999;
 }
 
 .submenu {
@@ -437,12 +585,12 @@ h2 {
   transition: right 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   cursor: pointer;
   z-index: 999999;
+
 }
 
 
 .submenuitem {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   width: auto;
   backdrop-filter: blur(40px);
@@ -471,6 +619,7 @@ h2 {
 }
 
 .submenuitem img {
+  display: flex;
   width: 25px;
 }
 
@@ -523,27 +672,30 @@ h2 {
 
   .cabeza {
     display: flex;
-    justify-content:space-between;
     align-items: center;
-    white-space: nowrap;
+    order: 1;
     width: 100vw;
-    height: auto;
-    padding:0 7vw 0 7vw;
-    gap:auto;
-    z-index: 4;
+    justify-content: flex-end;
+    gap: 3rem;
+    height: fit-content; /*Interesante 100% para abrir navegador*/
+    padding:1rem 7vw;
+    z-index: 0;
     flex-direction: row;
+    background-color: #2F75A2;
     transition: padding 4s cubic-bezier(0.075, 0.82, 0.165, 1);
   
   
   }
 
 
+
+
   .logo {
-    width: auto;
+    width: 100%;
     height: auto;
     margin: 0;
     padding: 0;
-    z-index: 4;
+    z-index: 99999999;
   }
 
   #logo {
@@ -553,7 +705,7 @@ h2 {
   }
 
   .logo img {
-    width: 80px ;
+    width: 70px ;
 
   }
 
@@ -564,25 +716,28 @@ h2 {
 .quienesomos {
   display: flex;
   width: 100%;
-  margin: 0;
-  height: 60%;
+  top: 10vh;
+  height: fit-content;
+  flex-wrap: nowrap;
   overflow: hidden;
-  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
   justify-content: left;
-  gap: 0;
+  padding: 0;
+  gap: 2rem;
   position: relative; /* Añade esto para posicionar el contenido en relación con el video */
-  transition: margin-bottom 2s cubic-bezier(0.39, 0.575, 0.565, 1);
-  z-index: 0;
+  height: 100vh;
 }
 
 #video-background {
   display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: fit-content;
-  height: fit-content;
-  z-index: -1;
+  width: auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  z-index: -999999;
+  filter: saturate(-40);
   pointer-events: none;
 }
 
@@ -590,17 +745,17 @@ h2 {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
-  width: 50%;
-  top: 60%;
-  height: 8vh;
+  width: 100%;
+  top: 30%;
   max-width: 100%;
-  gap: 20px;
-  background: #fafafa00;
+  height: fit-content;
+  gap: 2rem;
+  padding: 4rem 40vw 20rem 7vw;
+  background: #2c2c2c63;
   color: white;
   border-radius: 0px;
-  padding: 0 7vw;
   margin: 0;
+  backdrop-filter: blur(4px); /* Aplicar desenfoque de 10px */
 
 
 }
@@ -609,19 +764,6 @@ h2 {
   color: white;
 }
 
-.quienesomos img {
-  display: flex;
-  width: auto;
-  height: 100vw;
-  max-height: 600px;
-  max-width: 100%;
-  min-width: 40%;
-  object-fit:contain;
-  border-radius: 4px;
-  overflow: hidden;
-  order: 1;
-  z-index: -1;
-}
 
 /*programas y cards de 
  información intro */
@@ -655,20 +797,21 @@ padding: 80px 7vw;
 
   /*card*/
 
+
   .card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: auto;
-    max-width: 400px;
+    max-width: fit-content;
     height: fit-content;
     gap: 0;
-    padding: 0;
+    padding: 0.2rem;
     border-radius: 8px;
-    scale: 1;
     z-index: 2;
     background-color: #fafafa;
+    transition: width 2s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 
 
@@ -680,11 +823,13 @@ padding: 80px 7vw;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
-    width: 100%;
-    height: auto;
-    padding: 1.5rem;
-    border-radius: 0 12px ;
+    gap: 1rem;
+    width: auto;
+    min-width: 45vw;
+    max-width: 45vw;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 0 12px;
     
 }
 
@@ -747,19 +892,16 @@ padding: 80px 7vw;
 
 
 
-  
-
-.card img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    margin: 0; /* Separación entre imagen y texto */
-    object-fit:cover;
-    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
 
 
+
+.cardimgprincipal {
+  display: flex;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
 }
-
 
 
 
@@ -841,9 +983,12 @@ padding: 80px 7vw;
 
 }
 
+
+
 .masprogramas {
   background-color: #2F75A2;
   color: #ffff;
+  order: 3;
   border-radius: 4px;
   border: 1px solid #2F75A2;
   font-size: 14px;
@@ -866,11 +1011,13 @@ padding: 80px 7vw;
 
 .masprogramasrecientes {
   background-color: #2f76a2;
-  justify-content: left;
-  white-space: wrap;
+  justify-content: flex-start;
+  white-space: nowrap;
+  width: 100%;
   gap: 1rem;
   color: #fafafa;
   border: none;
+  order: 1;
 
 }
 
@@ -894,13 +1041,7 @@ padding: 80px 7vw;
 
 
 
-.masprogramasreproducirfragmentofondo {
-  position: fixed;
-  background-color: #fafafa6e;
-  z-index: 9999;
-  height: 70px;
-  left: -1px;
-}
+
 
 
 
@@ -916,9 +1057,7 @@ padding: 80px 7vw;
 
 }
 
-.card .masprogramas {
-  width: 96%;
-}
+
 
 
 
@@ -926,7 +1065,7 @@ padding: 80px 7vw;
   font-size: 14px;
   /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
   cursor:pointer;
-  scale: 1.05;
+  scale: 1.01;
 
 }
 
@@ -1122,7 +1261,6 @@ p {
   }
 
 input[type="range"] {
-  -webkit-appearance: none;
   width: 100%;
   height: 8px;
   background-color: #fafafa; /* Color detrás del thumb */
@@ -1193,19 +1331,23 @@ input[type="range"]::-moz-range-thumb {
 
   /*playlist*/
 
+/*PROGRAMAS RECIENTES */
 
-.programasrecientes {
+.episodes-container {
   display: none;
   position: relative;
-  height: auto;
+  height: fit-content;
   width: 100%;
+  padding: 1rem 1rem;
   gap: 1rem;
+  align-items: flex-start;
   max-height: auto;
   flex-direction: column;
   transition: max-height 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background-color: #FAFAFA;
-  overflow: visible;
-
+  overflow: auto;
+  order: 3;
+  flex-wrap: wrap;
 
 }
 
@@ -1214,40 +1356,77 @@ input[type="range"]::-moz-range-thumb {
 .programareciente {
   display: flex;
   opacity: 100;
-  width: 100%;
+  width: auto;
+  min-width: 32.4%;
+  max-width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 1rem;
+  height: fit-content;
   align-items: flex-start;
   padding: 0;
+  margin: 0;
   background-color: #2c2c2c0d;
   border-radius: 8px;
   overflow:  visible;
 }
+ 
+
+.programarecienteimgtitulo {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
 
 
+.programarecientesubtitulos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+.programrecientedate {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+}
 .programareciente p {
   display: flex;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   gap: 0.5rem;
-  align-items: flex-start;
-  max-height: 100px;
+  align-items: center;
+  max-height: auto;
   overflow: hidden;
 }
 
 
 .programareciente h2 {
   letter-spacing: 0;
-  width: fit-content;
-  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  padding: 0;
 }
 
 .programarecientesphere {
   background-color: #2F75A2;
   color: #2F75A2;
-  width:30px;
-  height: 30px;
+  display: flex;
+  width:auto;
+  min-width: 2.5%;
+  max-width: 100%;
+  height: auto;
   border-radius: 200px;
 }
+
 
 .programareciente img {
   display: flex;
@@ -1256,9 +1435,9 @@ input[type="range"]::-moz-range-thumb {
 
 .programarecienteimgtitulo {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
-  gap: 0.3rem;
+  gap: 1rem;
   padding: 20px 20px 0 20px;
   align-items: left;
   flex-direction: row;
@@ -1285,7 +1464,23 @@ input[type="range"]::-moz-range-thumb {
 
 
 
+.masprogramasreproducirfragmentofondo {
+  display: flex;
+  position: fixed;
+  background-color: #fafafa6e;
+  z-index: 9999;
+  height: 70px;
+  left: -1px;
+}
 
+.masprogramasreproducirfragmentofondo:hover {
+  display: flex;
+  position: fixed;
+  background-color: #fafafa6e;
+  z-index: 9999;
+  height: 70px;
+  left: -1px;
+}
 
 
 
@@ -1338,8 +1533,9 @@ overflow-x: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    position: relative;
     height: auto;
-    width: 100%; /* Ajusta el ancho del grid al contenido */
+    width: fit-content; /* Ajusta el ancho del grid al contenido */
     padding: 2rem 4vw;
     justify-content: space-around;
     gap: auto;
@@ -1350,6 +1546,12 @@ overflow-x: auto;
 
 
 }
+
+#anclahorarios {
+  display: flex;
+  width: 100%;
+}
+
 
 #topcards {
   display: flex;
@@ -1429,21 +1631,20 @@ footer {
 
   .reproductor {  
     display: flex;
-    position: fixed;
-    top: 146px;
-    display: flex;
+    position: relative;
     flex-direction: row;
-    width:100vw;
+    width:100%;
     gap: 1vw;
-    height: auto;
+    order: 2;
+    padding: 0.5rem 0;
+    z-index: -99999;
+    height: fit-content;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20px;
     transition: gap 5s cubic-bezier(0.19, 1, 0.22, 1), border-radius 5s cubic-bezier(0.19, 1, 0.22, 1); 
-    z-index: 9;
     /* box-shadow:inset 0 0 5px 0 rgba(0, 0, 0, 0.5); */
-
 
     }
 
@@ -1461,10 +1662,10 @@ footer {
       align-items: center;
       height: 80px;
       background-color: #2c2c2c;
-      box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+      /* box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5); */
 
 
-      z-index:0;
+      z-index:-99999;
 
 
     }
@@ -1685,10 +1886,13 @@ footer {
                     }
                     
                         .botonclasico {
-                        height:27px;
-                        width: auto;
-                        margin: 0 10px 0 -10px;
-                        padding:2px 0 0 0;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          object-fit: cover;
+                        height:auto;
+                        width: 32px;
+                        padding: 0;
                         }
 
 
@@ -1697,14 +1901,12 @@ footer {
 
     .controles {
         display: flex;
-        position: fixed;
-        top: 32px;
-        right: 160px;
+        position: relative;
         justify-content: space-between;
         align-items: center;
         gap: 20px;
         flex-direction: row;
-        width: auto;
+        width: 100%;
         height: auto;
         background-color:rgba(255, 255, 255, 0.199);
         border: 0px solid #FAFAFA;
@@ -1919,6 +2121,7 @@ footer {
 .grupocarddescripcion {
   display: flex;
   width: auto;
+  padding: 1rem 0;
   margin-top: 1rem;
   flex-direction: row;
   justify-content: center;
@@ -2003,14 +2206,14 @@ main {
 
 .anuncio {
   display: flex;
-  position: fixed;
+  position: relative;
   bottom: 0;
+  order: 3;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: auto;
+  height: fit-content;
   flex-direction: row;
-  z-index: 80;
 }
 
 .anuncio img {
@@ -2033,10 +2236,9 @@ main {
 
 
 #anuncio1 {
-height: 80px;
-padding: 2vh 7vw;
+height: fit-content;
 width: 100%;
-right: 0;
+padding: 1.25rem 7vw;
 background-color: #A3732F;
 transition: scale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 box-shadow:2px 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -2045,7 +2247,7 @@ overflow-x: hidden;
 }
 
 #anuncio1:hover {
-scale: 1.05;
+scale: 1.01;
 
 }
 
@@ -2068,6 +2270,36 @@ scale: 1.05;
 
 
 
+  @media (max-width: 1300px) {
+
+
+  
+
+    .programasrecientes {
+      gap: 1rem;
+    }
+
+    .programareciente {
+      display: flex;
+      max-width: 100%;
+      min-width: none;
+    }
+
+.noticias {
+  flex-wrap: wrap;
+}
+
+    .noticia {
+      width: auto;
+      min-width: 300px;
+      max-width: 100%;
+    }
+
+
+  }
+
+
+
 
 
 
@@ -2082,16 +2314,14 @@ scale: 1.05;
     }
 
 
-    .mascara {
-      height: 7.5vh;
-    }
 
     /*QUIENES SOMOS + NOTICIAS CONJUNTO */
 
 .quienessomosynoticias {
   display: flex;
   width: 100%;
-  height: 160vh;
+  padding: 0;
+  margin: 0;
   flex-direction: column;
 
 }
@@ -2099,13 +2329,10 @@ scale: 1.05;
     .anuncio {
         display: flex;
         position: relative;
-        top:264px;
-        left: 0;
-        padding: 0;
+      
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: 12vh;
         flex-direction: row;
         z-index: 1;
     }
@@ -2114,6 +2341,7 @@ scale: 1.05;
 
    /*slider */
    #audio-slider {
+    display: none;
     position: relative;
     top: -32px;
     z-index: 999999;
@@ -2122,14 +2350,48 @@ scale: 1.05;
 
 
 
+.programareciente {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
 
+
+
+/* EQUIPO LOCUTOR */
+
+.equipo {
+  height: fit-content;
+}
+
+.equipoconjunto {
+  display: flex;
+  height: fit-content;
+  flex-direction: row;
+  width: 100%;
+  padding: 1rem 3vw;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  background-color:#fafafa ;
+}
+
+.equipolocutor {
+
+  min-width: 10%;
+  max-width: 35%;
+  
+
+}
 
     /*NOTICIA*/
 
     .noticias {
       display: flex;
       width: 100%;
-      flex-direction: row;
+      height: fit-content;
+      flex-direction: column;
 
 
     }
@@ -2137,13 +2399,24 @@ scale: 1.05;
     .noticia {
       display: flex;
       width: 100%;
+      height: auto;
+      max-height: fit-content;
+      max-width: 100%;
       flex-direction: column;
+    }
+
+    .noticiatextual {
+      display: flex;
+      flex-direction: column;
+      column-count: 1;
     }
 
     .noticiamedia {
       max-width: 100%;
+      height: 200px;
     }
 
+    
 
     /**/
 
@@ -2158,31 +2431,32 @@ scale: 1.05;
 
     .quienesomos {
       position: relative;
+      justify-content: center;
+      flex-direction: column;
     }
 
 
     .quienesomostexto {
-      top: 55%;
       width: 100%;
+      height: auto;
+      padding: 2rem 7vw 10rem 7vw;
+      top: 16%;
+      max-width: 100%;
     }
 
-    .reproductor {
-      z-index: 9999999;
-    }
+
 
 
     #anuncio1 {
-      position: sticky;
+      position: relative;
       height: auto;
-      padding: 120px 20px 20px 20px;
-      margin-bottom: 40px;
       border-radius: 0;
       z-index: 9999;
   }
 
 
     .partetextualcard {
-      margin-top: 0;
+      width: 100%;
       padding: 1.5rem;
     }
     
@@ -2200,32 +2474,14 @@ scale: 1.05;
     }
 
 
-
-    .cabeza {
-      padding:0 7vw 0 7vw;
-    }
-
     .logo img {
       width: 70px ;
     }
 
 
-
-    #contactotextoflotante {
-      display: flex;
-      position: sticky;
-      bottom: -700px;
-      left: 340px;
-      scale: 0.04;
-      transition: scale 1s cubic-bezier(0.075, 0.82, 0.165, 1)
-      }
-
-      .controles {
-        flex-direction: row;
-        right: 25%;
-        top: 28px;
-        background-color:rgba(255, 255, 255, 0.199);
-      }
+    .controles {
+      scale: 1.1;
+    }
 
       .controlestexto {
         display: none;
@@ -2238,17 +2494,6 @@ scale: 1.05;
         scale:0.045;
       }
 
-    header {
-      position: fixed;
-      height: auto;
-      width: 100%;
-    }
-
-
-
-    .menu {
-      top: 44px;
-    }
 
 
     .submenu {
@@ -2265,39 +2510,6 @@ scale: 1.05;
       top: 14vw;
       gap: 3vw;
     }
-    
-
-
-    /* .reproductor {
-      display: flex;
-      position: sticky;
-      margin: 0 10vw;
-      position: relative;
-      margin-bottom: -75vh;
-      flex-direction: column;
-      height: 600px;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(5px); 
-      gap: 20px;
-      max-height: 6vh;
-      padding:8px 7% 20px 7%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      width: 70%;
-      transition: padding 4s cubic-bezier(0.19, 1, 0.22, 1), max-height 4s cubic-bezier(0.19, 1, 0.22, 1), gap 4s cubic-bezier(0.19, 1, 0.22, 1); 
-      cursor: pointer;
-      border-radius: 20px;
-
-
-
-    } */
-
-
-    
-
-    .navegadormomentodirecto{
-      display: flex;
-    }
 
   @keyframes moverTexto {
     0% {
@@ -2313,6 +2525,11 @@ scale: 1.05;
   gap: 40px;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.partetextualcard {
+  width: auto;
+  max-width: 100%;
 }
 
   
@@ -2343,23 +2560,7 @@ scale: 1.05;
 
 }
 
-#topcards {
-  display: none;
-  top: 1050px;
-  box-shadow:2px 2px 4px 0 rgba(0, 0, 0, 0.2);
-
-}
-
-.anuncio {
-  top: 164px;
-}
 
 
 
-#programaActual {
-color: #fafafa;
-margin-top: 10px;
-margin-bottom: 10px;
-
-}
   }
