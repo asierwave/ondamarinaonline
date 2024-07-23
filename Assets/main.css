@@ -120,6 +120,11 @@ h1 {
 
 h2 {
   letter-spacing: 0.375;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  word-break: break-word;
+  line-height: 1.6;
 }
 
 html {
@@ -2523,8 +2528,10 @@ scale: 1.01;
 }
 
 .cards {
-  padding: 0 3vw;
+  padding: 0 1vw;
+  flex-direction: column;
   gap: 40px;
+  width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
 }
