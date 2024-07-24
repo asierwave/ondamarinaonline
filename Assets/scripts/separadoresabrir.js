@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dejar el container cards programas abierto desde el principio
     
         const containerPrimero = tituloseparadores[0].nextElementSibling;
-        containerPrimero.style.maxHeight= containerPrimero.scrollHeight + 'px';
+        containerPrimero.style.maxHeight= 'fit-content';
 
 
         // 
