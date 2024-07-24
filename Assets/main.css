@@ -86,7 +86,7 @@ padding: 0;
   gap: auto;
   height: fit-content;
   padding: 2rem 7vw;
-  background-color: #2f76a20a;
+  background-color: #fafafa;
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
@@ -193,7 +193,7 @@ body {
   max-height: 0;
   gap: 40px;
   z-index: 99999;
-  background-color:#2f76a20a;
+  background-color:#fafafa;
 
 
 }
@@ -444,7 +444,7 @@ h2 {
     padding: 0 7vw 0 7vw;
     margin: 0;
     gap: 1rem;
-    background-color:#2f76a20a;
+    background-color:#fafafa;
     overflow: hidden;
   }
 
@@ -1628,7 +1628,8 @@ overflow-x: auto;
     gap: auto;
     row-gap: 4rem;
     z-index:9999;
-    background-color:#2f76a20a;
+    /* background-color:#2f76a20a; */
+    background-color: #FAFAFA;
 }
 
 #anclahorarios {
@@ -2295,6 +2296,7 @@ main {
   justify-content: center;
   z-index: 1;
   background-color:#FAFAFA;
+  padding: 1rem 0;
 }
 
 /* anuncio */
