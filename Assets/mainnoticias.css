@@ -46,9 +46,9 @@
   }
 
   .noticiatextualentradilla {
-    border-bottom: 1px solid #2c2c2c;
-    font-weight: bold; /* Negrita del texto */
-  }
+    /* border-bottom: 1px solid #2c2c2c; */
+    font-size: 18px;
+}
 
 
   .noticiamedia {

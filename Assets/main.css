@@ -477,7 +477,8 @@ h2 {
     gap: 1rem;
     flex-direction: row;
     height: fit-content;
-    background-color: #b5b5b54f;
+    /* background-color: #b5b5b54f; */
+    background-color:#2f76a20a;
   }
 
 
@@ -535,8 +536,11 @@ h2 {
 
 .noticiafecha {
   display: flex;
+  color: #2c2c2c;
   padding: 0 1rem 0 0;
   width: fit-content;
+  /* border: 1px solid #2F75A2;
+  border-radius: 200px; */
 }
 
 .noticiatextualautor {
@@ -868,7 +872,7 @@ height: auto;
 max-height: 0;
 gap: 20px;
 padding: 0 7vw;
-background-color:#2f76a20a;
+background-color:#FAFAFA;
 
 }
 
