@@ -597,7 +597,7 @@ border-radius: 0;
 .submenu {
   display: flex;
   position: absolute;
-  top: 160px;
+  top: 25vh;
   right: -24vw;
   flex-direction: column;
   align-items: flex-end;
@@ -627,6 +627,7 @@ border-radius: 0;
 .submenuitemtexto {
   width: auto;
   max-width: 0;
+  white-space: nowrap;
   overflow: hidden;
   transition: max-width 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -647,7 +648,8 @@ border-radius: 0;
 }
 
 .menu.clicked .submenu {
-  right: -0.5vw;
+  right: -1vw;
+  top: 25vh;
 }
 
 .submenuitem:hover .submenuitemtexto {
@@ -667,37 +669,74 @@ border-radius: 0;
   display: none;
 }
 
+.callbuttoncontainer {
+  display: flex;
+  order: 2;
+  width: 100%;
+  justify-content: flex-end;
+  flex-grow: 6;
+}
+
 
 .callbutton {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
   z-index: 9999;
-  order: 2;
+  gap: 1rem;
   position: relative;
   height: auto;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 14px 16px;
+  flex-grow: 8;
   border-radius: 200px;
-  object-fit: contain;
   width: auto;
+  min-width:62px;
+  max-width: 62px;
   background-color:rgba(255, 255, 255, 0.199);
+  overflow: hidden;
+  transition: max-width 4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
 
 }
+
+.callbutton:hover {
+  width: 100%;
+  max-width: 250px;
+}
+
 
 .callbutton img {
   height: auto;
   width: 28px;
   transition: scale 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
 }
 
-.callbutton img:hover {
-  scale: 1.1;
-}
+
 
 .callbuttontexto {
-  overflow: visible;
-  max-width: 400px;
-  margin-right: 10px;
+  display: flex;
+  font-size: 16px;
+  position: relative;
+  color: #fafafa;
+  width: 160px;
+  border-radius: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+
+
+
+
 }
+
+
+
+
+
+
+
 
 
 
@@ -712,9 +751,9 @@ border-radius: 0;
     display: flex;
     align-items: center;
     order: 1;
-    width: 100vw;
+    width: 100%;
     justify-content: flex-end;
-    gap: 3vw;
+    gap: 2rem;
     height: fit-content; /*Interesante 100% para abrir navegador*/
     padding:1rem 6vw;
     z-index: 0;
@@ -732,12 +771,17 @@ border-radius: 0;
 
 
 
+
+
+
   .logo {
+    display: flex;
+    position: relative;
     width: 100%;
+    flex-grow: 0;
     order: 1;
     height: auto;
     margin: 0;
-    padding: 0;
     z-index: 99999999;
   }
 
@@ -749,6 +793,8 @@ border-radius: 0;
 
   .logo img {
     width: 70px ;
+    transition: padding 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
 
   }
 
@@ -2284,9 +2330,11 @@ main {
 #anuncio1 {
   display: flex;
   gap: 1rem;
-height: 10vh;
+height: fit-content;
 align-items: center;
+justify-content: flex-start;
 flex-direction: row;
+flex-wrap: wrap;
 width: 100%;
 padding: 1.25rem 7vw;
 /* background-color: #A3732F; */
@@ -2295,6 +2343,14 @@ transition: scale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 box-shadow:2px 2px 4px 0 rgba(0, 0, 0, 0.2);
 overflow-x: hidden;
 
+}
+
+
+.anunciotexto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 #anuncio1:hover {
@@ -2369,8 +2425,14 @@ scale: 1.01;
       gap: auto;
       justify-content: space-between;
     }
-
+    
+  
     .logo {
+      width: fit-content;
+    }
+
+    .callbuttoncontainer {
+      display: none;
       width: fit-content;
     }
 
@@ -2544,12 +2606,13 @@ scale: 1.01;
 
 
     .logo img {
-      width: 60px ;
+      width: 60px;
+      padding: 5px 0;
     }
 
 
     .controles {
-      scale: 1;
+      scale: 1.2;
       padding: 14px 4vw;
   
     }
@@ -2567,10 +2630,7 @@ scale: 1.01;
 
 
 
-    .submenu {
-      top: 22vh;
-      right: -500px;
-    }
+  
   
    
 
