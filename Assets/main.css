@@ -1986,6 +1986,7 @@ footer {
                         justify-content: center;
                         height:fit-content;
                         width: 32px;
+                        height: auto;
                         padding: 0;
                         }
 
