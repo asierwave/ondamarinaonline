@@ -3,9 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const botonequipo = document.getElementById('botonequipo');
     const containerequipo = document.getElementById('containerequipo');
 
+
+
     tituloseparadores.forEach(titulo => {
         const container = titulo.nextElementSibling;
         container.style.maxHeight = '0';
+
+
+        // Dejar el container cards programas abierto desde el principio
+    
+        const containerPrimero = tituloseparadores[0].nextElementSibling;
+        containerPrimero.style.maxHeight= containerPrimero.scrollHeight + 'px';
+
+
+        // 
+
+
         container.style.padding = '0 7vw';
         container.style.overflow = 'hidden';
         container.style.transition = 'max-height 0.5s ease-in-out, padding 0.5s ease-in-out';
@@ -56,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+  
 
     // Función para abrir el contenedor 'containerequipo'
     if (botonequipo && containerequipo) {
