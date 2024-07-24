@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tituloseparadores = document.querySelectorAll('.tituloseparador');
+    const botonequipo = document.getElementById('botonequipo');
+    const containerequipo = document.getElementById('containerequipo');
 
     tituloseparadores.forEach(titulo => {
         const container = titulo.nextElementSibling;
@@ -47,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Luego se cierra el contenedor
                 setTimeout(() => {
                     container.style.maxHeight = '0';
-                    
                 }, 0); // Retraso para la transición de max-height
                 if (img) {
                     img.style.transform = 'rotate(0deg)';
@@ -55,4 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Función para abrir el contenedor 'containerequipo'
+    if (botonequipo && containerequipo) {
+        botonequipo.addEventListener('click', function() {
+            // Aseguramos que el contenedor esté a la altura inicial para calcular correctamente
+            containerequipo.style.maxHeight = containerequipo.scrollHeight + 'px';
+            // Ajustamos el padding con retraso para la animación fluida
+            setTimeout(() => {
+                containerequipo.style.padding = '0 7vw';
+            }, 0); // Retraso para la transición de padding
+        });
+    }
 });

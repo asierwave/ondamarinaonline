@@ -100,6 +100,12 @@ padding: 0;
   cursor: pointer;
 }
 
+.tituloseparador img {
+  width: 6vw;
+  max-width: 33px;
+  min-width: 22px;
+}
+
 a {
   color: #fafafa;
   letter-spacing: 4pt;
@@ -585,6 +591,7 @@ border-radius: 0;
   position: relative;
   cursor: pointer;
   z-index: 99999999;
+  order: 4;
 }
 
 .submenu {
@@ -663,12 +670,27 @@ border-radius: 0;
 
 .callbutton {
   z-index: 9999;
-  position: fixed;
-  top: 0.2vh;
-  left: -80px;
-  height: 59px;
+  order: 2;
+  position: relative;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  border-radius: 200px;
+  object-fit: contain;
+  width: auto;
   background-color:rgba(255, 255, 255, 0.199);
 
+}
+
+.callbutton img {
+  height: auto;
+  width: 28px;
+  transition: scale 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.callbutton img:hover {
+  scale: 1.1;
 }
 
 .callbuttontexto {
@@ -692,13 +714,14 @@ border-radius: 0;
     order: 1;
     width: 100vw;
     justify-content: flex-end;
-    gap: 6vw;
+    gap: 3vw;
     height: fit-content; /*Interesante 100% para abrir navegador*/
-    padding:1rem 7vw;
+    padding:1rem 6vw;
     z-index: 0;
     flex-direction: row;
     background-color: #2F75A2;
     transition: padding 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+
   
   
   }
@@ -706,8 +729,12 @@ border-radius: 0;
 
 
 
+
+
+
   .logo {
     width: 100%;
+    order: 1;
     height: auto;
     margin: 0;
     padding: 0;
@@ -1027,7 +1054,7 @@ padding: 0 7vw;
 .masprogramasrecientes {
   background-color: #2f76a2;
   justify-content: flex-start;
-  white-space: nowrap;
+  white-space: wrap;
   width: 100%;
   gap: 1rem;
   color: #fafafa;
@@ -1913,6 +1940,7 @@ footer {
 
     .controles {
         display: flex;
+        order: 3;
         position: relative;
         justify-content: space-between;
         align-items: center;
@@ -1925,11 +1953,14 @@ footer {
         white-space: nowrap;
         align-items: center;
         width: auto;
-        padding: 14px 20px;
+        padding: 14px 2vw;
         backdrop-filter: blur(40px);
         font-size: 18px;
         border-radius: 100px;
         z-index: 80;
+        transition: padding 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: scale 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+
         
     }
 
@@ -2325,6 +2356,24 @@ scale: 1.01;
 
   @media (max-width: 800px) {
 
+    h1 {
+      font-size: 24px;
+    }
+
+    .card h2 {
+      font-size: 22px;
+    }
+
+
+    .cabeza {
+      gap: auto;
+      justify-content: space-between;
+    }
+
+    .logo {
+      width: fit-content;
+    }
+
 
     .main {
       display: flex;
@@ -2406,6 +2455,10 @@ scale: 1.01;
       flex-direction: column;
 
 
+    }
+
+    .noticiatitular {
+      font-size: 20px;
     }
 
 
@@ -2491,12 +2544,14 @@ scale: 1.01;
 
 
     .logo img {
-      width: 70px ;
+      width: 60px ;
     }
 
 
     .controles {
-      scale: 1.1;
+      scale: 1;
+      padding: 14px 4vw;
+  
     }
 
       .controlestexto {
