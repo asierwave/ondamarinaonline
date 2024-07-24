@@ -193,6 +193,8 @@ body {
   max-height: 0;
   gap: 40px;
   z-index: 99999;
+  background-color:#2f76a20a;
+
 
 }
 
@@ -385,7 +387,7 @@ h2 {
   align-items: center;
   height: auto;
   max-height: 0;
-  background-color: #fafafa00;
+  background-color:#fafafa;
   transition: max-height cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -442,7 +444,7 @@ h2 {
     padding: 0 7vw 0 7vw;
     margin: 0;
     gap: 1rem;
-    background-color: #FAFAFA;
+    background-color:#2f76a20a;
     overflow: hidden;
   }
 
@@ -866,6 +868,8 @@ height: auto;
 max-height: 0;
 gap: 20px;
 padding: 0 7vw;
+background-color:#2f76a20a;
+
 }
 
 
@@ -913,8 +917,8 @@ padding: 0 7vw;
     align-items: flex-start;
     gap: 1rem;
     width: auto;
-    min-width: 40vw;
-    max-width: 40vw;
+    min-width: 400px;
+    max-width: 28vw;
     height: fit-content;
     padding: 1rem;
     border-radius: 0 12px;
@@ -1617,10 +1621,10 @@ overflow-x: auto;
     flex-direction: row;
     position: relative;
     height: auto;
-  max-height: 0;
-    width: fit-content; /* Ajusta el ancho del grid al contenido */
-    padding: 0 4vw;
-    justify-content: space-around;
+    max-height: 0;
+    width: 100%; /* Ajusta el ancho del grid al contenido */
+    padding: 0 3vw;
+    justify-content: space-between;
     gap: auto;
     row-gap: 4rem;
     z-index:9999;
@@ -2376,11 +2380,19 @@ scale: 1.01;
   }
 
 
+  @media (max-width: 1500px) {
+    .partetextualcard {
+      min-width: 41vw;
+      max-width: 10vw;
+      
+    }
+  }
+
 
   @media (max-width: 1300px) {
 
 
-  
+
 
     .programasrecientes {
       gap: 1rem;

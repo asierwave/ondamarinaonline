@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             containerequipo.style.maxHeight = containerequipo.scrollHeight + 'px';
             // Ajustamos el padding con retraso para la animación fluida
             setTimeout(() => {
-                containerequipo.style.padding = '0 7vw';
+                containerequipo.style.padding = '0 6vw';
             }, 0); // Retraso para la transición de padding
         });
     }
