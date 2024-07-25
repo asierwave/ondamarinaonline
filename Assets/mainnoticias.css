@@ -3,10 +3,7 @@
     height: 0;
 }
 
-.main {
-    height: auto;
-    max-height: 100vh;
-}
+
 
 
 
@@ -14,7 +11,7 @@
 /* NOTICIA FULL */
 
 .noticias {
-    margin-top: 150px;
+    margin-top: 130px;
     max-height: fit-content;
     padding: 3rem 7vw;
     flex-wrap: nowrap;
