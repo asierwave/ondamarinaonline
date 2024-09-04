@@ -5,6 +5,16 @@
 
 
 
+/* programas horarios*/
+
+#separadorhorario {
+  display: none;
+}
+
+.programastexto {
+  display: none;
+}
+
 
 
 
@@ -19,6 +29,15 @@
     gap: 3rem;
 }
 
+.noticiaspagnoticia {
+  margin-top: 130px;
+  max-height: fit-content;
+  padding: 3rem 7vw;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .noticias > *:nth-child(n+4) {
     display: flex;
   }
@@ -26,6 +45,7 @@
 
 .noticia {
     min-width: 0;
+    gap: 2rem;
     max-width: 100%;
     height: fit-content;
 }
@@ -48,16 +68,32 @@
 }
 
 
+.noticiatextualentradilla {
+  color: #2c2c2c;
+  font-size: 16px;
+  padding: 1rem 0 0 0;
+  font-weight: 700;
+  
+
+
+}
+
   .noticiamedia {
     max-height: 100%;
   }
 
 .noticialadillo {
     display: flex;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #2c2c2c;
+    padding: 0.5rem 0 0 0;
 }
 
 .noticiatextualp {
     display: flex;
+    padding: 0.5 0rem;
+
 }
 
 .noticiaimagencomplementaria {

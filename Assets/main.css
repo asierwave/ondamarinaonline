@@ -1870,81 +1870,6 @@ footer {
         }
       
         
-            
-            /* TEXTO REPRODUCTOR TABLA */
-
-            table {
-                border-collapse: collapse;
-                width: auto;
-                white-space: wrap;
-                overflow: hidden;
-                color: #010101;
-                font-size: 1em;
-                border-radius: 20px;
-                
-            }
-            
-            th, td {
-                border: 0px solid #dddddd;
-                width: auto;
-                text-align: left;
-                padding: 5px;
-                border-bottom: 1px solid #2F75A2;
-                text-align: center;
-            
-                
-            }
-            
-            th {
-              font-weight: 900;
-              font-size: 22px;
-              width: auto;
-              border: 0;
-              border-bottom: 3px solid;
-              color: #2F75A2;
-              background-color: #FAFAFA;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-          
-              
-          }
-
-
-          .hora {
-            width: auto;
-            background-color:#2F75A2;
-            color: #FAFAFA;
-            border: 0.5px solid #fafafa;
-            white-space: nowrap;
-            padding: 2vh;
-            text-justify: center;
-            }
-
-
-          #categoriahora {
-            width: auto;
-            color: #fafafa00;
-            border-bottom: 3px solid #2F75A2;
-          }
-
-           th .hora {
-            width: auto;
-            background-color:#FAFAFA;
-
-            }
-
-
-          
-
-
-           
-            
-            
-            #tablaProgramacion {
-            display: 0;
-            
-            }
 
 
 
@@ -2157,43 +2082,104 @@ footer {
 
     }
 
-   .contenedor {
-      display: none;
-      margin-top: 100px;
-      height: auto;
-      overflow: hidden;
 
 
-    }
+     /* TEXTO REPRODUCTOR TABLA */
+
+     .contenedorhorarios {
+      display: flex;
+     }
+
+     table {
+      display: flex;
+      align-items: center;
+      border-collapse: collapse;
+      width: auto;
+      white-space: wrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      color: #2c2c2c;
+      font-size: 12px;
+      
+  }
+  
+  th, td {
+      border: 0px solid #dddddd;
+      width: auto;
+      text-align: left;
+      padding: 1rem;
+      border-bottom: 1px solid #2F75A2;
+      text-align: center;
+      
+  }
 
 
-    #formularioenviar {
-      width: 100%;
-      color:#010101;
-      padding: 2rem;
-      background-color: #FAFAFA;
-      border-radius: 20px;
-      font-size:larger;
-
-    }
 
   
-  label {
-      display: block;
-      margin-bottom: 10px;
-  }
-  input[type="text"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-  }
-  textarea {
-      height: 150px;
+  th {
+    font-weight: 900;
+    font-size: 16px;
+    width: auto;
+    border: 0;
+    border-bottom: 1px solid;
+    color: #2F75A2;
+    background-color: #FAFAFA;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: auto;
+
+    
+}
+
+
+
+#columnahora {
+  display: flex;
+  width: auto;
+  color: #fafafa00;
+}
+
+.hora {
+  display: flex;
+  position: sticky;
+  right: 0;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #2F75A2;
+  color: #fafafa;
+  height: auto;
+  border-radius: 200px 200px 0 200px;
+  z-index: 1;
+
   }
 
 
+    .horanovisible {
+      display: none;
+    }
+    
+    #filahora1 {
+      display: none;
+    }
+
+    #filahora2 {
+      display: none;
+    }
+
+    #filahora3 {
+      display: none;
+    }
+
+    #filahora23 {
+      display: none;
+    }
+
+
+
+
+    /*  */
 
         
 

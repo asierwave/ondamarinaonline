@@ -1,20 +1,25 @@
 function cargarDatosDesdeGoogleSheetsNoticias() {
+  // Inicializa la API de Google
   gapi.client
     .init({
       apiKey: "AIzaSyCZm_uR6TknLlgLhTrOhhsSKnzgUQeSOOE",
     })
     .then(function () {
+      console.log("API de Google inicializada correctamente.");
+      // Solicita los datos desde la hoja de cálculo
       return gapi.client.request({
         path: "https://sheets.googleapis.com/v4/spreadsheets/1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI/values/NOTICIAS!A:Z",
       });
     })
     .then(function (response) {
+      console.log("Datos recibidos de Google Sheets:", response);
       var datos = response.result.values;
       var arrayDeObjetos = [];
       var articulosContainer = document.getElementById('articulos-container');
 
       // Si hay datos, procesarlos
       if (datos && datos.length > 0) {
+        console.log("Datos procesados correctamente.");
         // Limpiar el contenedor antes de volver a llenarlo
         articulosContainer.innerHTML = '';
 
@@ -45,56 +50,45 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
               <div class="noticiamedia">
                 <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
               </div>
-                             
-
               <div class="noticiatextual">
                 <h2 class="noticiatitular">${objeto.titulo}</h2>
-
                 <div class="noticiaetiquetas">
-
-                <div class="noticiatextualautor">
-                                <img class="noticiaimagenautor" src="${objeto.imagenautor}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
-                                <p>${objeto.autor}</p>
-                            </div>
-
-                <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
-                
+                  <div class="noticiatextualautor">
+                    <img class="noticiaimagenautor" src="${objeto.imagenautor}" alt="Imagen del autor" style="max-width: auto; height: auto;">
+                    <p>${objeto.autor}</p>
+                  </div>
+                  <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
                 </div>
-
                 <p class="noticiatextualentradilla">${objeto.entradilla}</p>
-
                 <p class="noticiatextualp">${objeto.cuerpo}</p>
-
-                              <h2 class="noticialadillo">${objeto.ladillo1}</h2>
-                              <p class="noticiatextualp">${objeto.cuerpo2}</p>
-
-                         <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
-
-
-                              <h2 class="noticialadillo">${objeto.ladillo2}</h2>
-                              <p class="noticiatextualp">${objeto.cuerpo3}</p>
-
-                                 <h2 class="noticialadillo">${objeto.ladillo3}</h2>
-                              <p class="noticiatextualp">${objeto.cuerpo4}</p>
-
-
-                <a href="noticias.html"><button class="masprogramas noticialeermas">Leer más</button></a>
+                <h2 class="noticialadillo">${objeto.ladillo1}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo2}</p>
+                <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                <h2 class="noticialadillo">${objeto.ladillo2}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo3}</p>
+                <h2 class="noticialadillo">${objeto.ladillo3}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo4}</p>
+                <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>
               </div>
             </div>
           `;
           articulosContainer.innerHTML += articuloHTML;
         }
       } else {
-        console.error("No se encuentran datos o no se puede conectar con el array");
+        console.error("No se encontraron datos en la hoja de cálculo.");
       }
     }, function (reason) {
-      console.error("Error: " + reason.result.error.message);
+      console.error("Error al cargar los datos: " + reason.result.error.message);
     });
 }
 
 // Cargar la API de Google Sheets
-gapi.load("client", cargarDatosDesdeGoogleSheetsNoticias);
+gapi.load("client", function() {
+  console.log("Cliente de Google cargado, iniciando la carga de datos.");
+  cargarDatosDesdeGoogleSheetsNoticias();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   // La carga inicial de datos se maneja en cargarDatosDesdeGoogleSheetsNoticias
+  console.log("DOM completamente cargado y procesado.");
 });

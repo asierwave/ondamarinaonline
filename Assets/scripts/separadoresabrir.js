@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 
 
 
+        
         container.style.padding = '0 7vw';
         container.style.overflow = 'hidden';
         container.style.transition = 'max-height 0.5s ease-in-out, padding 0.5s ease-in-out';

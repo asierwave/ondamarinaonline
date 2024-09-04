@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description"
+        content="Onda Marina Online es la radio que estabas esperando. Una radio online libre e independiente con especial atención al municipio de Santa Cruz de Bezana (Cantabria)">
+
+    <title>Onda Marina | Tu radio online</title>
+    <link rel="stylesheet" href="Assets/main.css">
+    <link rel="stylesheet" href="Assets/mainnoticias.css">
+
+    <link rel="shortcut icon" href="Assets/favicon.ico" type="image/x-icon">
+    <!-- Favicon predeterminado -->
+    <link rel="icon" href="Assets/favicon.png" sizes="32x32" type="image/png">
+    <!-- Favicon alternativo para fondos claros -->
+    <link rel="alternate icon" href="Assets/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    </meta>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8P60Q0W7N9"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8P60Q0W7N9');
+</script>
+
+
+<!-- Hotjar Tracking Code for https://www.ondamarina.online -->
+<script>
+    (function (h, o, t, j, a, r) {
+        h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+        h._hjSettings = { hjid: 3833029, hjsv: 6 };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script'); r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+</script>
+
+<body>
+
+
+    <header>
+
+
+        <section class="cabeza">
+    
+          <!-- Logo cabecera -->
+    
+          <a class="logo" href="index.html"><img id="logo" src="Assets/logoaltnuevo.png" alt="Logotipo de OndaMarina">
+          </a>
+    
+    
+    
+          <!-- repe botón teléfono llamar -->
+    
+    
+        <div class="callbuttoncontainer">
+            <a class="callbutton" href="https://wa.me/34611803831?text=Hola,%20Onda%20Marina%20Online!%20" target="_blank">
+              <h2 class="callbuttontexto">611 803 831</h2>
+              <img src="Assets/mapalocalizaciones/whatsapplogowhite.png" alt="Logotipo de Whatsapp">
+    
+            </a>
+    
+          </div>
+    
+          
+    
+              <!-- Reproductor -->
+    
+        <section class="controles">
+    
+    
+    
+    
+          <div class="icono" id="treintatras">
+            <img id="imagen-diez-segundos-atras" src="Assets/10adelantewhite.png" alt="">
+          </div>
+    
+          <!-- <img id="botondirecto" src="Assets/playwhite.png" alt="Botón circular de directo animado"> -->
+          <div class="icono" id="fotoplay">
+            <img id="imagen-reproducir-pausar" src="Assets/playwhite.png" alt="Reproducir">
+          </div>
+    
+          <div class="icono" id="treintadelante">
+            <img id="imagen-en-vivo" src="Assets/backwhite.png" alt="">
+          </div>
+    
+    
+          <div class="controlestexto">
+            <strong>DIRECTO</strong>
+          </div>
+    
+        </section>
+    
+    
+        <!-- Menu -->
+    
+          <nav class="menu" id="menu">
+            <ul class="menulist">
+              <li class="menuitem"><a href="#">
+                  <img class="botonclasico" id="menu2" src="Assets/menualtwhite.png" alt="">
+                </a>
+    
+    
+    
+    
+                <ul class="submenu">
+                  <!-- <li class="submenuitem"><a class="submenuitem2" href="#video-background"><strong></strong></a></li> -->
+    
+    
+    
+    
+                  <li class="submenuitem"><a class="submenuitem2" href="#anclahorarios">
+                      <div class="submenuitemtexto">
+                        <strong>HORARIOS</strong>
+                      </div>
+                      <i class="material-icons">schedule</i>
+    
+                    </a></li>
+    
+    
+    
+    
+                  <li class="submenuitem">
+                    <a class="submenuitem2"
+                      href="mailto:esther@ondamarina.online?subject=Contacto%20Web:Introduce%20tu%20asunto%20aquí&body=Hola,%20Esther:">
+                      <div class="submenuitemtexto">
+                        <strong>CONTACTA POR CORREO</strong>
+                      </div>
+                      <i class="material-icons">mail</i>
+    
+                    </a>
+                  </li>
+    
+    
+    
+                  <li class="submenuitem">
+                    <a class="submenuitem2" href="https://wa.me/34611803831?text=Hola,%20Onda%20Marina%20Online!%20">
+                      <div class="submenuitemtexto">
+                        <strong>CONTACTA POR WHATSAPP</strong>
+                      </div>
+                      <img src="Assets/mapalocalizaciones/whatsapplogowhite.png" alt="Logotipo de Whatsapp">
+    
+                    </a>
+                  </li>
+    
+    
+                  <li class="submenuitem">
+                    <a class="submenuitem2" href="https://youtube.com/@OndaMarinaOnline?si=mmjn56ooY-LdnAPa">
+                      <div class="submenuitemtexto">
+                        <strong>VIDEOS</strong>
+                      </div>
+                      <span class="material-symbols-outlined">
+                        smart_display
+                      </span>
+                    </a>
+                  </li>
+    
+                </ul>
+              </li>
+            </ul>
+          </nav>
+    
+    
+        </section>
+    
+    
+        <section class="reproductor">
+    
+    
+          <!-- Controles del audio -->
+          <input type="range" id="audio-slider" min="0" value="0" step="0.01">
+    
+    
+    
+          <article class="mascara">
+            <article class="radiotexto">
+    
+    
+              <i style="color: #fafafa;" class="material-icons">info</i>
+    
+    
+              <div id="programaActual">
+              </div>
+    
+              <i style="color: #fafafa;" class="material-icons">forward</i>
+    
+    
+              <div id="programaSiguiente">
+              </div>
+    
+              <div id="rotativoInformativo">
+                <img style="width: 50px;filter: brightness(100);" src="Assets/logofm.png" alt="Logo frecuencia FM">
+                <h3 style="font-size: 14px; align-items: center;">¡SINTONÍZANOS EN SANTANDER EN EL 87.5 FM!</h3>
+              </div>
+    
+            </article>
+          </article>
+    
+    
+    
+    
+        </section>
+    
+    
+    
+     
+    
+      </header>
+
+      <main>
+
+        <section class="noticiaspagnoticia">
+    <div class="noticia" id="noticia-completa">
+        <!-- Aquí se cargará la noticia completa -->
+    </div>
+</section>
+
+      </main>
+
+  
+
+
+  <!-- HORARIO -->
+      <!-- Descripción sección horario de programas -->
+  
+      <section class="programastexto" >
+        <p id="xlssectionhorariodeprogramasdescripcion">Los horarios de los programas en parrilla de Onda Marina Online.
+        </p>
+  
+  
+  
+      <!-- Horarios para horario.js -->
+  
+      <section class="contenedorhorarios" id="horarios">
+  
+  
+        <table id="tablaProgramacion">
+  
+          <tr id="filadias">
+            <th id="columnahora">Hora</th>
+            <th id="columnalunes">Lunes</th>
+            <th id="columnamartes">Martes</th>
+            <th id="columnamiercoles">Miércoles</th>
+            <th id="columnajueves">Jueves</th>
+            <th id="columnaviernes">Viernes</th>
+            <th id="columnasabado">Sábado</th>
+            <th id="columnadomingo">Domingo</th>
+          </tr>
+  
+          <tr id="filahora1">
+            <td class="hora">0:00 - 1:59</td>
+            <td id="xlshl0"></td>
+            <td id="xlshm0"></td>
+            <td id="xlshx0"></td>
+            <td id="xlshj0"></td>
+            <td id="xlshv0"></td>
+            <td id="xlshs0"></td>
+            <td id="xlshd0"></td>
+          </tr>
+          <tr id="filahora2">
+            <td class="hora">2:00 - 2:59</td>
+            <td id="xlshl2"></td>
+            <td id="xlshm2"></td>
+            <td id="xlshx2"></td>
+            <td id="xlshj2"></td>
+            <td id="xlshv2"></td>
+            <td id="xlshs2"></td>
+            <td id="xlshd2"></td>
+  
+  
+          </tr>
+  
+          <tr id="filahora3">
+            <td class="hora">3:00 <p class="horanovisible">- 8:59</p></td>
+            <td id="xlshl3"></td>
+            <td id="xlshm3"></td>
+            <td id="xlshx3"></td>
+            <td id="xlshj3"></td>
+            <td id="xlshv3"></td>
+            <td id="xlshs3"></td>
+            <td id="xlshd3"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">9:00 <p class="horanovisible">- 9:29</p></td>
+            <td id="xlshl9"></td>
+            <td id="xlshm9"></td>
+            <td id="xlshx9"></td>
+            <td id="xlshj9"></td>
+            <td id="xlshv9"></td>
+            <td id="xlshs9"></td>
+            <td id="xlshd9"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">9:30 <p class="horanovisible">- 9:59</p></td>
+            <td id="xlshl9M"></td>
+            <td id="xlshm9M"></td>
+            <td id="xlshx9M"></td>
+            <td id="xlshj9M"></td>
+            <td id="xlshv9M"></td>
+            <td id="xlshs9M"></td>
+            <td id="xlshd9M"></td>
+          </tr>
+          <tr>
+            <td class="hora">10:00 <p class="horanovisible">- 10:59</p></td>
+            <td id="xlshl10"></td>
+            <td id="xlshm10"></td>
+            <td id="xlshx10"></td>
+            <td id="xlshj10"></td>
+            <td id="xlshv10"></td>
+            <td id="xlshs10"></td>
+            <td id="xlshd10"></td>
+          </tr>
+          <tr>
+            <td class="hora">11:00 <p class="horanovisible">- 11:59</p></td>
+            <td id="xlshl11"></td>
+            <td id="xlshm11"></td>
+            <td id="xlshx11"></td>
+            <td id="xlshj11"></td>
+            <td id="xlshv11"></td>
+            <td id="xlshs11"></td>
+            <td id="xlshd11"></td>
+          </tr>
+          <tr>
+            <td class="hora">12:00 <p class="horanovisible">- 12:59</p></td>
+            <td id="xlshl13"></td>
+            <td id="xlshm13"></td>
+            <td id="xlshx13"></td>
+            <td id="xlshj13"></td>
+            <td id="xlshv13"></td>
+            <td id="xlshs13"></td>
+            <td id="xlshd13"></td>
+          </tr>
+          <tr>
+            <td class="hora">13:00 <p class="horanovisible">- 13:59</p></td>
+            <td id="xlshl14"></td>
+            <td id="xlshm14"></td>
+            <td id="xlshx14"></td>
+            <td id="xlshj14"></td>
+            <td id="xlshv14"></td>
+            <td id="xlshs14"></td>
+            <td id="xlshd14"></td>
+          </tr>
+          <tr>
+            <td class="hora">14:00 <p class="horanovisible">- 14:59</p></td>
+            <td id="xlshl15"></td>
+            <td id="xlshm15"></td>
+            <td id="xlshx15"></td>
+            <td id="xlshj15"></td>
+            <td id="xlshv15"></td>
+            <td id="xlshs15"></td>
+            <td id="xlshd15"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">15:00 <p class="horanovisible">- 15:59</p></td>
+            <td id="xlshl16"></td>
+            <td id="xlshm16"></td>
+            <td id="xlshx16"></td>
+            <td id="xlshj16"></td>
+            <td id="xlshv16"></td>
+            <td id="xlshs16"></td>
+            <td id="xlshd16"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">16:00 <p class="horanovisible">- 16:59</p></td>
+            <td id="xlshl16M"></td>
+            <td id="xlshm16M"></td>
+            <td id="xlshx16M"></td>
+            <td id="xlshj16M"></td>
+            <td id="xlshv16M"></td>
+            <td id="xlshs16M"></td>
+            <td id="xlshd16M"></td>
+          </tr>
+  
+  
+          <tr>
+            <td class="hora">17:00 <p class="horanovisible">- 17:59</p></td>
+            <td id="xlshl17"></td>
+            <td id="xlshm17"></td>
+            <td id="xlshx17"></td>
+            <td id="xlshj17"></td>
+            <td id="xlshv17"></td>
+            <td id="xlshs17"></td>
+            <td id="xlshd17"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">18:00 <p class="horanovisible">- 18:29</p></td>
+            <td id="xlshl17M"></td>
+            <td id="xlshm17M"></td>
+            <td id="xlshx17M"></td>
+            <td id="xlshj17M"></td>
+            <td id="xlshv17M"></td>
+            <td id="xlshs17M"></td>
+            <td id="xlshd17M"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">18:30 <p class="horanovisible">- 18:59</p></td>
+            <td id="xlshl18"></td>
+            <td id="xlshm18"></td>
+            <td id="xlshx18"></td>
+            <td id="xlshj18"></td>
+            <td id="xlshv18"></td>
+            <td id="xlshs18"></td>
+            <td id="xlshd18"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">19:00 <p class="horanovisible">- 19:29</p></td>
+            <td id="xlshl19"></td>
+            <td id="xlshm19"></td>
+            <td id="xlshx19"></td>
+            <td id="xlshj19"></td>
+            <td id="xlshv19"></td>
+            <td id="xlshs19"></td>
+            <td id="xlshd19"></td>
+          </tr>
+  
+  
+          <tr>
+            <td class="hora">19:30 <p class="horanovisible">- 19:59</p></td>
+            <td id="xlshl19M"></td>
+            <td id="xlshm19M"></td>
+            <td id="xlshx19M"></td>
+            <td id="xlshj19M"></td>
+            <td id="xlshv19M"></td>
+            <td id="xlshs19M"></td>
+            <td id="xlshd19M"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">20:00 <p class="horanovisible">- 20:29</p></td>
+            <td id="xlshl20"></td>
+            <td id="xlshm20"></td>
+            <td id="xlshx20"></td>
+            <td id="xlshj20"></td>
+            <td id="xlshv20"></td>
+            <td id="xlshs20"></td>
+            <td id="xlshd20"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">20:30 <p class="horanovisible">- 20:59</p></td>
+            <td id="xlshl20M"></td>
+            <td id="xlshm20M"></td>
+            <td id="xlshx20M"></td>
+            <td id="xlshj20M"></td>
+            <td id="xlshv20M"></td>
+            <td id="xlshs20M"></td>
+            <td id="xlshd20M"></td>
+          </tr>
+  
+          <tr>
+            <td class="hora">21:00 <p class="horanovisible">- 21:59</p></td>
+            <td id="xlshl21"></td>
+            <td id="xlshm21"></td>
+            <td id="xlshx21"></td>
+            <td id="xlshj21"></td>
+            <td id="xlshv21"></td>
+            <td id="xlshs21"></td>
+            <td id="xlshd21"></td>
+          </tr>
+          <tr>
+            <td class="hora">22:00 <p class="horanovisible">- 22:59</p></td>
+            <td id="xlshl22"></td>
+            <td id="xlshm22"></td>
+            <td id="xlshx22"></td>
+            <td id="xlshj22"></td>
+            <td id="xlshv22"></td>
+            <td id="xlshs22"></td>
+            <td id="xlshd22"></td>
+          </tr>
+          <tr id="filahora23">
+            <td class="hora">23:00 - 23:59</td>
+            <td id="xlshl23"></td>
+            <td id="xlshm23"></td>
+            <td id="xlshx23"></td>
+            <td id="xlshj23"></td>
+            <td id="xlshv23"></td>
+            <td id="xlshs23"></td>
+            <td id="xlshd23"></td>
+          </tr>
+  
+  
+  
+  
+        </table>
+   
+      </section>
+  
+        <!-- Botón descarga programación completa -->
+        <a class="masprogramas" id="programacioncompletalink" href="Assets/horariojunio_ondamarinaonline.pdf"
+          target="_blank">
+          <div id="programalink">DESCARGA EL PDF CON LA PROGRAMACIÓN COMPLETA</div>
+        </a>
+  
+        <!-- <img class="divisor" src="Assets/mapalocalizaciones/Union.png" alt=""> -->
+      </section>
+
+
+
+  <!-- Footer-->
+
+
+  <footer>
+    <article class="footertop">
+        <!-- <a class="footerlink" href=""></a><h2 style="color: #fafafa;">Legal</h2> -->
+        <!-- <a class="footerlink" href=""><p> Aviso Legal</p></a> -->
+        <a class="footerlink" href="legal.html"><p> Política de Privacidad Y Cookies</p></a>
+        <!-- <a class="footerlink" href=""><p> Política de Cookies</p></a> -->
+  
+    </article>
+    <article class="footerbottom"></article>
+    <p id="xlssectionfootertitulo">ONDA MARINA ONLINE. 2024</p>
+  </footer>
+  
+    
+
+    <script>
+        // Función para obtener el parámetro 'id' de la URL
+        function obtenerParametroUrl(nombre) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombre);
+        }
+
+        // Función para cargar la noticia desde Google Sheets en base al ID
+        function cargarNoticiaPorId(idNoticia) {
+            gapi.client.init({
+                apiKey: "AIzaSyCZm_uR6TknLlgLhTrOhhsSKnzgUQeSOOE",
+            }).then(function () {
+                return gapi.client.request({
+                    path: "https://sheets.googleapis.com/v4/spreadsheets/1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI/values/NOTICIAS!A:Z",
+                });
+            }).then(function (response) {
+                var datos = response.result.values;
+                
+                if (datos && datos.length > 0) {
+                    // Buscar la noticia con el ID proporcionado
+                    for (var i = 1; i < datos.length; i++) {
+                        var fila = datos[i];
+                        var objeto = {
+                            id: fila[0],
+                            titulo: fila[1],
+                            subtitulo: fila[2],
+                            autor: fila[3],
+                            entradilla: fila[4],
+                            cuerpo: fila[5].replace(/\n/g, '<br>'),
+                            ladillo1: fila[6],
+                            cuerpo2: fila[7],
+                            ladillo2: fila[8],
+                            cuerpo3: fila[9],
+                            ladillo3: fila[10],
+                            cuerpo4: fila[11],
+                            imagen: fila[12],
+                            imagen2: fila[13],
+                            imagenautor: fila[14],
+                        };
+
+                        // Mostrar la noticia si coincide con el ID
+                        if (objeto.id === idNoticia) {
+                            document.getElementById('noticia-completa').innerHTML = `
+              <div class="noticiamedia">
+                <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+              </div>
+              <div class="noticiatextual">
+                <h2 class="noticiatitular">${objeto.titulo}</h2>
+                <div class="noticiaetiquetas">
+                  <div class="noticiatextualautor">
+                    <img class="noticiaimagenautor" src="${objeto.imagenautor}" alt="Imagen del autor" style="max-width: auto; height: auto;">
+                    <p>${objeto.autor}</p>
+                  </div>
+                  <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
+                </div>
+                <p class="noticiatextualentradilla">${objeto.entradilla}</p>
+                <p class="noticiatextualp">${objeto.cuerpo}</p>
+                <h2 class="noticialadillo">${objeto.ladillo1}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo2}</p>
+                <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                <h2 class="noticialadillo">${objeto.ladillo2}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo3}</p>
+                <h2 class="noticialadillo">${objeto.ladillo3}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo4}</p>
+                <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>
+              </div>
+          `;
+                            break;
+                        }
+                    }
+                } else {
+                    document.getElementById('noticia-completa').innerHTML = '<p>No se encontró la noticia.</p>';
+                }
+            }, function (reason) {
+                console.error("Error: " + reason.result.error.message);
+                document.getElementById('noticia-completa').innerHTML = '<p>Error al cargar la noticia.</p>';
+            });
+        }
+
+        // Cargar la API de Google Sheets y luego la noticia específica
+        gapi.load("client", function() {
+            var idNoticia = obtenerParametroUrl('id'); // Obtener el ID de la noticia de la URL
+            if (idNoticia) {
+                cargarNoticiaPorId(idNoticia);
+            } else {
+                document.getElementById('noticia-completa').innerHTML = '<p>No se ha proporcionado una ID de noticia.</p>';
+            }
+        });
+    </script>
+
+    <!-- Cargar la librería de Google API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+
+    <script src="Assets/scripts/howler.js"></script>
+    <script src="Assets/scripts/reproductor.js"></script>
+    <script src="Assets/scripts/leermas.js"></script>
+    <script src="Assets/scripts/botonmenu.js"></script>
+    <script src="Assets/scripts/xlsdatos.js" defer></script>
+    <script src="Assets/scripts/xlsblog.js" defer></script>
+    <script src="Assets/scripts/separadoresabrir.js"></script>
+  
+    <script src="Assets/scripts/xlshorario.js" defer></script>
+    <script src="Assets/scripts/spotify.js"></script>
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
+  
+
+
+
+</body>
+
+
+</html>

@@ -50,3 +50,15 @@ margin-top: 130px;
  flex-direction: column;
  gap: 1rem;
 }
+
+
+
+/* programas horarios*/
+
+#separadorhorario {
+    display: none;
+  }
+  
+  .programastexto {
+    display: none;
+  }
