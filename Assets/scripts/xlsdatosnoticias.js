@@ -87,6 +87,7 @@ gapi.client.init({
                 document.querySelector('meta[property="og:url"]').textContent= urlActual;
 
                 document.querySelector('title[property="og:title"').textContent = objeto.titulo;
+                document.querySelector('title[property="og:description"').textContent = objeto.entradilla;
                 break;
             }
         }
