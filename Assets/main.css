@@ -443,7 +443,7 @@ h2 {
     flex-wrap: nowrap;
     padding: 0 7vw 0 7vw;
     margin: 0;
-    gap: 1rem;
+    gap: 2rem;
     background-color:#fafafa;
     overflow: hidden;
   }
@@ -524,6 +524,7 @@ h2 {
   -ms-hyphens: auto;
   word-break: break-word;
   line-height: 1.6;
+  letter-spacing: 0.05em;
 }
 
 
