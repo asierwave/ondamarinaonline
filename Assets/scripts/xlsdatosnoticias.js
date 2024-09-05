@@ -5,6 +5,18 @@ function obtenerParametroUrl(nombre) {
     return urlParams.get(nombre);
 }
 
+// Cargar la API de Google Sheets y luego la noticia específica
+gapi.load("client", function() {
+    var idNoticia = obtenerParametroUrl('id'); // Obtener el ID de la noticia de la URL
+    if (idNoticia) {
+        cargarNoticiaPorId(idNoticia);
+    } else {
+        document.getElementById('noticia-completa').innerHTML = '<p>No se ha proporcionado una ID de noticia.</p>';
+    }
+});
+
+
+
 // Función para cargar la noticia desde Google Sheets en base al ID
 function cargarNoticiaPorId(idNoticia) {
     gapi.client.init({
@@ -83,10 +95,20 @@ function cargarNoticiaPorId(idNoticia) {
 
 
                     // Actualizar etiquetas OG dinámicamente
-                    document.querySelector('meta[property="og:title"]').setAttribute("content", objeto.titulo);
-                    document.querySelector('meta[property="og:description"]').setAttribute("content", objeto.entradilla);
-                    document.querySelector('meta[property="og:image"]').setAttribute("content", objeto.imagen);
-                    document.querySelector('meta[property="og:url"]').setAttribute("content", urlActual);
+                    
+                    document.getElementById('og-title').setAttribute('content', objeto.titulo);
+                    document.getElementById('og-description').setAttribute('content', objeto.entradilla);
+                    document.getElementById('og-image').setAttribute('content', objeto.imagen);
+                    document.getElementById('og-url').setAttribute('content', urlActual);
+
+                    document.getElementById('twitter-title').setAttribute('content', objeto.titulo);
+                    document.getElementById('twitter-description').setAttribute('content', objeto.entradilla);
+                    document.getElementById('twitter-image').setAttribute('content', objeto.imagen);
+                    document.getElementById('twitter-url').setAttribute('content', urlActual);
+
+                    document.getElementById('page-title').textContent = objeto.titulo;
+                    document.getElementById('meta-description').setAttribute('content', objeto.entradilla);
+
 
                     break;
                 }
@@ -137,12 +159,3 @@ function copiarEnlace(url) {
     });
 }
 
-// Cargar la API de Google Sheets y luego la noticia específica
-gapi.load("client", function() {
-    var idNoticia = obtenerParametroUrl('id'); // Obtener el ID de la noticia de la URL
-    if (idNoticia) {
-        cargarNoticiaPorId(idNoticia);
-    } else {
-        document.getElementById('noticia-completa').innerHTML = '<p>No se ha proporcionado una ID de noticia.</p>';
-    }
-});

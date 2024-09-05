@@ -5,41 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <script>       // Actualizar Open Graph Tags dinámicamente
-        document.querySelector('meta[property="og:title"]').setAttribute('content', objeto.titulo);
-        document.querySelector('meta[property="og:description"]').setAttribute('content', objeto.entradilla);
-        document.querySelector('meta[property="og:image"]').setAttribute('content', objeto.imagen);
-        document.querySelector('meta[property="og:url"]').setAttribute('content', urlActual);
-        
-        </script>
-
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
+    <meta property="og:title" content="" id="og-title">
+    <meta property="og:description" content="" id="og-description">
+    <meta property="og:image" content="" id="og-image">
+    <meta property="og:url" content="" id="og-url">
     <meta property="og:type" content="article">
-
-
-    <!-- Whatsapps card tags -->
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="article">
-
-
 
     <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="">
-    <meta name="twitter:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="" id="twitter-title">
+    <meta name="twitter:description" content="" id="twitter-description">
+    <meta name="twitter:image" content="" id="twitter-image">
+    <meta name="twitter:url" content="" id="twitter-url">
 
-    <title property="og:title"></title>
-    <description property="og:description"></description>
-    
+    <!-- Title and Description -->
+    <title property="og:title" id="page-title"></title>
+    <meta name="description" content="" id="meta-description">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="Assets/main.css">
     <link rel="stylesheet" href="Assets/mainnoticias.css">
@@ -55,12 +38,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
-
-   
-
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </head>
+
 
 
 
