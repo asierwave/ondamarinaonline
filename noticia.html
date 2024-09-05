@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <script>       // Actualizar Open Graph Tags dinámicamente
+        document.querySelector('meta[property="og:title"]').setAttribute('content', objeto.titulo);
+        document.querySelector('meta[property="og:description"]').setAttribute('content', objeto.entradilla);
+        document.querySelector('meta[property="og:image"]').setAttribute('content', objeto.imagen);
+        document.querySelector('meta[property="og:url"]').setAttribute('content', urlActual);
+        
+        </script>
+
     <!-- Open Graph Tags -->
     <meta property="og:title" content="">
     <meta property="og:description" content="">

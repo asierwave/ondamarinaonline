@@ -80,16 +80,12 @@ gapi.client.init({
                     </div>
                 `;
 
-              // Actualizar Open Graph Tags dinámicamente
-              document.querySelector('meta[property="og:title"]').setAttribute('content', objeto.titulo);
-              document.querySelector('meta[property="og:description"]').setAttribute('content', objeto.entradilla);
-              document.querySelector('meta[property="og:image"]').setAttribute('content', objeto.imagen);
-              document.querySelector('meta[property="og:url"]').setAttribute('content', urlActual);
+       
           
                 document.querySelector('title[property="og:title"').textContent = objeto.titulo;
                 document.querySelector('title[property="og:description"').textContent = objeto.entradilla;
  
-                return;
+                break;
             }
         }
     } else {
