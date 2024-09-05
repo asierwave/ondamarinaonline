@@ -131,7 +131,7 @@ function compartirEnRedSocial(redSocial, url, titulo, imagen) {
             enlaceCompartir = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(titulo)}`;
             break;
         case 'twitter':
-            enlaceCompartir = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(titulo)}`;
+            enlaceCompartir = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(titulo + descripcion + url)}`;
             break;
         case 'linkedin':
             enlaceCompartir = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(titulo)}&summary=&source=`;
