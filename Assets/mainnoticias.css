@@ -117,7 +117,6 @@
 .social-share button {
   border: none;
   align-items: center;
-  width: 30px;
   height: auto;
   transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
