@@ -103,7 +103,7 @@ function cargarNoticiaPorId(idNoticia) {
 
                     document.getElementById('twitter-title').setAttribute('content', objeto.titulo);
                     document.getElementById('twitter-description').setAttribute('content', objeto.entradilla);
-                    document.getElementById('twitter-image').setAttribute('content', objeto.imagen);
+                    // document.getElementById('twitter-image').setAttribute('content', objeto.imagen);
                     document.getElementById('twitter-url').setAttribute('content', urlActual);
 
                     document.getElementById('page-title').textContent = objeto.titulo;
