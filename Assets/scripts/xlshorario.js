@@ -530,14 +530,14 @@ function mostrarProgramasActuales (){
     // Actualizar el contenido del elemento HTML con los programas actuales
     var programaActualElement = document.getElementById("programaActual");
     if (programaActual.trim() === "") {
-      programaActualElement.innerHTML = "<strong>AHORA</strong>"+ ": " +"MÚSICA 24H"; // Mensaje predeterminado
+      programaActualElement.innerHTML = "<strong>AHORA</strong>"+ ": " +"MÚSICA DE TODOS LOS TIEMPOS"; // Mensaje predeterminado
     } else {
       programaActualElement.innerHTML = "<strong>AHORA</strong>"+ ": " + programaActual;
     }
   
     var programaSiguienteElement = document.getElementById("programaSiguiente");
     if (programaSiguiente.trim() === "") {
-      programaSiguienteElement.innerHTML = "<strong>DESPUÉS</strong>"+": "+ " MÚSICA 24H"; // Mensaje predeterminado si no hay programa siguiente
+      programaSiguienteElement.innerHTML = "<strong>DESPUÉS</strong>"+": "+ " MÚSICA DE TODOS LOS TIEMPOS"; // Mensaje predeterminado si no hay programa siguiente
     } else {
       programaSiguienteElement.innerHTML = "<strong>DESPUÉS</strong>" + ": " + programaSiguiente;
     }

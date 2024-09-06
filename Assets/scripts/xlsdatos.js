@@ -224,6 +224,104 @@ function cargarDatosDesdeGoogleSheets() {
         var elRaroDuracion = document.getElementById ("xlscardelraroerestuduracion");
         var elRaroEtiqueta = document.getElementById ("xlscardelraroerestuetiqueta");
 
+
+
+        
+
+
+      //
+     
+      var CrimenesTitulo = document.getElementById("xlscardcrimenesymisteriostitulo");
+      
+      var CrimenesDescripcion = document.getElementById("xlscardcrimenesymisteriosdescripcion");
+
+      var CrimenesHorario1 = document.getElementById ("xlscardcrimenesymisterioshorario1");
+      var CrimenesHorarioR = document.getElementById ("xlscardcrimenesymisterioshorarior");
+      var CrimenesHorario2 = document.getElementById ("xlscardcrimenesymisterioshorario2");
+      var CrimenesDuracion = document.getElementById ("xlscardcrimenesymisteriosduracion");
+      var CrimenesEtiqueta = document.getElementById ("xlscardcrimenesymisteriosetiqueta");
+
+
+//
+
+
+
+
+
+      //
+     
+      var MostradorTitulo = document.getElementById("xlscarddetrasdelmostradortitulo");
+      
+      var MostradorDescripcion = document.getElementById("xlscarddetrasdelmostradordescripcion");
+
+
+      var MostradorHorario1 = document.getElementById ("xlscarddetrasdelmostradorhorario1");
+      var MostradorHorarioR = document.getElementById ("xlscarddetrasdelmostradorhorarior");
+      var MostradorHorario2 = document.getElementById ("xlscarddetrasdelmostradorhorario2");
+      var MostradorDuracion = document.getElementById ("xlscarddetrasdelmostradorduracion");
+      var MostradorEtiqueta = document.getElementById ("xlscarddetrasdelmostradoretiqueta");
+
+
+//
+
+
+
+
+
+      //
+     
+               var MotorTitulo = document.getElementById("xlscardelmotorenondatitulo");
+      
+               var MotorDescripcion = document.getElementById("xlscardelmotorenondadescripcion");
+       
+       
+               var MotorHorario1 = document.getElementById ("xlscardelmotorenondahorario1");
+               var MotorHorarioR = document.getElementById ("xlscardelmotorenondahorarior");
+               var MotorHorario2 = document.getElementById ("xlscardelmotorenondahorario2");
+               var MotorDuracion = document.getElementById ("xlscardelmotorenondaduracion");
+               var MotorEtiqueta = document.getElementById ("xlscardelmotorenondaetiqueta");
+       
+       
+       //
+       
+
+
+        //
+     
+        var BurbujaTitulo = document.getElementById("xlscardlaburbujadelosculturetastitulo");
+      
+        var BurbujaDescripcion = document.getElementById("xlscardlaburbujadelosculturetasdescripcion");
+
+
+        var BurbujaHorario1 = document.getElementById ("xlscardlaburbujadelosculturetashorario1");
+        var BurbujaHorarioR = document.getElementById ("xlscardlaburbujadelosculturetashorarior");
+        var BurbujaHorario2 = document.getElementById ("xlscardlaburbujadelosculturetashorario2");
+        var BurbujaDuracion = document.getElementById ("xlscardlaburbujadelosculturetasduracion");
+        var BurbujaEtiqueta = document.getElementById ("xlscardlaburbujadelosculturetasetiqueta");
+
+
+//
+
+
+
+
+        var RetrocedemosTitulo = document.getElementById(
+          "xlscardretrocedemoseneltiempotitulo"
+        );
+        var RetrocedemosDescripcion = document.getElementById(
+          "xlscardretrocedemoseneltiempodescripcion"
+        );
+
+
+        var RetrocedemosHorario1 = document.getElementById ("xlscardretrocedemoseneltiempohorario1");
+        var RetrocedemosHorario2 = document.getElementById ("xlscardretrocedemoseneltiempohorario2");
+        var RetrocedemosHorarioR = document.getElementById ("xlscardretrocedemoseneltiempohorarior");
+        var RetrocedemosDuracion = document.getElementById ("xlscardretrocedemoseneltiempoduracion");
+        var RetrocedemosEtiqueta = document.getElementById ("xlscardretrocedemoseneltiempoetiqueta");
+
+
+
+
         var mapaTitulo = document.getElementById("xlssectionmapatitulo");
         var mapaDescripcion = document.getElementById(
           "xlssectionmapadescripcion"
@@ -347,11 +445,52 @@ function cargarDatosDesdeGoogleSheets() {
           elRaroDuracion.innerHTML = arrayDeObjetos[13].duracion;
           elRaroEtiqueta.innerHTML = arrayDeObjetos[13].etiqueta;
 
-          mapaTitulo.innerHTML = arrayDeObjetos[18].titulo;
-          mapaDescripcion.innerHTML = arrayDeObjetos[18].descripcion;
 
-          footerTitulo.innerHTML = arrayDeObjetos[19].titulo;
-          //   footerDescripcion.innerHTML = arrayDeObjetos[19].descripcion;
+          CrimenesTitulo.innerHTML = arrayDeObjetos[14].titulo;
+          CrimenesDescripcion.innerHTML = arrayDeObjetos[14].descripcion;
+          CrimenesHorario1.innerHTML = arrayDeObjetos[14].horario1;
+          CrimenesHorario2.innerHTML = arrayDeObjetos[14].horario2;
+          CrimenesHorarioR.innerHTML = arrayDeObjetos[14].horarior;
+          CrimenesDuracion.innerHTML = arrayDeObjetos[14].duracion;
+          CrimenesEtiqueta.innerHTML = arrayDeObjetos[14].etiqueta;
+
+          MostradorTitulo.innerHTML = arrayDeObjetos[15].titulo;
+          MostradorDescripcion.innerHTML = arrayDeObjetos[15].descripcion;
+          MostradorHorario1.innerHTML = arrayDeObjetos[15].horario1;
+          MostradorHorario2.innerHTML = arrayDeObjetos[15].horario2;
+          MostradorHorarioR.innerHTML = arrayDeObjetos[15].horarior;
+          MostradorDuracion.innerHTML = arrayDeObjetos[15].duracion;
+          MostradorEtiqueta.innerHTML = arrayDeObjetos[15].etiqueta;
+
+          MotorTitulo.innerHTML = arrayDeObjetos[16].titulo;
+          MotorDescripcion.innerHTML = arrayDeObjetos[16].descripcion;
+          MotorHorario1.innerHTML = arrayDeObjetos[16].horario1;
+          MotorHorario2.innerHTML = arrayDeObjetos[16].horario2;
+          MotorHorarioR.innerHTML = arrayDeObjetos[16].horarior;
+          MotorDuracion.innerHTML = arrayDeObjetos[16].duracion;
+          MotorEtiqueta.innerHTML = arrayDeObjetos[16].etiqueta;
+
+          BurbujaTitulo.innerHTML = arrayDeObjetos[17].titulo;
+          BurbujaDescripcion.innerHTML = arrayDeObjetos[17].descripcion;
+          BurbujaHorario1.innerHTML = arrayDeObjetos[17].horario1;
+          BurbujaHorario2.innerHTML = arrayDeObjetos[17].horario2;
+          BurbujaHorarioR.innerHTML = arrayDeObjetos[17].horarior;
+          BurbujaDuracion.innerHTML = arrayDeObjetos[17].duracion;
+          BurbujaEtiqueta.innerHTML = arrayDeObjetos[17].etiqueta;
+
+          RetrocedemosTitulo.innerHTML = arrayDeObjetos[18].titulo;
+          RetrocedemosDescripcion.innerHTML = arrayDeObjetos[18].descripcion;
+          RetrocedemosHorario1.innerHTML = arrayDeObjetos[18].horario1;
+          RetrocedemosHorario2.innerHTML = arrayDeObjetos[18].horario2;
+          RetrocedemosHorarioR.innerHTML = arrayDeObjetos[18].horarior;
+          RetrocedemosDuracion.innerHTML = arrayDeObjetos[18].duracion;
+          RetrocedemosEtiqueta.innerHTML = arrayDeObjetos[18].etiqueta;
+
+          mapaTitulo.innerHTML = arrayDeObjetos[19].titulo;
+          mapaDescripcion.innerHTML = arrayDeObjetos[19].descripcion;
+
+          footerTitulo.innerHTML = arrayDeObjetos[20].titulo;
+          //   footerDescripcion.innerHTML = arrayDeObjetos[21].descripcion;
         } else {
           console.error(
             "No se encuentran datos o no se puede conectar con el array"
