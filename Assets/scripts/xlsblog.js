@@ -69,6 +69,8 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
                 <h2 class="noticialadillo">${objeto.ladillo3}</h2>
                 <p class="noticiatextualp">${objeto.cuerpo4}</p>
                 <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>
+                        <a href="noticias.html" style="margin-top:0.5rem; background-color:#2c2c2c; border:none;" class="masprogramas">Todas las noticias</a>
+
               </div>
             </div>
           `;

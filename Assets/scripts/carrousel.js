@@ -1,6 +1,6 @@
 const retocards = document.querySelector('.equipoconjunto');
 const retocardsArray = document.querySelectorAll('.equipolocutor');
-let counter = 0;
+let counter = 6;
 let intervalTime = 1000000; 
 let autoSlide;
 
