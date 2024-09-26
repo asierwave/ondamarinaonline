@@ -381,30 +381,41 @@ h2 {
 
 .equipo {
   display: flex;
-  flex-direction: column;
+  position: relative;
+  flex-direction: row;
   text-justify: flex-start;
   width: 100%;
   align-items: center;
-  height: auto;
-  max-height: 0;
+  height:auto;
   background-color:#fafafa;
   transition: max-height cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+
 }
+
+
 
 .equipoconjunto {
   display: flex;
-  height: fit-content;
-  width: 100vw;
+  flex-direction: row;
+  height: auto;
+  align-items: flex-start;
+  width: 100%;
   padding: 0 3vw;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-around;
   gap: 1rem;
+  transition: transform 0.5s ease-in-out;
+
+
 }
 
 .equipolocutor {
   display: flex;
   width: auto;
-  min-width: 10%;
+  height: fit-content;
+  min-width: 300px;
+  max-width: 26%;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
@@ -412,20 +423,76 @@ h2 {
 
 }
 
-
-.equipolocutor:hover {
-
-  scale: 1.05;
+button.prev, button.next {
+  display: flex;
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  color: white;
+  background-color: #2F75A2;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 48px;
+  z-index: 99999;
+  transition: 1s scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+button.prev {
+  left:0;
+}
+
+button.next {
+  right: 0;
+}
+
+button.prev:hover, button.next:hover {
+  scale: 1.1;
+}
+
 
 .equipolocutorimg {
   display: flex;
-  width: 100%;
+  width: 90%;
   height: auto;
   object-fit: cover;
+  z-index: 1;
 }
 
 
+.equipolocutortextual {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  padding: 1rem;
+  z-index: 0;
+  border-radius: 20px;
+}
+
+.equipolocutorprograma {
+  display: flex;
+  padding: 1rem;
+  border: solid 1px #2F75A2;
+  
+}
+
+.equipolocutorenlace {
+  color: #2F75A2;
+  text-decoration: underline;
+  letter-spacing: normal;
+
+}
+
+.equipolocutorenlace:visited {
+  color: #5ab1e7d2;
+}
+
+.equipolocutorenlace:hover {
+  color: #2c2c2c;
+}
 
 
 
@@ -893,19 +960,18 @@ background-color:#FAFAFA;
   
 }
 
-  /*card*/
+  /*podcast card*/
 
 
-  .card {
+  .podcastcard {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: auto;
-    max-width: fit-content;
     height: fit-content;
     gap: 0;
-    padding: 0.2rem;
+    padding: 0;
     border-radius: 8px;
     z-index: 2;
     background-color: #fafafa;
@@ -914,7 +980,9 @@ background-color:#FAFAFA;
 
   }
 
-  .partetextualcard {
+
+
+  .partetextualpodcastcard {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -991,7 +1059,7 @@ background-color:#FAFAFA;
 
 
 
-.cardimgprincipal {
+.podcastcardimgprincipal {
   display: flex;
   width: 100%;
   height: 250px;
@@ -1001,13 +1069,15 @@ background-color:#FAFAFA;
 
 
 
-.card .days {
+.days {
     display: flex;
-    width: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    white-space: nowrap;
+    gap: 0.5rem;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 10px;
-    flex-wrap: wrap;
     padding: 0;
 }
 
@@ -1016,7 +1086,7 @@ background-color:#FAFAFA;
     color: #2F75A2;
     border-radius: 40px;
     border: 1px solid #2F75A2;
-    width: 42px;
+    width: fit-content;
     height: 42px;
     display: flex;
     align-items: center;
@@ -1031,7 +1101,7 @@ background-color:#FAFAFA;
   color: #2F75A2;
   border-radius: 40px;
   border: 1px solid #2F75A2;
-  width: auto;
+  width: fit-content;
   height: 42px;
   padding: 0 14px;
   display: flex;
@@ -1620,21 +1690,59 @@ overflow-x: auto;
 }
 
 
+/* podcasts */
+
+.podcasts {
+  display: flex;
+  position: relative;
+  height: auto;
+}
+
+
+button.podcastsprev, button.podcastsnext {
+  display: flex;
+  position: absolute;
+  top: 16%;
+  transform: translateY(-50%);
+  color: white;
+  background-color: #2F75A2;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 48px;
+  z-index: 99999;
+  transition: 1s scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button.podcastsprev {
+  left:0;
+}
+
+button.podcastsnext {
+  right: 0;
+}
+
+button.podcastsprev:hover, button.podcastsnext:hover {
+  scale: 1.1;
+}
+
 .cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
-    position: relative;
+    overflow: visible;
     height: auto;
-    max-height: 0;
-    width: 100%; /* Ajusta el ancho del grid al contenido */
-    padding: 0 3vw;
+    position: relative;
+    max-height: fit-content;
+    width: fit-content; 
+    padding: 0;
     justify-content: space-between;
     gap: auto;
-    row-gap: 4rem;
     z-index:9999;
     /* background-color:#2f76a20a; */
     background-color: #FAFAFA;
+    transition: transform 0.5s ease-in-out;
+
 }
 
 #anclahorarios {
@@ -1643,17 +1751,7 @@ overflow-x: auto;
 }
 
 
-#topcards {
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: auto;
-  padding: 0;
-  top: 1000px;
-  left: 0;
-  scale: 1;
-  z-index: 1;
-}
+
 
 
 .imagen {
@@ -1690,6 +1788,11 @@ overflow-x: auto;
     height: auto;
     width: 75.52rem;
     
+}
+
+.programasrecientes {
+  display: none;
+  width: auto;
 }
 
 
@@ -2477,7 +2580,7 @@ scale: 1.01;
 
 
   @media (max-width: 1500px) {
-    .partetextualcard {
+    .partetextualpodcastcard {
       min-width: 41vw;
       max-width: 10vw;
       
@@ -2584,26 +2687,27 @@ scale: 1.01;
 /* EQUIPO LOCUTOR */
 
 .equipo {
-  height: fit-content;
+  height: auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .equipoconjunto {
   display: flex;
-  height: fit-content;
+  height: auto;
   flex-direction: row;
   width: 100%;
-  padding: 1rem 3vw;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  flex-wrap: nowrap;
+  gap: 0;
   background-color:#fafafa ;
 }
 
 .equipolocutor {
-
-  min-width: 10%;
-  max-width: 35%;
-  
+  width: 100%;
+  min-width: 100%;
 
 }
 
@@ -2685,18 +2789,13 @@ scale: 1.01;
   }
 
 
-    .partetextualcard {
-      width: 100%;
-      padding: 1.5rem;
-    }
-    
-    .card {
-      flex-wrap: wrap;
-      height: 100%;
-      max-width: 100%;
-      padding: 1vw 0;
-      scale: 1;
 
+
+    .podcastcard {
+      display: flex;
+      min-width: 100%;
+      width: 94%;
+      flex-wrap: wrap;
     }
 
     .card img {
@@ -2754,14 +2853,14 @@ scale: 1.01;
 .cards {
   padding: 0 1vw;
   flex-wrap: nowrap;
-  flex-direction: column;
-  gap: 40px;
+  flex-direction: row;
   width: 100%;
 }
 
-.partetextualcard {
+.partetextualpodcastcard {
   width: auto;
   max-width: 100%;
+  padding: 1.5rem;
 }
 
   

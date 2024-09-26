@@ -44,6 +44,7 @@ function displayEpisodes(episodes) {
         const episodeDate = String(episode.release_date);
 
         const episodeDiv = document.createElement('div');
+        // episodeDiv.style.width = "900px";
         episodeDiv.className = 'programareciente';
         episodeDiv.innerHTML = `
             <div class="programarecienteimgtitulo">

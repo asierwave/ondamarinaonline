@@ -1,6 +1,7 @@
-const clientId = '4306ee8a93e84b92914ddc505c7d5d41';
-const clientSecret = '3ef61e58a15b44e39cafa253dd22d792';
+const clientId = '178578ec9bc64de985b429c34d160bcb';
+const clientSecret = 'd7193a9976974fd09bdf37af4cf7266b';
 
+// Función para obtener el token de acceso desde Spotify API
 async function getAccessToken(clientId, clientSecret) {
     const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -14,6 +15,7 @@ async function getAccessToken(clientId, clientSecret) {
     return data.access_token;
 }
 
+// Función para obtener los episodios de un podcast dado su ID
 async function getPodcastEpisodes(token, podcastId) {
     const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
         method: 'GET',
@@ -25,6 +27,7 @@ async function getPodcastEpisodes(token, podcastId) {
     return data.items;
 }
 
+// Función para formatear la duración del episodio en minutos y segundos
 function formatDuration(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -32,6 +35,7 @@ function formatDuration(ms) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+// Función para mostrar los episodios en la interfaz
 function displayEpisodes(episodes, containerId) {
     const episodesContainer = document.getElementById(containerId);
     episodesContainer.innerHTML = '';
@@ -47,8 +51,8 @@ function displayEpisodes(episodes, containerId) {
             <div class="programarecienteimgtitulo">
                 <div class="programarecientesphere">.</div>
                 <h2 class="programarecientetitulo">Programa #${episodeName}</h2>
-</div> 
-               <div class="programarecientesubtitulos">
+            </div> 
+            <div class="programarecientesubtitulos">
                 <p class="programarecientedate"><span class="material-symbols-outlined">calendar_month</span>${episodeDate}</p>
                 <p class="programarecienteduracion"><strong><span class="material-symbols-outlined">schedule</span></strong> ${formatDuration(episode.duration_ms)}</p>
             </div>
@@ -65,12 +69,14 @@ function displayEpisodes(episodes, containerId) {
     });
 }
 
+// Función para extraer el número del episodio del nombre
 function extractEpisodeNumber(episodeName) {
     const regex = /Programa (\d+)/;
     const match = episodeName.match(regex);
     return match ? match[1] : episodeName;
 }
 
+// Función para obtener y mostrar episodios en una tarjeta específica
 async function fetchAndDisplayEpisodes(cardElement) {
     const podcastId = cardElement.getAttribute('data-podcast-id');
     const containerId = cardElement.querySelector('.episodes-container').id;
@@ -83,17 +89,39 @@ async function fetchAndDisplayEpisodes(cardElement) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        fetchAndDisplayEpisodes(card);
+// Observa cambios en el DOM para detectar tarjetas de podcast añadidas dinámicamente
+function observePodcastCards() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                // Recorre los nodos añadidos para encontrar las nuevas tarjetas de podcast
+                mutation.addedNodes.forEach((node) => {
+                    if (node.classList && node.classList.contains('podcastcard')) {
+                        console.log('Nueva tarjeta de podcast encontrada:', node);
+                        fetchAndDisplayEpisodes(node); // Carga episodios en la nueva tarjeta
+                    }
+                });
+            }
+        });
     });
+
+    // Configura el observer para observar cambios en el DOM
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+}
+
+// Inicia la observación de cambios cuando el DOM está completamente cargado
+document.addEventListener('DOMContentLoaded', () => {
+    observePodcastCards();
 });
 
 let currentAudio = null;
 let isPlaying = false;
 let currentEpisodeName = '';
 
+// Función para alternar la reproducción del audio
 function togglePlay(audioUrl, episodeName, button) {
     if (currentEpisodeName === episodeName && isPlaying) {
         pauseEpisode();
@@ -105,6 +133,7 @@ function togglePlay(audioUrl, episodeName, button) {
     }
 }
 
+// Función para reproducir un episodio
 function playEpisode(audioUrl, episodeName, button) {
     currentAudio = new Audio(audioUrl);
     currentAudio.play();
@@ -148,6 +177,7 @@ function playEpisode(audioUrl, episodeName, button) {
     });
 }
 
+// Función para pausar un episodio
 function pauseEpisode() {
     if (currentAudio) {
         currentAudio.pause();
@@ -190,25 +220,31 @@ if (iconoPlayButton) {
 
 // Arrow function para mostrar/ocultar el contenido de programas recientes en la tarjeta correspondiente
 const toggleProgramasRecientes = (event) => {
-    const card = event.target.closest('.card'); // Encuentra la tarjeta contenedora más cercana
+    const card = event.target.closest('.podcastcard'); // Encuentra la tarjeta contenedora más cercana
     const BotonAbrirProgramasRecientes = card.querySelector('.masprogramasrecientes');
-    const programasRecientes = card.querySelector('.programasrecientes'); // Encuentra el contenedor de programas recientes dentro de la tarjeta
+    const programasRecientes = card.querySelector('.programasrecientes'); // Encuentra la sección de programas recientes en la tarjeta actual
+
     if (programasRecientes.style.display === 'flex') {
-        programasRecientes.style.display = 'none'; // oculta los programas recientes
-        BotonAbrirProgramasRecientes.style = 'background-color: #2F75A2';
-        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playwhite.png" style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">PROGRAMAS RECIENTES';
-
-        // Pausar la reproducción si está en curso
         pauseEpisode();
-
+        programasRecientes.style.display = 'none';
+        programasRecientes.style.width = '0';
+        card.style.order='0';
+        card.style.width='auto';
+        BotonAbrirProgramasRecientes.querySelector('span').textContent = 'Más programas recientes';
+        BotonAbrirProgramasRecientes.querySelector('img').style.transform = 'rotate(0deg)';
     } else {
-        programasRecientes.style.display = 'flex'; // Muestra los programas recientes
-        BotonAbrirProgramasRecientes.style = 'background-color: #2F426;';
-        BotonAbrirProgramasRecientes.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/menucierre.png" style="transform: rotate(270deg);width: 40px; height: 30px; margin-left:-2px; margin-right: 6px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio">CERRAR RECIENTES';
+        programasRecientes.style.display = 'flex';
+        programasRecientes.style.width = '57.5vw';
+        card.style.width='90vw';
+        card.style.order='-9999';
+        BotonAbrirProgramasRecientes.querySelector('span').textContent = 'Menos programas recientes';
+        BotonAbrirProgramasRecientes.querySelector('img').style.transform = 'rotate(180deg)';
     }
 };
 
-// Agregar el evento click a todos los elementos con la clase .masprogramasrecientes
-document.querySelectorAll('.masprogramasrecientes').forEach(button => {
-    button.addEventListener('click', toggleProgramasRecientes);
+// Event listener para manejar el toggle de programas recientes
+document.addEventListener('click', (event) => {
+    if (event.target.closest('.masprogramasrecientes')) {
+        toggleProgramasRecientes(event);
+    }
 });
