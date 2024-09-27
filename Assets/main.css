@@ -404,8 +404,7 @@ h2 {
   width: 100%;
   padding: 0 3vw;
   flex-wrap: nowrap;
-  justify-content: space-around;
-  gap: 1rem;
+  justify-content: space-between;
   transition: transform 0.5s ease-in-out;
 
 
@@ -415,8 +414,8 @@ h2 {
   display: flex;
   width: auto;
   height: fit-content;
-  min-width: 300px;
-  max-width: 26%;
+  flex: 0 0 auto; /* Asegúrate de que las tarjetas no se estiren */
+  width: 300px; /* Ajusta para que entren 4 tarjetas en escritorio, con un margen de 10px */
   flex-direction: column;
   gap: 1rem;
   align-items: center;
@@ -454,8 +453,8 @@ button.prev:hover, button.next:hover {
 
 .equipolocutorimg {
   display: flex;
-  width: 90%;
-  height: auto;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   z-index: 1;
 }
@@ -1861,7 +1860,7 @@ footer {
 
 .footerlink:hover {
   scale: 1.02;
-  
+
 }
 
 /* header y reproductor */
@@ -2718,7 +2717,6 @@ scale: 1.01;
 
 .equipolocutor {
   width: 100%;
-  min-width: 100%;
 
 }
 
