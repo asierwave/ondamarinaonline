@@ -28,6 +28,7 @@ function cargarDatosDesdeGoogleSheets() {
               IvooxLink: fila[10],
               spotifyId: fila[11],
               spotifyId2: fila[12],
+              youtubeLink: fila [13],
               // Add more properties as needed
             };
             arrayDeObjetos.push(objeto);
@@ -53,7 +54,8 @@ function cargarDatosDesdeGoogleSheets() {
               spotifyId,
               spotifyLink,
               IvooxLink,
-              spotifyId2
+              spotifyId2,
+              youtubeLink
             } = podcast; // Destructure properties
   
             const podcastDiv = document.createElement('div');
@@ -77,6 +79,43 @@ function cargarDatosDesdeGoogleSheets() {
             if (etiqueta) {
               daysHTML += `<div class="descriptionon">${etiqueta}</div>`;
             }
+
+        
+
+          // Build the links section conditionally
+
+            let linksHTML = '';
+
+            if (spotifyLink) {
+              linksHTML += `<a href="${spotifyLink}" target="_blank"><div class="masprogramas masprogramasspotify">
+                      <img src="Assets/mapalocalizaciones/spotifylogo.png"
+                        style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS:
+                      SPOTIFY
+                    </div>
+                  </a>`;
+            }
+
+            if (IvooxLink) {
+                    linksHTML += `<a href="${IvooxLink}" target="_blank">
+                    <div class="masprogramas masprogramasivoox">
+                      <img src="Assets/mapalocalizaciones/logoivoox.png"
+                        style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS:
+                      IVOOX
+                    </div>
+                  </a>`;
+
+            }
+
+            if (youtubeLink) {
+              linksHTML += `<a href="${youtubeLink}" target="_blank">
+              <div class="masprogramas masprogramasyoutube">
+                <img src="Assets/youtube.png"
+                  style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS:
+                YOUTUBE
+              </div>
+            </a>`;
+
+      }
   
             podcastDiv.innerHTML = `
               <div class="partetextualpodcastcard">
@@ -98,20 +137,7 @@ function cargarDatosDesdeGoogleSheets() {
                   PROGRAMAS RECIENTES
                 </div>
                 <div class="botonesplataforma">
-                  <a href="${spotifyLink}" target="_blank">
-                    <div class="masprogramas masprogramasspotify">
-                      <img src="Assets/mapalocalizaciones/spotifylogo.png"
-                        style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo spotify">EPISODIOS:
-                      SPOTIFY
-                    </div>
-                  </a>
-                  <a href="${IvooxLink}" target="_blank">
-                    <div class="masprogramas masprogramasivoox">
-                      <img src="Assets/mapalocalizaciones/logoivoox.png"
-                        style="width: 30px; height: auto; margin-right: 10px;margin-top: 2px;" alt="Logo Ivoox">EPISODIOS:
-                      IVOOX
-                    </div>
-                  </a>
+                ${linksHTML} <!-- Inject dynamic daysHTML here -->                    
                 </div>
               </div>
               <div class="episodes-container programasrecientes" id="${spotifyId2}">

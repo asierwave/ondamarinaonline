@@ -1205,6 +1205,13 @@ background-color:#FAFAFA;
   gap: 1rem;
 }
 
+.masprogramasyoutube {
+  background-color: #d65241;
+  border: none;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
 
 
 
