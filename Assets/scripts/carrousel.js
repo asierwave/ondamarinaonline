@@ -1,7 +1,7 @@
 const retocards = document.querySelector('.equipoconjunto');
 const retocardsArray = document.querySelectorAll('.equipolocutor');
 let counter = 0; // Inicia en 0
-let intervalTime = 5000; // Intervalo para el auto-slide
+let intervalTime = 20000; // Intervalo para el auto-slide
 let autoSlide;
 
 // Función para actualizar la posición del carrusel
