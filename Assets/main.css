@@ -1847,11 +1847,21 @@ footer {
 
 .footertitulo {
   display: flex;
-  width: fit-content;
+  width: auto;
+  white-space: wrap;
+  
+}
+
+.footerlink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .footerlink:hover {
   scale: 1.02;
+  
 }
 
 /* header y reproductor */
