@@ -13,7 +13,7 @@ function updateCarousel() {
 // Función para determinar cuántas tarjetas saltar según el ancho de la pantalla, 3 en desktop, 2 en tablet y 1 en mobile
 function getCardsToSkip() {
   if (innerWidth > 1300) {
-    return 4; 
+    return 3; 
   } else if (innerWidth > 800 && innerWidth <= 1300) {
     return 2; 
   } else {
