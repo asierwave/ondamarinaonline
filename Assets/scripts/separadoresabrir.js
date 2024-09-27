@@ -1,36 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
   const tituloseparadores = document.querySelectorAll(".tituloseparador");
   const botonequipo = document.getElementById("botonequipo");
-  const containerequipo = document.getElementById("containerequipo");
+  const containerequipo = document.querySelector(".equipo");
 
+  // Configuración inicial para los contenedores asociados a los títulos
   tituloseparadores.forEach((titulo) => {
     const container = titulo.nextElementSibling;
     container.style.maxHeight = "0";
-
-    // Dejar el container cards programas abierto desde el principio
-
-    const containerPrimero = tituloseparadores[0].nextElementSibling;
-    containerPrimero.style.maxHeight = "fit-content";
-
-    //
-
-    container.style.padding = "0 7vw";
     container.style.overflow = "hidden";
-    container.style.transition =
-      "max-height 0.5s ease-in-out, padding 0.5s ease-in-out";
-    container.style.boxSizing = "border-box"; // Asegúrate de que el padding se tenga en cuenta
+    container.style.transition = "max-height 0.5s ease, padding 0.5s ease";
+    container.style.padding = "0 7vw";
 
     const img = titulo.querySelector("img");
     if (img) {
-      img.style.transition = "transform 0.5s ease-in-out";
+      img.style.transition = "transform 0.5s ease";
     }
 
+    // Evento para manejar el click sobre los títulos
     titulo.addEventListener("click", function () {
-      const isOpen =
-        container.style.maxHeight !== "0px" && container.style.maxHeight !== "";
+      const isOpen = container.style.maxHeight !== "0px" && container.style.maxHeight !== "";
 
-      // Cerrar todos los contenedores abiertos
-      document.querySelectorAll(".tituloseparador").forEach((otherTitulo) => {
+      // Cerrar todos los contenedores excepto el actual
+      tituloseparadores.forEach((otherTitulo) => {
         const otherContainer = otherTitulo.nextElementSibling;
         if (otherContainer !== container) {
           otherContainer.style.maxHeight = "0";
@@ -42,24 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // Manejo de la apertura/cierre del contenedor actual
+      // Abrir o cerrar el contenedor actual
       if (!isOpen) {
-        // Primero aseguramos que el contenedor esté a la altura inicial para calcular correctamente
-        container.style.maxHeight = container.scrollHeight + "200px";
-        // Luego se ajusta el padding con retraso para la animación fluida
-        setTimeout(() => {
-          container.style.padding = "0 7vw";
-        }, 0); // Retraso para la transición de padding
+        container.style.maxHeight = `${container.scrollHeight}px`;
+        container.style.padding = "0 7vw";
         if (img) {
           img.style.transform = "rotate(180deg)";
         }
       } else {
-        // Primero aseguramos que el padding se colapse para evitar problemas de animación
+        container.style.maxHeight = "0";
         container.style.padding = "0 7vw";
-        // Luego se cierra el contenedor
-        setTimeout(() => {
-          container.style.maxHeight = "0";
-        }, 0); // Retraso para la transición de max-height
         if (img) {
           img.style.transform = "rotate(0deg)";
         }
@@ -67,15 +50,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Función para abrir el contenedor 'containerequipo'
-  if (botonequipo && containerequipo) {
-    botonequipo.addEventListener("click", function () {
-      // Aseguramos que el contenedor esté a la altura inicial para calcular correctamente
-      containerequipo.style.maxHeight = containerequipo.scrollHeight + "200px";
-      // Ajustamos el padding con retraso para la animación fluida
-      setTimeout(() => {
-        containerequipo.style.padding = "0 6vw";
-      }, 0); // Retraso para la transición de padding
-    });
-  }
+  // Evento para abrir el contenedor en la posición [3] al hacer clic en el botón "equipo"
+  botonequipo.addEventListener("click", function () {
+    const index = 3; // Posición del contenedor que deseas abrir
+    if (index < tituloseparadores.length) {
+      const titulo = tituloseparadores[index];
+      const container = titulo.nextElementSibling;
+      const img = titulo.querySelector("img");
+
+      // Cerrar todos los demás contenedores
+      tituloseparadores.forEach((otherTitulo) => {
+        const otherContainer = otherTitulo.nextElementSibling;
+        otherContainer.style.maxHeight = "0";
+        otherContainer.style.padding = "0 7vw";
+        const otherImg = otherTitulo.querySelector("img");
+        if (otherImg) {
+          otherImg.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Abrir el contenedor en la posición [3]
+      container.style.maxHeight = `${container.scrollHeight}px`;
+      container.style.padding = "0 7vw";
+      if (img) {
+        img.style.transform = "rotate(180deg)";
+      }
+    }
+  });
 });
