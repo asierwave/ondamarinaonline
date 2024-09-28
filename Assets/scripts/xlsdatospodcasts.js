@@ -115,7 +115,26 @@ function cargarDatosDesdeGoogleSheets() {
               </div>
             </a>`;
 
-      }
+            }
+
+
+                      // Build the masprogramas section conditionally
+
+            let spotifypHTML = '';
+
+            if (spotifyId) {
+              spotifypHTML += `<button class="masprogramas masprogramasrecientes"> 
+                  <img class="cardreproducirultimoprogramaimg"
+                    src="Assets/playwhite.png"
+                    style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;"
+                    alt="Boton reproducir ultimo episodio">
+                  <h3>PROGRAMAS RECIENTES</h3>
+                </button>
+              `;
+            }
+
+
+      
   
             podcastDiv.innerHTML = `
               <div class="partetextualpodcastcard">
@@ -129,15 +148,9 @@ function cargarDatosDesdeGoogleSheets() {
                 <div class="grupocarddescripcion">
                   <p class="parrafoleermas">${descripcion}<br></p>
                 </div>
-                <div style="display:none" class="masprogramas masprogramasrecientes"> 
-                  <img class="cardreproducirultimoprogramaimg"
-                    src="Assets/playwhite.png"
-                    style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;"
-                    alt="Boton reproducir ultimo episodio">
-                  PROGRAMAS RECIENTES
-                </div>
+                ${spotifypHTML} <!-- Inject dynamic spotify preview here -->        
                 <div class="botonesplataforma">
-                ${linksHTML} <!-- Inject dynamic daysHTML here -->                    
+                ${linksHTML} <!-- Inject dynamic links here -->                    
                 </div>
               </div>
               <div class="episodes-container programasrecientes" id="${spotifyId2}">

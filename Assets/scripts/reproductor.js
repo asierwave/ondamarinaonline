@@ -61,62 +61,12 @@ let lastBufferedTime = 0;
 miAudio.addEventListener('progress', function () {
   if (miAudio.buffered.length > 0) {
     lastBufferedTime = miAudio.buffered.end(miAudio.buffered.length - 1);
-    actualizarSliderBuffer();
   }
 });
 
 miAudio.addEventListener('timeupdate', function () {
-  actualizarSliderTiempo();
-});
-
-const audioSlider = document.getElementById('audio-slider');
-
-// Variable para almacenar la última posición de reproducción
-let lastSeekTime = 0;
-
-// Event listener para el slider de audio
-audioSlider.addEventListener('input', function () {
-  const seekTime = parseFloat(audioSlider.value);
-
-  // Restringir el movimiento del slider según el tiempo bufferizado y el tiempo actual del audio
-  if (seekTime > lastBufferedTime) {
-    audioSlider.value = lastBufferedTime;
-  } else if (seekTime > miAudio.currentTime) {
-    audioSlider.value = miAudio.currentTime;
-  }
-
-  lastSeekTime = parseFloat(audioSlider.value); // Guarda la última posición de reproducción
-
-  // Si el audio no está en pausa, reanuda la reproducción después de cambiar la posición
-  if (!miAudio.paused) {
-    miAudio.pause(); // Pausa el audio antes de cambiar la posición
-  }
-  miAudio.currentTime = lastSeekTime;
-  miAudio.play(); // Reanuda la reproducción desde la nueva posición
-});
-
-function actualizarSliderBuffer() {
-  const duration = miAudio.duration;
-
-  // Limitar el buffer máximo a la duración del audio
-  if (lastBufferedTime > duration) {
-    lastBufferedTime = duration;
-  }
-
-  audioSlider.max = lastBufferedTime;
-  audioSlider.value = miAudio.currentTime;
-}
-
-function actualizarSliderTiempo() {
-  const currentTime = miAudio.currentTime;
-
-  // Actualiza el slider solo si no se está cambiando manualmente (seeking)
-  if (!audioSlider.getAttribute('seeking')) {
-    audioSlider.value = currentTime;
-  }
-
   actualizarEstadoReproduccion(!miAudio.paused);
-}
+});
 
 function actualizarEstadoReproduccion(estaReproduciendo) {
   if (estaReproduciendo) {
@@ -124,18 +74,4 @@ function actualizarEstadoReproduccion(estaReproduciendo) {
   } else {
     botonFotoplay.setAttribute('src', 'Assets/playwhite.png');
   }
-}
-
-
-function actualizarSliderBuffer() {
-  const duration = miAudio.duration;
-  let bufferProgress = 0;
-
-  if (lastBufferedTime > 0 && duration > 0) {
-    bufferProgress = (lastBufferedTime / duration) * 100;
-  }
-
-  // Actualiza el ancho del elemento de progreso del buffer
-  const bufferProgressBar = document.getElementById('buffer-progress');
-  bufferProgressBar.style.width = `${bufferProgress}%`;
 }

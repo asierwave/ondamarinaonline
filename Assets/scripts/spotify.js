@@ -3,28 +3,37 @@ const clientSecret = 'd7193a9976974fd09bdf37af4cf7266b';
 
 // Función para obtener el token de acceso desde Spotify API
 async function getAccessToken(clientId, clientSecret) {
-    const response = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-        },
-        body: 'grant_type=client_credentials'
-    });
-    const data = await response.json();
-    return data.access_token;
+    try {
+        const response = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
+            },
+            body: 'grant_type=client_credentials'
+        });
+        const data = await response.json();
+        return data.access_token;
+    } catch (error) {
+        console.error('Error obteniendo el token de acceso:', error);
+    }
 }
 
 // Función para obtener los episodios de un podcast dado su ID
 async function getPodcastEpisodes(token, podcastId) {
-    const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
-    const data = await response.json();
-    return data.items;
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const data = await response.json();
+        console.log(data.items);
+        return data.items;
+    } catch (error) {
+        console.error('Error obteniendo episodios:', error);
+    }
 }
 
 // Función para formatear la duración del episodio en minutos y segundos
@@ -38,6 +47,7 @@ function formatDuration(ms) {
 // Función para mostrar los episodios en la interfaz
 function displayEpisodes(episodes, containerId) {
     const episodesContainer = document.getElementById(containerId);
+    if (!episodesContainer) return;
     episodesContainer.innerHTML = '';
     episodes.forEach(episode => {
         const episodeName = extractEpisodeNumber(episode.name);
@@ -79,11 +89,19 @@ function extractEpisodeNumber(episodeName) {
 // Función para obtener y mostrar episodios en una tarjeta específica
 async function fetchAndDisplayEpisodes(cardElement) {
     const podcastId = cardElement.getAttribute('data-podcast-id');
-    const containerId = cardElement.querySelector('.episodes-container').id;
+    const containerElement = cardElement.querySelector('.programasrecientes');
+
+    if (!containerElement) {
+        console.error('No se encontró el contenedor de episodios en la tarjeta:', cardElement);
+        return;
+    }
+
+    const containerId = containerElement.id;
     try {
         const token = await getAccessToken(clientId, clientSecret);
+        if (!token) throw new Error('No se pudo obtener el token de acceso.');
         const episodes = await getPodcastEpisodes(token, podcastId);
-        displayEpisodes(episodes, containerId);
+        if (episodes) displayEpisodes(episodes, containerId);
     } catch (error) {
         console.error('Error fetching episodes:', error);
     }
@@ -94,7 +112,6 @@ function observePodcastCards() {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList') {
-                // Recorre los nodos añadidos para encontrar las nuevas tarjetas de podcast
                 mutation.addedNodes.forEach((node) => {
                     if (node.classList && node.classList.contains('podcastcard')) {
                         console.log('Nueva tarjeta de podcast encontrada:', node);
@@ -105,17 +122,27 @@ function observePodcastCards() {
         });
     });
 
-    // Configura el observer para observar cambios en el DOM
     observer.observe(document.body, {
         childList: true,
         subtree: true,
     });
 }
 
+// Función para obtener y mostrar episodios en todas las tarjetas al cargar
+async function fetchAndDisplayEpisodesOnLoad() {
+    const podcastCards = document.querySelectorAll('.podcastcard');
+    podcastCards.forEach(card => {
+        fetchAndDisplayEpisodes(card);
+    });
+}
+
 // Inicia la observación de cambios cuando el DOM está completamente cargado
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = function() {
     observePodcastCards();
-});
+    setTimeout(() => {
+        fetchAndDisplayEpisodesOnLoad();
+    }, 500);
+};
 
 let currentAudio = null;
 let isPlaying = false;
@@ -150,101 +177,105 @@ function playEpisode(audioUrl, episodeName, button) {
         buttonText.textContent = 'Reproducir un fragmento';
     });
 
-    document.querySelectorAll('.masprogramasreproducirfragmentofondo').forEach(progressBar => {
-        progressBar.style.width = '0%';
+    document.querySelectorAll('.masprogramasreproducirfragmentofondo').forEach(bar => {
+        bar.style.width = '0';
     });
 
-    // Actualizar el botón del episodio seleccionado
-    const playPauseImg = button.querySelector('.playpause-img');
-    playPauseImg.src = 'Assets/pausewhite.png';
-
-    const buttonText = button.querySelector('.button-text');
-    buttonText.textContent = 'Reproduciendo fragmento';
-
-    // Actualizar la barra de progreso específica para este episodio
+    // Cambiar el botón a pausa
+    button.querySelector('.playpause-img').src = 'Assets/pausewhite.png';
+    button.querySelector('.button-text').textContent = 'Pausar';
+    
+    // Avanzar el progreso del audio
     const progressBar = document.getElementById(`progressbar-${episodeName}`);
-    currentAudio.addEventListener('timeupdate', function() {
-        const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
-        progressBar.style.width = progress + '%';
-    });
+    if (progressBar) {
+        progressBar.style.transition = 'none'; // Desactivar la transición al inicio
+        currentAudio.ontimeupdate = () => {
+            const percentage = (currentAudio.currentTime / currentAudio.duration) * 100;
+            progressBar.style.width = `${percentage}%`;
+        };
+    }
 
-    // Event listener para el final de la reproducción del audio
-    currentAudio.addEventListener('ended', function() {
+    currentAudio.onended = () => {
         isPlaying = false;
-        playPauseImg.src = 'Assets/playwhite.png';
-        buttonText.textContent = 'Reproducir un fragmento';
-        progressBar.style.width = '0%';
-    });
+        button.querySelector('.playpause-img').src = 'Assets/playwhite.png';
+        button.querySelector('.button-text').textContent = 'Reproducir un fragmento';
+        if (progressBar) {
+            progressBar.style.width = '100%';
+        }
+    };
 }
 
-// Función para pausar un episodio
+// Función para pausar el episodio
 function pauseEpisode() {
     if (currentAudio) {
         currentAudio.pause();
         isPlaying = false;
-
-        // Reiniciar botones de play/pause, texto y barras de progreso
-        document.querySelectorAll('.playpause-img').forEach(img => {
-            img.src = 'Assets/playwhite.png';
-        });
-
-        document.querySelectorAll('.button-text').forEach(button => {
-            button.textContent = 'Reproducir un fragmento';
-        });
-
-        document.querySelectorAll('.masprogramasreproducirfragmentofondo').forEach(progressBar => {
-            progressBar.style.width = '0%';
-        });
-
-        currentEpisodeName = '';
+        const button = document.querySelector(`.masprogramasreproducirfragmento[data-episode-name="${currentEpisodeName}"]`);
+        if (button) {
+            button.querySelector('.playpause-img').src = 'Assets/playwhite.png';
+            button.querySelector('.button-text').textContent = 'Reproducir un fragmento';
+        }
     }
 }
 
-// Event listener para detener la reproducción al hacer clic en #imagen-reproducir-pausar
-const imagenReproducirPausarButton = document.getElementById('imagen-reproducir-pausar');
-if (imagenReproducirPausarButton) {
-    imagenReproducirPausarButton.addEventListener('click', function() {
-        pauseEpisode();
-    });
-}
+// Función para alternar la visualización de programas recientes
+const toggleProgramasRecientes = (card) => {
+    const programasRecientes = card.querySelector('.programasrecientes');
+    const cards = document.querySelector('.cards');
 
-// Event listener para #iconoplay
-const iconoPlayButton = document.getElementById('iconoplay');
-if (iconoPlayButton) {
-    iconoPlayButton.addEventListener('click', function() {
-        if (isPlaying) {
-            pauseEpisode();
+    // Cerrar otros contenedores de programas recientes
+    const allProgramasRecientes = document.querySelectorAll('.programasrecientes');
+    allProgramasRecientes.forEach(otherContainer => {
+        if (otherContainer !== programasRecientes) {
+            otherContainer.style.display = 'none';
+            otherContainer.style.width = '0';
+            const otherCard = otherContainer.closest('.podcastcard');
+            if (otherCard) {
+                otherCard.classList.remove('open'); // Quitar clase para centrar y ocupar pantalla
+            }
         }
     });
-}
-
-// Arrow function para mostrar/ocultar el contenido de programas recientes en la tarjeta correspondiente
-const toggleProgramasRecientes = (event) => {
-    const card = event.target.closest('.podcastcard'); // Encuentra la tarjeta contenedora más cercana
-    const BotonAbrirProgramasRecientes = card.querySelector('.masprogramasrecientes');
-    const programasRecientes = card.querySelector('.programasrecientes'); // Encuentra la sección de programas recientes en la tarjeta actual
 
     if (programasRecientes.style.display === 'flex') {
-        pauseEpisode();
+        pauseEpisode(); // Pausar el audio si está en reproducción
         programasRecientes.style.display = 'none';
         programasRecientes.style.width = '0';
-        card.style.order='0';
-        card.style.width='auto';
-        BotonAbrirProgramasRecientes.querySelector('span').textContent = 'Más programas recientes';
-        BotonAbrirProgramasRecientes.querySelector('img').style.transform = 'rotate(0deg)';
+        card.classList.remove('open'); // Quitar clase para centrar y ocupar pantalla
+
     } else {
         programasRecientes.style.display = 'flex';
-        programasRecientes.style.width = '57.5vw';
-        card.style.width='90vw';
-        card.style.order='-9999';
-        BotonAbrirProgramasRecientes.querySelector('span').textContent = 'Menos programas recientes';
-        BotonAbrirProgramasRecientes.querySelector('img').style.transform = 'rotate(180deg)';
+        programasRecientes.style.maxWidth = '57.5vw';
+
+        if (window.innerWidth <= 1300) {
+            programasRecientes.style.maxWidth = '46vw';
+        }
+
+        if (window.innerWidth <= 800) {
+            programasRecientes.style.maxWidth = '100%';
+            programasRecientes.style.height = 'fit-content';
+            cards.style.maxHeight = 'fit-content';
+        }
+        card.classList.add('open'); // Añadir clase para centrar y ocupar pantalla
+        cards.style.maxWidth = '100vw';
     }
 };
 
 // Event listener para manejar el toggle de programas recientes
 document.addEventListener('click', (event) => {
+    const card = event.target.closest('.podcastcard');
+    
     if (event.target.closest('.masprogramasrecientes')) {
-        toggleProgramasRecientes(event);
+        toggleProgramasRecientes(card);
+    }
+    
+    // Cerrar programas recientes de todas las tarjetas si se hace clic en un botón del carrusel
+    if (event.target.closest('button.podcastsprev, button.podcastsnext')) {
+        const openCards = document.querySelectorAll('.podcastcard');
+        openCards.forEach(openCard => {
+            const programasRecientes = openCard.querySelector('.programasrecientes');
+            if (programasRecientes.style.display === 'flex') {
+                toggleProgramasRecientes(openCard);
+            }
+        });
     }
 });

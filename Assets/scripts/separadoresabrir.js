@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const containerequipo = document.querySelector(".equipo");
 
   // Configuración inicial para los contenedores asociados a los títulos
-  tituloseparadores.forEach((titulo) => {
+  tituloseparadores.forEach((titulo, index) => {
     const container = titulo.nextElementSibling;
     container.style.maxHeight = "0";
     container.style.overflow = "hidden";
@@ -35,8 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Abrir o cerrar el contenedor actual
       if (!isOpen) {
+        if (index === 0) {
+          container.style.maxHeight = `fit-content`; 
+          container.style.padding = "0 7vw";
+        }else{
+
         container.style.maxHeight = `${container.scrollHeight}px`;
         container.style.padding = "0 7vw";
+      }
         if (img) {
           img.style.transform = "rotate(180deg)";
         }
@@ -48,6 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     });
+
+    // Abrir el primer contenedor al cargar la página
+    if (index === 0) {
+      container.style.maxHeight = `100%`;
+      container.style.padding = "0 7vw";
+      if (img) {
+        img.style.transform = "rotate(180deg)";
+      }
+    }
   });
 
   // Evento para abrir el contenedor en la posición [3] al hacer clic en el botón "equipo"
@@ -77,4 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+
+  
 });
