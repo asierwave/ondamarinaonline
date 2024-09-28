@@ -193,6 +193,14 @@ form {
 }
 
 
+form #additional-sections {
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+
 
 
 

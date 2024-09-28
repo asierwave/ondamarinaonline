@@ -39,7 +39,7 @@
             <textarea name="CUERPO" rows="7" placeholder="Cuerpo" required></textarea>
 
             <!-- Botón para mostrar más apartados -->
-            <button class="masprogramas" type="button" onclick="toggleAdditionalSections()">MÁS APARTADOS PARA ESCRIBIR</button>
+            <button class="masprogramas" style="background-color: #2C2C2C;" id="additional-sections-button" type="button" onclick="toggleAdditionalSections()">ESCRIBIR MAS CONTENIDO</button>
 
             <!-- Sección adicional oculta por defecto -->
             <div id="additional-sections" style="display:none;">
@@ -52,9 +52,10 @@
                 <input type="text" name="LADILLO3" placeholder="Ladillo 4">
                 <textarea name="CUERPO4" rows="4" placeholder="Cuerpo 4"></textarea>
             </div>
-            
-            <input type="file" name="LINK A IMAGEN PORTADA" accept="image/*" required>
-            <input type="file" name="LINK SEGUNDA IMAGEN" accept="image/*" required>
+
+            <input type="text" name="LINK A IMAGEN PORTADA" placeholder="Imagen Principal" required>
+            <!-- <input type="file" name="LINK A IMAGEN PORTADA" accept="image/*" required> -->
+            <input type="file" name="LINK SEGUNDA IMAGEN" placeholder="Imagen Complementaria">
             
             <input class="masprogramas" type="submit" value="PUBLICAR" id="submit">
         </form>
@@ -83,7 +84,9 @@
 
         function toggleAdditionalSections() {
             const sections = document.getElementById('additional-sections');
-            sections.style.display = sections.style.display === "none" ? "block" : "none";
+            const buttonAdditionSections = document.getElementById('additional-sections-button');
+            sections.style.display = sections.style.display === "none" ? "flex" : "none";
+            buttonAdditionSections.textContent = buttonAdditionSections.textContent === "COLAPSAR CONTENIDO" ? "ESCRIBIR MAS CONTENIDO": "COLAPSAR CONTENIDO";
         }
 
         function formatAndSubmit(event) {
