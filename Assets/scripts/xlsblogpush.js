@@ -1,110 +1,89 @@
-const SHEET_ID = "1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI";
-const SHEET_RANGE = "NOTICIAS!A:Z";
-const API_KEY = "AIzaSyCZm_uR6TknLlgLhTrOhhsSKnzgUQeSOOE";
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec";  // Reemplaza con la URL de tu Web App de Apps Script
+let gapiLoaded = false;
 
-document.addEventListener('DOMContentLoaded', function() {
-    gapi.load("client", function() {
-        gapi.client.init({
-            apiKey: API_KEY,
-        }).then(function () {
-            cargarDatosDesdeGoogleSheetsNoticias();
+// Cargar la API de Google y autenticar al usuario
+function initGoogleAPI() {
+    gapi.load("client:auth2", async function() {
+        await gapi.client.init({
+            apiKey: "AIzaSyC6BLO51mAlYg8Y4ipLhm1RNr7069webkw", // Reemplaza esto con tu API Key
+            clientId: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
+            scope: "https://www.googleapis.com/auth/spreadsheets",
+            discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"]
         });
+
+        gapiLoaded = true;
+
+        const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+        if (isSignedIn) {
+            document.getElementById("authContainer").style.display = "none";
+            document.getElementById("noticiasForm").style.display = "block";
+        }
+    });
+}
+
+// Función para enviar datos a Google Sheets
+async function enviarDatos(data) {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al enviar los datos a Google Sheets');
+    }
+
+    return await response.json();
+}
+
+// Evento para el botón de inicio de sesión
+document.getElementById("loginButton").addEventListener("click", function() {
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+        document.getElementById("authContainer").style.display = "none";
+        document.getElementById("noticiasForm").style.display = "block";
     });
 });
 
+// Evento para enviar el formulario
+document.getElementById("noticiasForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
 
-function cargarDatosDesdeGoogleSheetsNoticias() {
-    gapi.client.request({
-        path: `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}`,
-    }).then(function(response) {
-        const datos = response.result.values;
-        const articulosContainer = document.getElementById('articulos-container');
+    const titular = document.getElementById("titular").value;
+    const contenido = document.getElementById("contenido").value;
 
-        if (datos && datos.length > 0) {
-            articulosContainer.innerHTML = '';
-            for (let i = 1; i < datos.length; i++) {
-                const fila = datos[i];
-                const articuloHTML = `
-                    <div class="noticia" id="articulo-${fila[0]}">
-                      <div class="noticiamedia">
-                        <img class="noticiavideo" src="${fila[12]}" alt="Imagen del artículo">
-                      </div>
-                      <div class="noticiatextual">
-                        <h2 class="noticiatitular">${fila[1]}</h2>
-                        <div class="noticiaetiquetas">
-                          <div class="noticiatextualautor">
-                            <img class="noticiaimagenautor" src="${fila[14]}" alt="Imagen del autor">
-                            <p>${fila[3]}</p>
-                          </div>
-                          <div class="noticiafecha"> <p>${fila[2]}</p></div>
-                        </div>
-                        <p class="noticiatextualentradilla">${fila[4]}</p>
-                        <p class="noticiatextualp">${fila[5].replace(/\n/g, '<br>')}</p>
-                        <h2 class="noticialadillo">${fila[6]}</h2>
-                        <p class="noticiatextualp">${fila[7]}</p>
-                        <img class="noticiaimagencomplementaria" src="${fila[13]}" alt="Imagen complementaria">
-                        <h2 class="noticialadillo">${fila[8]}</h2>
-                        <p class="noticiatextualp">${fila[9]}</p>
-                        <h2 class="noticialadillo">${fila[10]}</h2>
-                        <p class="noticiatextualp">${fila[11]}</p>
-                        <a href="noticia.html?id=${fila[0]}"><button class="masprogramas noticialeermas">Leer más</button></a>
-                        <a href="noticias.html" class="masprogramas" style="margin-top:0.5rem; background-color:#2c2c2c; border:none;">Todas las noticias</a>
-                      </div>
-                    </div>
-                `;
-                articulosContainer.innerHTML += articuloHTML;
-            }
-        } else {
-            console.error("No se encontraron datos en la hoja de cálculo.");
-        }
-    }, function(reason) {
-        console.error("Error al cargar los datos: " + reason.result.error.message);
-    });
-}
-
-async function procesarFormulario() {
-    const titular = document.getElementById('titular').value;
-    const contenido = document.getElementById('contenido').value;
-    const imagen1 = await convertirImagenABase64(document.getElementById('imagen1').files[0]);
-    const imagen2 = await convertirImagenABase64(document.getElementById('imagen2').files[0]);
-
-    const secciones = contenido.split(/\n\s*\n/);
+    // Divide el contenido en partes utilizando saltos de línea
+    const partesContenido = contenido.split('\n');
+    const entradilla = partesContenido[0];
+    const cuerpo1 = partesContenido[1];
+    const ladillo1 = partesContenido[2];
+    const cuerpo2 = partesContenido[3];
+    const ladillo2 = partesContenido[4];
+    const cuerpo3 = partesContenido[5];
+    const ladillo3 = partesContenido[6];
+    const cuerpo4 = partesContenido[7];
 
     const data = {
         titular: titular,
-        entradilla: secciones[0] || "",
-        cuerpo1: secciones[1] || "",
-        ladillo1: secciones[2] || "",
-        cuerpo2: secciones[3] || "",
-        ladillo2: secciones[4] || "",
-        cuerpo3: secciones[5] || "",
-        ladillo3: secciones[6] || "",
-        cuerpo4: secciones[7] || "",
-        imagen1: imagen1,
-        imagen2: imagen2
+        entradilla: entradilla,
+        cuerpo1: cuerpo1,
+        ladillo1: ladillo1,
+        cuerpo2: cuerpo2,
+        ladillo2: ladillo2,
+        cuerpo3: cuerpo3,
+        ladillo3: ladillo3,
+        cuerpo4: cuerpo4,
     };
 
-    const response = await fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    try {
+        const result = await enviarDatos(data);
+        console.log('Éxito:', result);
+        document.getElementById("resultado").innerText = 'Datos guardados con éxito';
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById("resultado").innerText = 'Error al guardar los datos';
+    }
+});
 
-    const result = await response.json();
-    document.getElementById('resultado').innerText = result.result === 'success' ? 'Guardado con éxito en Google Sheets' : 'Hubo un error al guardar';
-
-    // Recargar datos después de guardar
-    cargarDatosDesdeGoogleSheetsNoticias();
-}
-
-function convertirImagenABase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
-}
+// Inicializa la API de Google cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', initGoogleAPI);

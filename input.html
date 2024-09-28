@@ -10,7 +10,12 @@
 </head>
 <body>
     <div id="articulos-container"></div>
-    <form onsubmit="event.preventDefault(); procesarFormulario();">
+    
+    <div id="authContainer">
+        <button id="loginButton">Iniciar sesión con Google</button>
+    </div>
+
+    <form id="noticiasForm" style="display:none;">
         <label for="titular">Titular:</label>
         <input type="text" id="titular" name="titular" required>
         <br><br>
@@ -19,18 +24,10 @@
         <textarea id="contenido" name="contenido" rows="20" cols="80" placeholder="Escriba aquí el resto del texto separado por saltos de línea..." required></textarea>
         <br><br>
 
-        <label for="imagen1">Subir imagen 1:</label>
-        <input type="file" id="imagen1" name="imagen1" accept="image/*" required>
-        <br><br>
-
-        <label for="imagen2">Subir imagen 2:</label>
-        <input type="file" id="imagen2" name="imagen2" accept="image/*" required>
-        <br><br>
-
         <button type="submit">Guardar en Google Sheets</button>
     </form>
     <div id="resultado"></div>
 
-   <script src="Assets/scripts/xlsblogpush.js"></script>
+    <script src="Assets/scripts/xlsblogpush.js"></script>
 </body>
 </html>
