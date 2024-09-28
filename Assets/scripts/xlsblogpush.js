@@ -28,23 +28,21 @@ async function enviarDatos(data) {
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbxJW8hIoLUG7GGnkTPaDhfMqX08Zwqb9IIPXJrEuvU3cdkcLqRcQrYoTzTP88IViS8gKQ/exec', {
             method: 'POST',
+            mode: 'no-cors',  // Utilizar modo no-cors
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         });
 
-        if (!response.ok) {
-            throw new Error('Error al enviar los datos a Google Sheets');
-        }
-
-        const result = await response.json();
-        console.log('Respuesta del servidor:', result);
-        return result;
+        // En modo no-cors, no puedes acceder a la respuesta, así que solo asumimos que fue exitosa
+        document.getElementById('resultado').innerText = 'Datos guardados (pero no se puede verificar la respuesta).';
     } catch (error) {
         console.error('Error:', error);
+        document.getElementById('resultado').innerText = 'Error al guardar los datos';
     }
 }
+
 
 // Función para procesar el formulario
 function procesarFormulario(event) {
