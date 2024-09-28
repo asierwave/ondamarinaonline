@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input para noticias</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="Assets/main.css">
+    <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="Assets/main.css">
 </head>
 <body>
     <div id="articulos-container"></div>
-    
-    <div id="authContainer">
-        <button id="loginButton">Iniciar sesión con Google</button>
-    </div>
-
-    <form id="noticiasForm" style="display:none;">
+    <form onsubmit="event.preventDefault(); procesarFormulario();">
         <label for="titular">Titular:</label>
         <input type="text" id="titular" name="titular" required>
         <br><br>
@@ -29,6 +25,5 @@
     <div id="resultado"></div>
 
     <script src="Assets/scripts/xlsblogpush.js"></script>
-
 </body>
 </html>
