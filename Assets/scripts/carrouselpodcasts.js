@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Iniciar el deslizamiento automático solo si hay tarjetas disponibles
   if (podcastcardArray.length) {
       startPodcastAutoSlide();
-  } else {
-      console.warn("Waiting for podcast cards to load...");
-  }
-});
+
+}
+}
+);

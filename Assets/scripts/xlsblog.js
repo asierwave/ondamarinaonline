@@ -23,7 +23,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
         // Limpiar el contenedor antes de volver a llenarlo
         articulosContainer.innerHTML = '';
 
-        for (var i = 1; i < datos.length; i++) {
+        for (var i = 1; i < 4; i++) { /*en vez de 10 datos.length para recoger todas las noticias */
           var fila = datos[i];
           var objeto = {
             id: fila[0],
