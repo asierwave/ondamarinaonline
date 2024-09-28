@@ -2,7 +2,7 @@
 function initGoogleAPI() {
     // Cargar la biblioteca de Google Identity Services
     window.google.accounts.id.initialize({
-        client_id: "TU_CLIENT_ID.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
+        client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
         callback: handleCredentialResponse
     });
 }
