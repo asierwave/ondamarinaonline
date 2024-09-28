@@ -180,6 +180,23 @@ body {
 }
 
 
+
+/* FORM */
+
+form {
+  display: flex;
+  width: 40vw;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fafafa;
+  padding: 2rem 3vw;
+}
+
+
+
+
+
+
 /* Estilo específico para no Safari gsap.js */
 body.nosafari {
   opacity: 1; /* Opacidad en 0 para no Safari */

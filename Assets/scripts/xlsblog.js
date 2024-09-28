@@ -91,6 +91,7 @@ gapi.load("client", function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  cargarDatosDesdeGoogleSheetsNoticias();
   // La carga inicial de datos se maneja en cargarDatosDesdeGoogleSheetsNoticias
   console.log("DOM completamente cargado y procesado.");
 });

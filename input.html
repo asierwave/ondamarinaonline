@@ -1,20 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<link rel="stylesheet" href="Assets/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/main.css">
+    <title>Formulario</title>
 </head>
 <body>
-	<div class="container">
-		<form method="post" action="https://script.google.com/macros/s/AKfycbxwinYrKxgx2FTQ8J5kgMk9C43sTCpPpTR1ulv2KrDMxhKsqe2378AnwPrXdq0wYAVv/exec" name="contact-form">
-			<h4>Contact Us</h4>
-			<input type="text" name="LINK" placeholder="Name">
-			<input type="text" name="TITULAR" placeholder="Number">
-			<input type="email" name="FECHA" placeholder="Email">
-			<textarea name="AUTOR" rows="7" placeholder="Your Message"></textarea>
-			<input type="submit" value="Submit" id="submit">
-		</form>
-	</div>
+    <div class="container">
+        <form method="post" action="https://script.google.com/macros/s/AKfycbxwinYrKxgx2FTQ8J5kgMk9C43sTCpPpTR1ulv2KrDMxhKsqe2378AnwPrXdq0wYAVv/exec" name="contact-form" enctype="multipart/form-data" onsubmit="formatAndSubmit(event)">
+            <h4>Escribe una noticia</h4>
+            
+            <label for="TITULAR">Titular:</label>
+            <input type="text" id="TITULAR" name="TITULAR" placeholder="Titular" required oninput="updateGeneratedLink()">
 
-	<script src="Assets/scripts/xlsblogpush.js"></script>
+            <label for="LINK">Link generado editable:</label>
+            <input type="text" id="generated-link" name="LINK" placeholder="Generated Link" required>
+
+            <label for="FECHA">Fecha de publicación:</label>
+            <input type="date" id="FECHA" name="FECHA" placeholder="Fecha" required>
+
+            <!-- Campo oculto para enviar la fecha formateada -->
+            <input type="hidden" id="formattedFecha" name="formattedFecha">
+
+            <label for="AUTOR">Autor:</label>
+            <select id="AUTOR" name="AUTOR" required onchange="updateAuthorImageLink()">
+                <option value="" disabled selected>Seleccione un autor</option>
+                <option value="Esther Casabó">Esther Casabó</option>
+                <option value="Carlos Toral">Carlos Toral</option>
+                <option value="Asier Toral">Asier Toral</option>
+                <option value="Sinfo Bezanilla">Sinfo Bezanilla</option>
+                <option value="Adolfo Higuera">Adolfo Higuera</option>
+            </select>
+
+            <input style="display: none;" type="text" id="LINK_AUTOR_IMAGEN" name="LINK AUTOR IMAGEN" placeholder="Link Autor Imagen" readonly>
+
+            <textarea name="ENTRADILLA" rows="5" placeholder="Entradilla" required></textarea>
+            <textarea name="CUERPO" rows="7" placeholder="Cuerpo" required></textarea>
+
+            <!-- Botón para mostrar más apartados -->
+            <button class="masprogramas" type="button" onclick="toggleAdditionalSections()">MÁS APARTADOS PARA ESCRIBIR</button>
+
+            <!-- Sección adicional oculta por defecto -->
+            <div id="additional-sections" style="display:none;">
+                <input type="text" name="LADILLO1" placeholder="Ladillo 2">
+                <textarea name="CUERPO2" rows="4" placeholder="Cuerpo 2"></textarea>
+                
+                <input type="text" name="LADILLO2" placeholder="Ladillo 3">
+                <textarea name="CUERPO3" rows="4" placeholder="Cuerpo 3"></textarea>
+                
+                <input type="text" name="LADILLO3" placeholder="Ladillo 4">
+                <textarea name="CUERPO4" rows="4" placeholder="Cuerpo 4"></textarea>
+            </div>
+            
+            <input type="file" name="LINK A IMAGEN PORTADA" accept="image/*" required>
+            <input type="file" name="LINK SEGUNDA IMAGEN" accept="image/*" required>
+            
+            <input class="masprogramas" type="submit" value="PUBLICAR" id="submit">
+        </form>
+    </div>
+
+    <script>
+        const authorImageLinks = {
+            "Esther Casabó": "https://ondamarina.online/Assets/equipo/estherom.png",
+            "Carlos Toral": "https://ondamarina.online/Assets/equipo/carlosom.png",
+            "Asier Toral": "https://ondamarina.online/Assets/logos/vacio.png",
+            "Sinfo Bezanilla": "https://ondamarina.online/Assets/equipo/sinfoom.png",
+            "Adolfo Higuera": "https://ondamarina.online/Assets/equipo/adolfoom.png"
+        };
+
+        function updateGeneratedLink() {
+            const titular = document.getElementById('TITULAR').value; // Obtiene el valor del campo TITULAR
+            const link = titular.toLowerCase().trim().replace(/\s+/g, '-'); // Genera el enlace
+            document.getElementById('generated-link').value = link; // Asigna el enlace al campo LINK
+        }
+
+        function updateAuthorImageLink() {
+            const selectedAuthor = document.getElementById('AUTOR').value; // Obtiene el autor seleccionado
+            const imageLinkInput = document.getElementById('LINK_AUTOR_IMAGEN'); // Obtiene el campo de enlace de imagen del autor
+            imageLinkInput.value = authorImageLinks[selectedAuthor] || ''; // Asigna el enlace correspondiente o vacío si no hay coincidencia
+        }
+
+        function toggleAdditionalSections() {
+            const sections = document.getElementById('additional-sections');
+            sections.style.display = sections.style.display === "none" ? "block" : "none";
+        }
+
+        function formatAndSubmit(event) {
+            const fechaInput = document.getElementById('FECHA');
+            const fechaValue = new Date(fechaInput.value); // Convierte el valor del input a un objeto Date
+
+            const day = fechaValue.getDate();
+            const month = fechaValue.toLocaleString('es-ES', { month: 'long' }); // Obtiene el mes en texto
+            const year = fechaValue.getFullYear();
+
+            const formattedDate = `${day} de ${month} de ${year}`; // Formatea la fecha
+
+            document.getElementById('formattedFecha').value = formattedDate; // Asigna la fecha formateada al campo oculto
+        }
+    </script>
+
+    <script src="Assets/scripts/xlsblogpush.js"></script>
 </body>
 </html>
