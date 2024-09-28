@@ -24,8 +24,6 @@ function handleCredentialResponse(response) {
     document.getElementById("authContainer").style.display = "none";
     document.getElementById("noticiasForm").style.display = "block";
 }
-
-// Función para enviar datos a Google Sheets
 async function enviarDatos(data) {
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbxJW8hIoLUG7GGnkTPaDhfMqX08Zwqb9IIPXJrEuvU3cdkcLqRcQrYoTzTP88IViS8gKQ/exec', {
@@ -41,33 +39,38 @@ async function enviarDatos(data) {
         }
 
         const result = await response.json();
-        document.getElementById('resultado').innerText = result.message;
+        console.log('Respuesta del servidor:', result);
+        return result;
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('resultado').innerText = 'Error al guardar los datos';
     }
 }
 
-// Función para procesar el formulario
-document.getElementById('noticiasForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evitar el envío estándar del formulario
+// Process form submission
+function procesarFormulario() {
     const titular = document.getElementById('titular').value;
     const contenido = document.getElementById('contenido').value.split('\n');
 
     const data = {
         titular: titular,
-        entradilla: contenido[0] || "",
-        cuerpo1: contenido[1] || "",
-        ladillo1: contenido[2] || "",
-        cuerpo2: contenido[3] || "",
-        ladillo2: contenido[4] || "",
-        cuerpo3: contenido[5] || "",
-        ladillo3: contenido[6] || "",
-        cuerpo4: contenido[7] || "",
+        entradilla: contenido[0],
+        cuerpo1: contenido[1],
+        ladillo1: contenido[2],
+        cuerpo2: contenido[3],
+        ladillo2: contenido[4],
+        cuerpo3: contenido[5],
+        ladillo3: contenido[6],
+        cuerpo4: contenido[7],
     };
 
-    enviarDatos(data);
-});
+    enviarDatos(data)
+        .then(response => {
+            document.getElementById('resultado').innerText = 'Datos guardados exitosamente.';
+        })
+        .catch(error => {
+            document.getElementById('resultado').innerText = 'Hubo un error al guardar los datos.';
+        });
+}
 
-// Inicializa la API de Google cuando el DOM esté completamente cargado
+// Initialize Google API and add event listener for form submission
 document.addEventListener('DOMContentLoaded', initGoogleAPI);
