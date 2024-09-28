@@ -12,7 +12,6 @@ function initGoogleAPI() {
     });
 }
 
-
 // Función de callback para manejar la respuesta de credenciales
 function handleCredentialResponse(response) {
     const idToken = response.credential;
@@ -24,6 +23,7 @@ function handleCredentialResponse(response) {
     document.getElementById("authContainer").style.display = "none";
     document.getElementById("noticiasForm").style.display = "block";
 }
+
 async function enviarDatos(data) {
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbzsuff1UgepzDPN9_jntJic49AO5jprjLo6h-FW3EGy/dev', {
