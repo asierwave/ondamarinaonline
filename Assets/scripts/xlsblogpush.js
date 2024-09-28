@@ -2,8 +2,13 @@
 function initGoogleAPI() {
     // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
     window.google.accounts.id.initialize({
-        client_id: "AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA", // Reemplaza esto con tu Client ID
+        client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
         callback: handleCredentialResponse
+    });
+
+    // Evento para el botón de inicio de sesión
+    document.getElementById("loginButton").addEventListener("click", function() {
+        window.google.accounts.id.prompt(); // Muestra la ventana emergente de inicio de sesión
     });
 }
 
@@ -19,14 +24,10 @@ function handleCredentialResponse(response) {
     document.getElementById("noticiasForm").style.display = "block";
 }
 
-// Evento para el botón de inicio de sesión
-document.getElementById("loginButton").addEventListener("click", function() {
-    window.google.accounts.id.prompt();
-});
-
+// Función para enviar los datos al Google Apps Script
 async function enviarDatos(data) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxJW8hIoLUG7GGnkTPaDhfMqX08Zwqb9IIPXJrEuvU3cdkcLqRcQrYoTzTP88IViS8gKQ/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,20 +48,22 @@ async function enviarDatos(data) {
 }
 
 // Función para procesar el formulario
-function procesarFormulario() {
+function procesarFormulario(event) {
+    event.preventDefault(); // Evita el envío predeterminado del formulario
+
     const titular = document.getElementById('titular').value;
     const contenido = document.getElementById('contenido').value.split('\n');
 
     const data = {
         titular: titular,
-        entradilla: contenido[0],
-        cuerpo1: contenido[1],
-        ladillo1: contenido[2],
-        cuerpo2: contenido[3],
-        ladillo2: contenido[4],
-        cuerpo3: contenido[5],
-        ladillo3: contenido[6],
-        cuerpo4: contenido[7],
+        entradilla: contenido[0] || '',
+        cuerpo1: contenido[1] || '',
+        ladillo1: contenido[2] || '',
+        cuerpo2: contenido[3] || '',
+        ladillo2: contenido[4] || '',
+        cuerpo3: contenido[5] || '',
+        ladillo3: contenido[6] || '',
+        cuerpo4: contenido[7] || '',
     };
 
     enviarDatos(data)
@@ -73,4 +76,10 @@ function procesarFormulario() {
 }
 
 // Inicializa la API de Google cuando el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', initGoogleAPI);
+document.addEventListener('DOMContentLoaded', () => {
+    initGoogleAPI();
+    
+    // Agrega el evento de envío del formulario
+    const form = document.getElementById('noticiasForm');
+    form.addEventListener('submit', procesarFormulario);
+});
