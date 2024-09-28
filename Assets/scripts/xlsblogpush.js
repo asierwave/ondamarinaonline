@@ -26,7 +26,7 @@ function handleCredentialResponse(response) {
 }
 async function enviarDatos(data) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxJW8hIoLUG7GGnkTPaDhfMqX08Zwqb9IIPXJrEuvU3cdkcLqRcQrYoTzTP88IViS8gKQ/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzsuff1UgepzDPN9_jntJic49AO5jprjLo6h-FW3EGy/dev', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
