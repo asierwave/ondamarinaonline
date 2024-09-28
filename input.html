@@ -15,7 +15,7 @@
         <button id="loginButton">Iniciar sesión con Google</button>
     </div>
 
-    <form id="noticiasForm" style="display:none;">
+    <form id="noticiasForm" style="display:none;" onsubmit="event.preventDefault(); procesarFormulario();">
         <label for="titular">Titular:</label>
         <input type="text" id="titular" name="titular" required>
         <br><br>
@@ -29,7 +29,5 @@
     <div id="resultado"></div>
 
     <script src="Assets/scripts/xlsblogpush.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-
 </body>
 </html>

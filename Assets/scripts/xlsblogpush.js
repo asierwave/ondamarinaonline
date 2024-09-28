@@ -1,30 +1,39 @@
-// Función para inicializar la API de Google
+let CLIENT_ID = '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com';
+let SCOPE = 'https://www.googleapis.com/auth/spreadsheets'; // Scope to access Google Sheets
+
 function initGoogleAPI() {
-    // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
     window.google.accounts.id.initialize({
-        client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
+        client_id: CLIENT_ID,
         callback: handleCredentialResponse
     });
 }
 
-// Función de callback para manejar la respuesta de credenciales
 function handleCredentialResponse(response) {
-    const idToken = response.credential;
-
-    // Puedes enviar el idToken a tu servidor o utilizarlo directamente para autenticar
-    console.log('ID Token:', idToken);
-
-    // Aquí puedes llamar a tu función para mostrar el formulario
-    document.getElementById("authContainer").style.display = "none";
-    document.getElementById("noticiasForm").style.display = "block";
+    const credential = response.credential;
+    console.log("Credential:", credential); // Debug: log the credential
+    // Here, you can make a request to your backend or other API if needed.
+    document.getElementById("authContainer").style.display = "none"; // Hide login button
+    document.getElementById("noticiasForm").style.display = "block"; // Show the form
 }
 
-// Evento para el botón de inicio de sesión
-document.getElementById("loginButton").addEventListener("click", function() {
-    window.google.accounts.id.prompt();
-});
+async function procesarFormulario() {
+    const titular = document.getElementById("titular").value;
+    const contenido = document.getElementById("contenido").value;
 
-async function enviarDatos(data) {
+    const partesContenido = contenido.split('\n');
+
+    const data = {
+        titular: titular,
+        entradilla: partesContenido[0] || "",
+        cuerpo1: partesContenido[1] || "",
+        ladillo1: partesContenido[2] || "",
+        cuerpo2: partesContenido[3] || "",
+        ladillo2: partesContenido[4] || "",
+        cuerpo3: partesContenido[5] || "",
+        ladillo3: partesContenido[6] || "",
+        cuerpo4: partesContenido[7] || ""
+    };
+
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
             method: 'POST',
@@ -39,38 +48,17 @@ async function enviarDatos(data) {
         }
 
         const result = await response.json();
-        console.log('Respuesta del servidor:', result);
-        return result;
+        document.getElementById("resultado").innerText = 'Noticia guardada exitosamente';
     } catch (error) {
         console.error('Error:', error);
+        document.getElementById("resultado").innerText = 'Error al guardar la noticia';
     }
 }
 
-// Función para procesar el formulario
-function procesarFormulario() {
-    const titular = document.getElementById('titular').value;
-    const contenido = document.getElementById('contenido').value.split('\n');
+document.getElementById('loginButton').onclick = function() {
+    window.google.accounts.id.prompt();
+};
 
-    const data = {
-        titular: titular,
-        entradilla: contenido[0],
-        cuerpo1: contenido[1],
-        ladillo1: contenido[2],
-        cuerpo2: contenido[3],
-        ladillo2: contenido[4],
-        cuerpo3: contenido[5],
-        ladillo3: contenido[6],
-        cuerpo4: contenido[7],
-    };
-
-    enviarDatos(data)
-        .then(response => {
-            document.getElementById('resultado').innerText = 'Datos guardados exitosamente.';
-        })
-        .catch(error => {
-            document.getElementById('resultado').innerText = 'Hubo un error al guardar los datos.';
-        });
-}
-
-// Inicializa la API de Google cuando el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', initGoogleAPI);
+window.onload = function() {
+    initGoogleAPI();
+};
