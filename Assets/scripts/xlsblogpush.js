@@ -1,42 +1,32 @@
-// Inicializar el cliente de Google
+// Función para inicializar la API de Google
 function initGoogleAPI() {
-    const loginButton = document.getElementById('loginButton');
-    loginButton.addEventListener('click', () => {
-        const client = google.accounts.oauth2.initTokenClient({
-            client_id: '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com', // Tu Client ID
-            scope: 'https://www.googleapis.com/auth/spreadsheets',
-            callback: (response) => {
-                // Manejar la respuesta de Google
-                console.log('Token:', response);
-                document.getElementById('authContainer').style.display = 'none'; // Ocultar el botón de inicio de sesión
-                document.getElementById('noticiasForm').style.display = 'block'; // Mostrar el formulario
-            }
-        });
-        client.requestAccessToken();
+    // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
+    window.google.accounts.id.initialize({
+        client_id: "AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA", // Reemplaza esto con tu Client ID
+        callback: handleCredentialResponse
     });
 }
 
-// Procesar el formulario y enviar los datos a Google Sheets
-async function procesarFormulario() {
-    const titular = document.getElementById("titular").value;
-    const contenido = document.getElementById("contenido").value;
+// Función de callback para manejar la respuesta de credenciales
+function handleCredentialResponse(response) {
+    const idToken = response.credential;
 
-    const partesContenido = contenido.split('\n');
+    // Puedes enviar el idToken a tu servidor o utilizarlo directamente para autenticar
+    console.log('ID Token:', idToken);
 
-    const data = {
-        titular: titular,
-        entradilla: partesContenido[0] || "",
-        cuerpo1: partesContenido[1] || "",
-        ladillo1: partesContenido[2] || "",
-        cuerpo2: partesContenido[3] || "",
-        ladillo2: partesContenido[4] || "",
-        cuerpo3: partesContenido[5] || "",
-        ladillo3: partesContenido[6] || "",
-        cuerpo4: partesContenido[7] || ""
-    };
+    // Aquí puedes llamar a tu función para mostrar el formulario
+    document.getElementById("authContainer").style.display = "none";
+    document.getElementById("noticiasForm").style.display = "block";
+}
 
+// Evento para el botón de inicio de sesión
+document.getElementById("loginButton").addEventListener("click", function() {
+    window.google.accounts.id.prompt();
+});
+
+async function enviarDatos(data) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxJW8hIoLUG7GGnkTPaDhfMqX08Zwqb9IIPXJrEuvU3cdkcLqRcQrYoTzTP88IViS8gKQ/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,12 +39,38 @@ async function procesarFormulario() {
         }
 
         const result = await response.json();
-        document.getElementById("resultado").innerText = 'Noticia guardada exitosamente';
+        console.log('Respuesta del servidor:', result);
+        return result;
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById("resultado").innerText = 'Error al guardar la noticia';
     }
 }
 
-// Asegúrate de que se llame a initGoogleAPI al cargar la página
-window.onload = initGoogleAPI;
+// Función para procesar el formulario
+function procesarFormulario() {
+    const titular = document.getElementById('titular').value;
+    const contenido = document.getElementById('contenido').value.split('\n');
+
+    const data = {
+        titular: titular,
+        entradilla: contenido[0],
+        cuerpo1: contenido[1],
+        ladillo1: contenido[2],
+        cuerpo2: contenido[3],
+        ladillo2: contenido[4],
+        cuerpo3: contenido[5],
+        ladillo3: contenido[6],
+        cuerpo4: contenido[7],
+    };
+
+    enviarDatos(data)
+        .then(response => {
+            document.getElementById('resultado').innerText = 'Datos guardados exitosamente.';
+        })
+        .catch(error => {
+            document.getElementById('resultado').innerText = 'Hubo un error al guardar los datos.';
+        });
+}
+
+// Inicializa la API de Google cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', initGoogleAPI);
