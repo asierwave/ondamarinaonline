@@ -1,24 +1,28 @@
-let gapiLoaded = false;
-
 // Cargar la API de Google y autenticar al usuario
 function initGoogleAPI() {
-    gapi.load("client:auth2", async function() {
-        await gapi.client.init({
-            apiKey: "AIzaSyC6BLO51mAlYg8Y4ipLhm1RNr7069webkw", // Reemplaza esto con tu API Key
-            clientId: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
-            scope: "https://www.googleapis.com/auth/spreadsheets",
-            discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"]
-        });
-
-        gapiLoaded = true;
-
-        const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
-        if (isSignedIn) {
-            document.getElementById("authContainer").style.display = "none";
-            document.getElementById("noticiasForm").style.display = "block";
-        }
+    // Cargar la biblioteca de Google Identity Services
+    window.google.accounts.id.initialize({
+        client_id: "TU_CLIENT_ID.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
+        callback: handleCredentialResponse
     });
 }
+
+// Función de callback para manejar la respuesta de credenciales
+function handleCredentialResponse(response) {
+    const idToken = response.credential;
+
+    // Puedes enviar el idToken a tu servidor o utilizarlo directamente para autenticar
+    console.log('ID Token:', idToken);
+
+    // Aquí puedes llamar a tu función para mostrar el formulario
+    document.getElementById("authContainer").style.display = "none";
+    document.getElementById("noticiasForm").style.display = "block";
+}
+
+// Evento para el botón de inicio de sesión
+document.getElementById("loginButton").addEventListener("click", function() {
+    window.google.accounts.id.prompt();
+});
 
 // Función para enviar datos a Google Sheets
 async function enviarDatos(data) {
@@ -36,14 +40,6 @@ async function enviarDatos(data) {
 
     return await response.json();
 }
-
-// Evento para el botón de inicio de sesión
-document.getElementById("loginButton").addEventListener("click", function() {
-    gapi.auth2.getAuthInstance().signIn().then(() => {
-        document.getElementById("authContainer").style.display = "none";
-        document.getElementById("noticiasForm").style.display = "block";
-    });
-});
 
 // Evento para enviar el formulario
 document.getElementById("noticiasForm").addEventListener("submit", async function(event) {
