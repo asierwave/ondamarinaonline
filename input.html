@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input para noticias</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="Assets/main.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <title>Agregar Noticia</title>
 </head>
 <body>
-    <div id="articulos-container"></div>
-    
-    <div id="authContainer">
-        <button id="loginButton">Iniciar sesión con Google</button>
-    </div>
+    <h1>Agregar Nueva Noticia</h1>
+    <form id="noticia-form">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" required><br>
 
-    <form id="noticiasForm" style="display:none;">
-        <label for="titular">Titular:</label>
-        <input type="text" id="titular" name="titular" required>
-        <br><br>
+        <label for="subtitulo">Subtítulo:</label>
+        <input type="text" id="subtitulo" required><br>
 
-        <label for="contenido">Ingrese el texto:</label>
-        <textarea id="contenido" name="contenido" rows="20" cols="80" placeholder="Escriba aquí el resto del texto separado por saltos de línea..." required></textarea>
-        <br><br>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" required><br>
 
-        <button type="button" onclick="procesarFormulario()">Guardar en Google Sheets</button>
+        <label for="entradilla">Entradilla:</label>
+        <textarea id="entradilla" required></textarea><br>
+
+        <label for="cuerpo">Cuerpo:</label>
+        <textarea id="cuerpo" required></textarea><br>
+
+        <label for="imagen">Imagen:</label>
+        <input type="url" id="imagen" required><br>
+
+        <label for="imagen2">Imagen Complementaria:</label>
+        <input type="url" id="imagen2"><br>
+
+        <label for="imagenautor">Imagen del Autor:</label>
+        <input type="url" id="imagenautor"><br>
+
+        <button type="submit">Agregar Noticia</button>
     </form>
-    <div id="resultado"></div>
 
-    <script src="Assets/scripts/xlsblogpush.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="Assets/scripts/xlsblogpush.js"></script> <!-- Asegúrate de que el nombre del archivo sea correcto -->
 </body>
 </html>

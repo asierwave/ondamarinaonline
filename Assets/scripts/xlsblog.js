@@ -1,110 +1,96 @@
-const SHEET_ID = "1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI";
-const SHEET_RANGE = "NOTICIAS!A:Z";
-const API_KEY = "AIzaSyCZm_uR6TknLlgLhTrOhhsSKnzgUQeSOOE";
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec";  // Reemplaza con la URL de tu Web App de Apps Script
+function cargarDatosDesdeGoogleSheetsNoticias() {
+  // Inicializa la API de Google
+  gapi.client
+    .init({
+      apiKey: "AIzaSyCZm_uR6TknLlgLhTrOhhsSKnzgUQeSOOE",
+    })
+    .then(function () {
+      console.log("API de Google inicializada correctamente.");
+      // Solicita los datos desde la hoja de cálculo
+      return gapi.client.request({
+        path: "https://sheets.googleapis.com/v4/spreadsheets/1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI/values/NOTICIAS!A:Z",
+      });
+    })
+    .then(function (response) {
+      console.log("Datos recibidos de Google Sheets:", response);
+      var datos = response.result.values;
+      var arrayDeObjetos = [];
+      var articulosContainer = document.getElementById('articulos-container');
 
-document.addEventListener('DOMContentLoaded', function() {
-    gapi.load("client", function() {
-        gapi.client.init({
-            apiKey: API_KEY,
-        }).then(function () {
-            cargarDatosDesdeGoogleSheetsNoticias();
-        });
+      // Si hay datos, procesarlos
+      if (datos && datos.length > 0) {
+        console.log("Datos procesados correctamente.");
+        // Limpiar el contenedor antes de volver a llenarlo
+        articulosContainer.innerHTML = '';
+
+        for (var i = 1; i < 4; i++) { /*en vez de 10 datos.length para recoger todas las noticias */
+          var fila = datos[i];
+          var objeto = {
+            id: fila[0],
+            titulo: fila[1],
+            subtitulo: fila[2],
+            autor: fila[3],
+            entradilla: fila[4],
+            cuerpo: fila[5].replace(/\n/g, '<br>'), // Reemplaza saltos de línea con <br>
+            ladillo1: fila[6],
+            cuerpo2: fila[7],
+            ladillo2: fila[8],
+            cuerpo3: fila[9],
+            ladillo3: fila[10],
+            cuerpo4: fila[11],
+            imagen: fila[12], // URL de la imagen
+            imagen2: fila[13], // URL de la imagen
+            imagenautor: fila[14], // URL de la imagen
+          };
+          arrayDeObjetos.push(objeto);
+
+          // Crear un nuevo artículo en el HTML
+          var articuloHTML = `
+            <div class="noticia" id="articulo-${objeto.id}">
+              <div class="noticiamedia">
+                <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+              </div>
+              <div class="noticiatextual">
+                <h2 class="noticiatitular">${objeto.titulo}</h2>
+                <div class="noticiaetiquetas">
+                  <div class="noticiatextualautor">
+                    <img class="noticiaimagenautor" src="${objeto.imagenautor}" alt="Imagen del autor" style="max-width: auto; height: auto;">
+                    <p>${objeto.autor}</p>
+                  </div>
+                  <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
+                </div>
+                <p class="noticiatextualentradilla">${objeto.entradilla}</p>
+                <p class="noticiatextualp">${objeto.cuerpo}</p>
+                <h2 class="noticialadillo">${objeto.ladillo1}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo2}</p>
+                <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                <h2 class="noticialadillo">${objeto.ladillo2}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo3}</p>
+                <h2 class="noticialadillo">${objeto.ladillo3}</h2>
+                <p class="noticiatextualp">${objeto.cuerpo4}</p>
+                <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>
+                        <a href="noticias.html" style="margin-top:0.5rem; background-color:#2c2c2c; border:none;" class="masprogramas">Todas las noticias</a>
+
+              </div>
+            </div>
+          `;
+          articulosContainer.innerHTML += articuloHTML;
+        }
+      } else {
+        console.error("No se encontraron datos en la hoja de cálculo.");
+      }
+    }, function (reason) {
+      console.error("Error al cargar los datos: " + reason.result.error.message);
     });
+}
+
+// Cargar la API de Google Sheets
+gapi.load("client", function() {
+  console.log("Cliente de Google cargado, iniciando la carga de datos.");
+  cargarDatosDesdeGoogleSheetsNoticias();
 });
 
-
-function cargarDatosDesdeGoogleSheetsNoticias() {
-    gapi.client.request({
-        path: `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}`,
-    }).then(function(response) {
-        const datos = response.result.values;
-        const articulosContainer = document.getElementById('articulos-container');
-
-        if (datos && datos.length > 0) {
-            articulosContainer.innerHTML = '';
-            for (let i = 1; i < datos.length; i++) {
-                const fila = datos[i];
-                const articuloHTML = `
-                    <div class="noticia" id="articulo-${fila[0]}">
-                      <div class="noticiamedia">
-                        <img class="noticiavideo" src="${fila[12]}" alt="Imagen del artículo">
-                      </div>
-                      <div class="noticiatextual">
-                        <h2 class="noticiatitular">${fila[1]}</h2>
-                        <div class="noticiaetiquetas">
-                          <div class="noticiatextualautor">
-                            <img class="noticiaimagenautor" src="${fila[14]}" alt="Imagen del autor">
-                            <p>${fila[3]}</p>
-                          </div>
-                          <div class="noticiafecha"> <p>${fila[2]}</p></div>
-                        </div>
-                        <p class="noticiatextualentradilla">${fila[4]}</p>
-                        <p class="noticiatextualp">${fila[5].replace(/\n/g, '<br>')}</p>
-                        <h2 class="noticialadillo">${fila[6]}</h2>
-                        <p class="noticiatextualp">${fila[7]}</p>
-                        <img class="noticiaimagencomplementaria" src="${fila[13]}" alt="Imagen complementaria">
-                        <h2 class="noticialadillo">${fila[8]}</h2>
-                        <p class="noticiatextualp">${fila[9]}</p>
-                        <h2 class="noticialadillo">${fila[10]}</h2>
-                        <p class="noticiatextualp">${fila[11]}</p>
-                        <a href="noticia.html?id=${fila[0]}"><button class="masprogramas noticialeermas">Leer más</button></a>
-                        <a href="noticias.html" class="masprogramas" style="margin-top:0.5rem; background-color:#2c2c2c; border:none;">Todas las noticias</a>
-                      </div>
-                    </div>
-                `;
-                articulosContainer.innerHTML += articuloHTML;
-            }
-        } else {
-            console.error("No se encontraron datos en la hoja de cálculo.");
-        }
-    }, function(reason) {
-        console.error("Error al cargar los datos: " + reason.result.error.message);
-    });
-}
-
-async function procesarFormulario() {
-    const titular = document.getElementById('titular').value;
-    const contenido = document.getElementById('contenido').value;
-    const imagen1 = await convertirImagenABase64(document.getElementById('imagen1').files[0]);
-    const imagen2 = await convertirImagenABase64(document.getElementById('imagen2').files[0]);
-
-    const secciones = contenido.split(/\n\s*\n/);
-
-    const data = {
-        titular: titular,
-        entradilla: secciones[0] || "",
-        cuerpo1: secciones[1] || "",
-        ladillo1: secciones[2] || "",
-        cuerpo2: secciones[3] || "",
-        ladillo2: secciones[4] || "",
-        cuerpo3: secciones[5] || "",
-        ladillo3: secciones[6] || "",
-        cuerpo4: secciones[7] || "",
-        imagen1: imagen1,
-        imagen2: imagen2
-    };
-
-    const response = await fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-
-    const result = await response.json();
-    document.getElementById('resultado').innerText = result.result === 'success' ? 'Guardado con éxito en Google Sheets' : 'Hubo un error al guardar';
-
-    // Recargar datos después de guardar
-    cargarDatosDesdeGoogleSheetsNoticias();
-}
-
-function convertirImagenABase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
-}
+document.addEventListener('DOMContentLoaded', function() {
+  // La carga inicial de datos se maneja en cargarDatosDesdeGoogleSheetsNoticias
+  console.log("DOM completamente cargado y procesado.");
+});
