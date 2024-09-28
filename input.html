@@ -1,41 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Noticia</title>
+	<link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Agregar Nueva Noticia</h1>
-    <form id="noticia-form">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" required><br>
+	<div class="container">
+		<form method="post" action="" name="contact-form">
+			<h4>Contact Us</h4>
+			<input type="text" name="your-name" placeholder="Name">
+			<input type="text" name="your-number" placeholder="Number">
+			<input type="email" name="your-email" placeholder="Email">
+			<textarea name="message" rows="7" placeholder="Your Message"></textarea>
+			<input type="submit" value="Submit" id="submit">
+		</form>
+	</div>
 
-        <label for="subtitulo">Subtítulo:</label>
-        <input type="text" id="subtitulo" required><br>
-
-        <label for="autor">Autor:</label>
-        <input type="text" id="autor" required><br>
-
-        <label for="entradilla">Entradilla:</label>
-        <textarea id="entradilla" required></textarea><br>
-
-        <label for="cuerpo">Cuerpo:</label>
-        <textarea id="cuerpo" required></textarea><br>
-
-        <label for="imagen">Imagen:</label>
-        <input type="url" id="imagen" required><br>
-
-        <label for="imagen2">Imagen Complementaria:</label>
-        <input type="url" id="imagen2"><br>
-
-        <label for="imagenautor">Imagen del Autor:</label>
-        <input type="url" id="imagenautor"><br>
-
-        <button type="submit">Agregar Noticia</button>
-    </form>
-
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="Assets/scripts/xlsblogpush.js"></script> <!-- Asegúrate de que el nombre del archivo sea correcto -->
+	<script src="Assets/scripts/xlsblogpush.js"></script>
 </body>
 </html>
