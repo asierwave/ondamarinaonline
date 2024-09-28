@@ -1,6 +1,6 @@
-// Cargar la API de Google y autenticar al usuario
+// Función para inicializar la API de Google
 function initGoogleAPI() {
-    // Cargar la biblioteca de Google Identity Services
+    // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
     window.google.accounts.id.initialize({
         client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
         callback: handleCredentialResponse
