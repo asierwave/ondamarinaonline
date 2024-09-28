@@ -15,7 +15,6 @@ function initGoogleAPI() {
 // Función de callback para manejar la respuesta de credenciales
 function handleCredentialResponse(response) {
     const idToken = response.credential;
-https
     // Puedes enviar el idToken a tu servidor o utilizarlo directamente para autenticar
     console.log('ID Token:', idToken);
 
