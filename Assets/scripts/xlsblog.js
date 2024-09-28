@@ -8,7 +8,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
       console.log("API de Google inicializada correctamente.");
       // Solicita los datos desde la hoja de cálculo
       return gapi.client.request({
-        path: "https://sheets.googleapis.com/v4/spreadsheets/1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI/values/NOTICIAS!A:Z",
+        path: `https://sheets.googleapis.com/v4/spreadsheets/1jlHc0Z3_P7ibmAAqTkfxBtAez530e-bH36wVKRHwPuI/values/NOTICIAS!A:Z?timestamp=${new Date().getTime()}`
       });
     })
     .then(function (response) {
@@ -90,8 +90,10 @@ gapi.load("client", function() {
   cargarDatosDesdeGoogleSheetsNoticias();
 });
 
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
-  cargarDatosDesdeGoogleSheetsNoticias();
   // La carga inicial de datos se maneja en cargarDatosDesdeGoogleSheetsNoticias
   console.log("DOM completamente cargado y procesado.");
 });
