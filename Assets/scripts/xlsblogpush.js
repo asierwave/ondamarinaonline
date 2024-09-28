@@ -24,62 +24,53 @@ document.getElementById("loginButton").addEventListener("click", function() {
     window.google.accounts.id.prompt();
 });
 
-// Función para enviar datos a Google Sheets
 async function enviarDatos(data) {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
 
-    if (!response.ok) {
-        throw new Error('Error al enviar los datos a Google Sheets');
+        if (!response.ok) {
+            throw new Error('Error al enviar los datos a Google Sheets');
+        }
+
+        const result = await response.json();
+        console.log('Respuesta del servidor:', result);
+        return result;
+    } catch (error) {
+        console.error('Error:', error);
     }
-
-    return await response.json();
 }
 
-// Evento para enviar el formulario
-document.getElementById("noticiasForm").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
-
-    const titular = document.getElementById("titular").value;
-    const contenido = document.getElementById("contenido").value;
-
-    // Divide el contenido en partes utilizando saltos de línea
-    const partesContenido = contenido.split('\n');
-    const entradilla = partesContenido[0];
-    const cuerpo1 = partesContenido[1];
-    const ladillo1 = partesContenido[2];
-    const cuerpo2 = partesContenido[3];
-    const ladillo2 = partesContenido[4];
-    const cuerpo3 = partesContenido[5];
-    const ladillo3 = partesContenido[6];
-    const cuerpo4 = partesContenido[7];
+// Función para procesar el formulario
+function procesarFormulario() {
+    const titular = document.getElementById('titular').value;
+    const contenido = document.getElementById('contenido').value.split('\n');
 
     const data = {
         titular: titular,
-        entradilla: entradilla,
-        cuerpo1: cuerpo1,
-        ladillo1: ladillo1,
-        cuerpo2: cuerpo2,
-        ladillo2: ladillo2,
-        cuerpo3: cuerpo3,
-        ladillo3: ladillo3,
-        cuerpo4: cuerpo4,
+        entradilla: contenido[0],
+        cuerpo1: contenido[1],
+        ladillo1: contenido[2],
+        cuerpo2: contenido[3],
+        ladillo2: contenido[4],
+        cuerpo3: contenido[5],
+        ladillo3: contenido[6],
+        cuerpo4: contenido[7],
     };
 
-    try {
-        const result = await enviarDatos(data);
-        console.log('Éxito:', result);
-        document.getElementById("resultado").innerText = 'Datos guardados con éxito';
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById("resultado").innerText = 'Error al guardar los datos';
-    }
-});
+    enviarDatos(data)
+        .then(response => {
+            document.getElementById('resultado').innerText = 'Datos guardados exitosamente.';
+        })
+        .catch(error => {
+            document.getElementById('resultado').innerText = 'Hubo un error al guardar los datos.';
+        });
+}
 
 // Inicializa la API de Google cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', initGoogleAPI);
