@@ -1,27 +1,35 @@
-const CLIENT_ID = '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com'; // Reemplaza esto con tu Client ID
-
-// Inicializa la API de Google Identity Services
+// Función para inicializar la API de Google
 function initGoogleAPI() {
+    // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
     window.google.accounts.id.initialize({
-        client_id: CLIENT_ID,
+        client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
         callback: handleCredentialResponse
     });
 }
 
-// Maneja la respuesta del ID Token
+// Función de callback para manejar la respuesta de credenciales
 function handleCredentialResponse(response) {
-    const idToken = response.credential; // Token de ID
-    console.log('ID Token: ', idToken);
+    const idToken = response.credential;
+
+    // Puedes enviar el idToken a tu servidor o utilizarlo directamente para autenticar
+    console.log('ID Token:', idToken);
+
+    // Aquí puedes llamar a tu función para mostrar el formulario
+    document.getElementById("authContainer").style.display = "none";
+    document.getElementById("noticiasForm").style.display = "block";
 }
 
-// Envía los datos al Google Sheets
+// Evento para el botón de inicio de sesión
+document.getElementById("loginButton").addEventListener("click", function() {
+    window.google.accounts.id.prompt();
+});
+
 async function enviarDatos(data) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxKc3pSkmlCRHRkS_EgNTPJF-NRjb1ttLqZUph_bKZ7NVOHOHR8u48LJcxbrmLs6DOguw/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                // Aquí se añade el token si es necesario
             },
             body: JSON.stringify(data),
         });
@@ -38,7 +46,7 @@ async function enviarDatos(data) {
     }
 }
 
-// Procesa el formulario al enviarlo
+// Función para procesar el formulario
 function procesarFormulario() {
     const titular = document.getElementById('titular').value;
     const contenido = document.getElementById('contenido').value.split('\n');
@@ -55,7 +63,6 @@ function procesarFormulario() {
         cuerpo4: contenido[7],
     };
 
-    // Envía los datos
     enviarDatos(data)
         .then(response => {
             document.getElementById('resultado').innerText = 'Datos guardados exitosamente.';
@@ -65,7 +72,5 @@ function procesarFormulario() {
         });
 }
 
-// Escucha el evento de carga del DOM
-document.addEventListener('DOMContentLoaded', function() {
-    initGoogleAPI();
-});
+// Inicializa la API de Google cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', initGoogleAPI);
