@@ -30,7 +30,6 @@ async function procesarFormulario() {
         }
 
         const result = await response.json();
-        console.log('Respuesta del servidor:', result);
         document.getElementById("resultado").innerText = 'Noticia guardada exitosamente';
     } catch (error) {
         console.error('Error:', error);
