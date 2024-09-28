@@ -1,10 +1,17 @@
 // Función para inicializar la API de Google
 function initGoogleAPI() {
-    // Configurar el botón de inicio de sesión
+    // Asegúrate de que el cliente de Google esté inicializado con tu Client ID
+    window.google.accounts.id.initialize({
+        client_id: "109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com", // Reemplaza esto con tu Client ID
+        callback: handleCredentialResponse
+    });
+
+    // Evento para el botón de inicio de sesión
     document.getElementById("loginButton").addEventListener("click", function() {
-        window.google.accounts.id.prompt();
+        window.google.accounts.id.prompt(); // Muestra la ventana emergente de inicio de sesión
     });
 }
+
 
 // Función de callback para manejar la respuesta de credenciales
 function handleCredentialResponse(response) {
