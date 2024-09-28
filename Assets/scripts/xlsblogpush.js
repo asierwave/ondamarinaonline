@@ -1,21 +1,19 @@
 // Inicializar el cliente de Google
 function initGoogleAPI() {
-    window.onload = function () {
-        const loginButton = document.getElementById('loginButton');
-        loginButton.addEventListener('click', () => {
-            const client = google.accounts.oauth2.initTokenClient({
-                client_id: '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com', // Tu Client ID
-                scope: 'https://www.googleapis.com/auth/spreadsheets',
-                callback: (response) => {
-                    // Manejar la respuesta de Google
-                    console.log('Token:', response);
-                    document.getElementById('authContainer').style.display = 'none'; // Ocultar el botón de inicio de sesión
-                    document.getElementById('noticiasForm').style.display = 'block'; // Mostrar el formulario
-                }
-            });
-            client.requestAccessToken();
+    const loginButton = document.getElementById('loginButton');
+    loginButton.addEventListener('click', () => {
+        const client = google.accounts.oauth2.initTokenClient({
+            client_id: '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com', // Tu Client ID
+            scope: 'https://www.googleapis.com/auth/spreadsheets',
+            callback: (response) => {
+                // Manejar la respuesta de Google
+                console.log('Token:', response);
+                document.getElementById('authContainer').style.display = 'none'; // Ocultar el botón de inicio de sesión
+                document.getElementById('noticiasForm').style.display = 'block'; // Mostrar el formulario
+            }
         });
-    };
+        client.requestAccessToken();
+    });
 }
 
 // Procesar el formulario y enviar los datos a Google Sheets
