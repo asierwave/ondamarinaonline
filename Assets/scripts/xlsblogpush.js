@@ -1,21 +1,24 @@
-let CLIENT_ID = '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com';
-let SCOPE = 'https://www.googleapis.com/auth/spreadsheets'; // Scope to access Google Sheets
-
+// Inicializar el cliente de Google
 function initGoogleAPI() {
-    window.google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: handleCredentialResponse
-    });
+    window.onload = function () {
+        const loginButton = document.getElementById('loginButton');
+        loginButton.addEventListener('click', () => {
+            const client = google.accounts.oauth2.initTokenClient({
+                client_id: '109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com', // Tu Client ID
+                scope: 'https://www.googleapis.com/auth/spreadsheets',
+                callback: (response) => {
+                    // Manejar la respuesta de Google
+                    console.log('Token:', response);
+                    document.getElementById('authContainer').style.display = 'none'; // Ocultar el botón de inicio de sesión
+                    document.getElementById('noticiasForm').style.display = 'block'; // Mostrar el formulario
+                }
+            });
+            client.requestAccessToken();
+        });
+    };
 }
 
-function handleCredentialResponse(response) {
-    const credential = response.credential;
-    console.log("Credential:", credential); // Debug: log the credential
-    // Here, you can make a request to your backend or other API if needed.
-    document.getElementById("authContainer").style.display = "none"; // Hide login button
-    document.getElementById("noticiasForm").style.display = "block"; // Show the form
-}
-
+// Procesar el formulario y enviar los datos a Google Sheets
 async function procesarFormulario() {
     const titular = document.getElementById("titular").value;
     const contenido = document.getElementById("contenido").value;
@@ -35,7 +38,7 @@ async function procesarFormulario() {
     };
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', { // Replace with your script URL
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,11 +58,5 @@ async function procesarFormulario() {
     }
 }
 
-
-document.getElementById('loginButton').onclick = function() {
-    window.google.accounts.id.prompt();
-};
-
-window.onload = function() {
-    initGoogleAPI();
-};
+// Asegúrate de que se llame a initGoogleAPI al cargar la página
+window.onload = initGoogleAPI;
