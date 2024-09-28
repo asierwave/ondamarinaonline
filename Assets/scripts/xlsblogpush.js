@@ -17,7 +17,7 @@ function handleCredentialResponse(response) {
 // Envía los datos al Google Sheets
 async function enviarDatos(data) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxKc3pSkmlCRHRkS_EgNTPJF-NRjb1ttLqZUph_bKZ7NVOHOHR8u48LJcxbrmLs6DOguw/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
