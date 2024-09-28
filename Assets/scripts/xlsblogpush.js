@@ -35,7 +35,7 @@ async function procesarFormulario() {
     };
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyPoObZ-fSqhzJla68JH1kwpM871VhlN_UZUi-l8CDwD1z3L7YsMZENLETmikrWWtqGBA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', { // Replace with your script URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ async function procesarFormulario() {
         document.getElementById("resultado").innerText = 'Error al guardar la noticia';
     }
 }
+
 
 document.getElementById('loginButton').onclick = function() {
     window.google.accounts.id.prompt();
