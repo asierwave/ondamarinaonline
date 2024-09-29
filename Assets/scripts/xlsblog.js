@@ -22,9 +22,11 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
         console.log("Datos procesados correctamente.");
         // Limpiar el contenedor antes de volver a llenarlo
         articulosContainer.innerHTML = '';
+    // Invertir el orden de las filas (excepto la primera fila que es el encabezado)
+    var filasInvertidas = datos.slice(1).reverse(); // Obtener todas las filas excepto la primera y luego invertirlas
 
-        for (var i = 1; i < 4; i++) { /*en vez de 10 datos.length para recoger todas las noticias */
-          var fila = datos[i];
+    for (var i = 0; i < Math.min(3, filasInvertidas.length); i++) { // Solo muestra hasta 3 noticias
+      var fila = filasInvertidas[i];
           var objeto = {
             id: fila[0],
             titulo: fila[1],
