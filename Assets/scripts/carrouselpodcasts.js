@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed"); // Log para verificar que el DOM está listo
+  console.log("DOM fully loaded and parsed");
 
   const podcastcards = document.querySelector(".cards");
   let podcastcardArray = document.querySelectorAll(".podcastcard");
   let counterpodcastCard = 0;
-  let intervalTimePodcastCard = 3000; // Tiempo de intervalo para el slide automático
+  let intervalTimePodcastCard = 3000;
   let autoSlidePodcastCard;
 
   // Refresca la lista de podcast cards
@@ -12,23 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
       podcastcardArray = document.querySelectorAll(".podcastcard");
   }
 
+  // Cerrar todos los grupos de programas recientes y ajustar el estilo de podcastcard
+  function closeAllProgramasRecientes() {
+      podcastcardArray.forEach(card => {
+          const programasRecientes = card.querySelector(".programasrecientes");
+          if (programasRecientes) {
+              programasRecientes.style.display = 'none';
+              programasRecientes.style.maxWidth = '0';
+          }
+          // Cambiar estilo de podcastcard a max-width: fit-content
+          card.style.maxWidth = 'fit-content'; 
+      });
+  }
+
   // Actualiza la posición del carrusel
   function updatePodcastCarousel() {
-      refreshPodcastCards(); // Refresca la lista de nodos
+      refreshPodcastCards();
 
-      // Verifica si hay tarjetas de podcast disponibles
       if (!podcastcardArray.length) {
           console.error("No podcast cards found!");
           return;
       }
 
-      const podcastCardWidth = podcastcardArray[0].clientWidth; // Ancho de una tarjeta
+      const podcastCardWidth = podcastcardArray[0].clientWidth;
       podcastcards.style.transform = `translateX(${
           -counterpodcastCard * podcastCardWidth
-      }px)`; // Mueve el carrusel basado en el contador
+      }px)`;
   }
 
-  // Función para determinar el número de tarjetas a saltar basado en el ancho de la pantalla
   function getPodcastCardsToSkip() {
       if (innerWidth > 1300) {
           return 3;
@@ -39,9 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   }
 
-  // Función para saltar a un número específico de tarjetas
   function jumpPodcastCards(numCards) {
-      refreshPodcastCards(); // Refresca la lista de tarjetas antes de saltar
+      refreshPodcastCards();
 
       if (!podcastcardArray.length) {
           console.error("No podcast cards found!");
@@ -49,14 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const podcastTotalCards = podcastcardArray.length;
-
-      // Verifica los límites al saltar tarjetas
       counterpodcastCard = (counterpodcastCard + numCards + podcastTotalCards) % podcastTotalCards;
-
       updatePodcastCarousel();
   }
 
-  // Iniciar el deslizamiento automático
   function startPodcastAutoSlide() {
       autoSlidePodcastCard = setInterval(
           podcastAutoNextSlide,
@@ -64,15 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
       );
   }
 
-  // Detener el deslizamiento automático
   function stopPodcastAutoSlide() {
       clearInterval(autoSlidePodcastCard);
   }
 
-  // Ir a una tarjeta específica basada en el botón clicado
   function goToPodcastCard(button) {
-      stopPodcastAutoSlide(); // Detiene el desplazamiento automático
-      refreshPodcastCards(); // Refresca la lista de tarjetas
+      stopPodcastAutoSlide();
+      refreshPodcastCards();
 
       const closestCard = button.closest(".podcastcard");
       if (!closestCard) {
@@ -88,59 +92,52 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
       }
 
-      counterpodcastCard = index; // Cambia el contador a la posición del botón
+      counterpodcastCard = index;
       updatePodcastCarousel();
 
-      // Cerrar otras tarjetas abiertas
       podcastcardArray.forEach(card => {
           if (card !== closestCard) {
-              card.classList.remove("open"); // Asegúrate de tener una clase para ocultar
+              card.classList.remove("open");
           } else {
-              card.classList.toggle("open"); // Abre la tarjeta clicada
+              card.classList.toggle("open");
           }
       });
   }
 
-  // Delegación de eventos para botones
   podcastcards.addEventListener("click", (event) => {
       if (event.target.closest(".masprogramasrecientes")) {
-          console.log("Mas programas recientes button clicked!"); // Log para el botón de programas recientes
-          goToPodcastCard(event.target); // Pasa el botón clicado a la función
+          console.log("Mas programas recientes button clicked!");
+          goToPodcastCard(event.target);
       }
   });
 
-  // Eventos para los botones de siguiente y anterior
   document.querySelector(".podcastsnext").addEventListener("click", () => {
-      console.log("Next button clicked!"); // Log para el botón siguiente
+      console.log("Next button clicked!");
       stopPodcastAutoSlide();
+      closeAllProgramasRecientes(); // Cerrar todos los programas recientes y ajustar estilo
       const podcastCardsToSkip = getPodcastCardsToSkip();
       jumpPodcastCards(podcastCardsToSkip);
   });
 
   document.querySelector(".podcastsprev").addEventListener("click", () => {
-      console.log("Previous button clicked!"); // Log para el botón anterior
+      console.log("Previous button clicked!");
       stopPodcastAutoSlide();
+      closeAllProgramasRecientes(); // Cerrar todos los programas recientes y ajustar estilo
       const podcastCardsToSkip = getPodcastCardsToSkip();
       jumpPodcastCards(-podcastCardsToSkip);
-      startPodcastAutoSlide();
   });
 
-  // Actualiza la posición del carrusel al redimensionar la ventana
   window.addEventListener("resize", () => {
       updatePodcastCarousel();
   });
 
-  // Función para llamar después de agregar nuevas tarjetas de podcast dinámicamente
   function addNewPodcastCards() {
-      refreshPodcastCards(); // Refresca la lista de tarjetas para incluir nuevas
-      updatePodcastCarousel(); // Actualiza la posición del carrusel
-      startPodcastAutoSlide(); // Inicia el deslizamiento automático
+      refreshPodcastCards();
+      updatePodcastCarousel();
+      startPodcastAutoSlide();
   }
 
-  // Iniciar el deslizamiento automático solo si hay tarjetas disponibles
   if (podcastcardArray.length) {
       startPodcastAutoSlide();
-
-}
-}
-);
+  }
+});
