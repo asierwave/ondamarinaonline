@@ -1,5 +1,5 @@
-const clientId = '178578ec9bc64de985b429c34d160bcb';
-const clientSecret = 'd7193a9976974fd09bdf37af4cf7266b';
+const clientId = '4306ee8a93e84b92914ddc505c7d5d41';
+const clientSecret = '3ef61e58a15b44e39cafa253dd22d792';
 
 // Función para obtener el token de acceso desde Spotify API
 async function getAccessToken(clientId, clientSecret) {
@@ -19,22 +19,29 @@ async function getAccessToken(clientId, clientSecret) {
     }
 }
 
-// Función para obtener los episodios de un podcast dado su ID
-async function getPodcastEpisodes(token, podcastId) {
+const MAX_RETRIES = 5;
+
+async function getPodcastEpisodes(showId, retryCount = 0) {
     try {
-        const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + token
+        const response = await fetch(`https://api.spotify.com/v1/shows/${showId}/episodes?limit=2`);
+        if (!response.ok) {
+            if (response.status === 429) {
+                if (retryCount < MAX_RETRIES) {
+                    const waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
+                    console.log(`Rate limit exceeded, retrying in ${waitTime / 1000} seconds...`);
+                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                    return getPodcastEpisodes(showId, retryCount + 1); // Reintentar
+                }
             }
-        });
-        const data = await response.json();
-        console.log(data.items);
-        return data.items;
+            throw new Error(`Error fetching episodes: ${response.statusText}`);
+        }
+        return await response.json();
     } catch (error) {
-        console.error('Error obteniendo episodios:', error);
+        console.error(error);
     }
 }
+
+
 
 // Función para formatear la duración del episodio en minutos y segundos
 function formatDuration(ms) {
@@ -218,47 +225,65 @@ function pauseEpisode() {
     }
 }
 
-// Función para alternar la visualización de programas recientes
 const toggleProgramasRecientes = (card) => {
     const programasRecientes = card.querySelector('.programasrecientes');
-    const cards = document.querySelector('.cards');
+    const toggleButton = card.querySelector('.masprogramasrecientes'); // Botón de apertura/cierre
 
-    // Cerrar otros contenedores de programas recientes
-    const allProgramasRecientes = document.querySelectorAll('.programasrecientes');
-    allProgramasRecientes.forEach(otherContainer => {
-        if (otherContainer !== programasRecientes) {
-            otherContainer.style.display = 'none';
-            otherContainer.style.width = '0';
-            const otherCard = otherContainer.closest('.podcastcard');
-            if (otherCard) {
-                otherCard.classList.remove('open'); // Quitar clase para centrar y ocupar pantalla
+    if (programasRecientes) {
+        if (programasRecientes.style.display === 'flex') {
+            // Cerrar el contenedor
+            programasRecientes.style.display = 'none';
+            programasRecientes.style.maxWidth = '0';
+            card.classList.remove('open');
+
+            // Cambiar el texto del botón a "Programas recientes"
+            toggleButton.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playicon.png" style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio"><h3>PROGRAMAS RECIENTES</h3>';
+
+        } else {
+            // Abrir el contenedor
+            programasRecientes.style.display = 'flex';
+            programasRecientes.style.maxWidth = '57.5vw'; // Ajusta según tu diseño
+
+            if (window.innerWidth <= 1300) {
+                programasRecientes.style.maxWidth = '46vw';
             }
+
+            if (window.innerWidth <= 800) {
+                programasRecientes.style.maxWidth = '100%';
+                programasRecientes.style.height = 'fit-content';
+            }
+
+            card.classList.add('open');
+
+            // Cambiar el texto del botón a "Cerrar programas recientes"
+            toggleButton.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playicon.png" style="transform: rotate(180deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio"><h3>CERRAR PROGRAMAS RECIENTES</h3>';
         }
-    });
-
-    if (programasRecientes.style.display === 'flex') {
-        pauseEpisode(); // Pausar el audio si está en reproducción
-        programasRecientes.style.display = 'none';
-        programasRecientes.style.width = '0';
-        card.classList.remove('open'); // Quitar clase para centrar y ocupar pantalla
-
     } else {
-        programasRecientes.style.display = 'flex';
-        programasRecientes.style.maxWidth = '57.5vw';
-
-        if (window.innerWidth <= 1300) {
-            programasRecientes.style.maxWidth = '46vw';
-        }
-
-        if (window.innerWidth <= 800) {
-            programasRecientes.style.maxWidth = '100%';
-            programasRecientes.style.height = 'fit-content';
-            cards.style.maxHeight = 'fit-content';
-        }
-        card.classList.add('open'); // Añadir clase para centrar y ocupar pantalla
-        cards.style.maxWidth = '100vw';
+        console.error('No se encontró el contenedor de programas recientes en la tarjeta:', card);
     }
 };
+
+
+// Event listener para manejar el toggle de programas recientes
+document.addEventListener('click', (event) => {
+    const card = event.target.closest('.podcastcard');
+    
+    if (event.target.closest('.masprogramasrecientes')) {
+        toggleProgramasRecientes(card);
+    }
+    
+    // Cerrar programas recientes de todas las tarjetas si se hace clic en un botón del carrusel
+    if (event.target.closest('button.podcastsprev, button.podcastsnext')) {
+        const openCards = document.querySelectorAll('.podcastcard');
+        openCards.forEach(openCard => {
+            const programasRecientes = openCard.querySelector('.programasrecientes');
+            if (programasRecientes.style.display === 'flex') {
+                toggleProgramasRecientes(openCard);
+            }
+        });
+    }
+});
+
 
 // Event listener para manejar el toggle de programas recientes
 document.addEventListener('click', (event) => {

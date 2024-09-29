@@ -870,6 +870,26 @@ border-radius: 0;
   
   }
 
+/* Definimos la animación */
+@keyframes rotar {
+  from {
+    transform: rotate(0deg); /* Estado inicial: sin rotación */
+  }
+  to {
+    transform: rotate(360deg); /* Estado final: una rotación completa */
+  }
+}
+
+
+
+  .cabezaespecial {
+    position: absolute;
+    z-index: 999999999999;
+     left: 4vw;
+      top: -4px; 
+      animation: rotar 40s linear infinite;
+
+  }
 
 
 
@@ -1004,7 +1024,7 @@ background-color:#FAFAFA;
     gap: 0;
     padding: 0;
     border-radius: 8px;
-    z-index: 2;
+    z-index: -1;
     background-color: #fafafa;
     transition: all 0.3s ease; /* Animación suave */
     transition: width 2s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -1018,7 +1038,7 @@ background-color:#FAFAFA;
     position: relative; /* Permitir el centrado */
     top: 0;
     left: 0;
-    z-index: 1000; /* Asegúrate de que esté al frente */
+    z-index: 99999999999999999999; /* Asegúrate de que esté al frente */
 }
 
 
@@ -1217,13 +1237,13 @@ background-color:#FAFAFA;
 }
 
 .masprogramasrecientes {
-  background-color: #2f76a2;
+  background-color: #fafafa;
+  border: 1px solid #2f76a2 ;
   justify-content: flex-start;
   white-space: wrap;
   width: 100%;
   gap: 1rem;
-  color: #fafafa;
-  border: none;
+  color: #2F75A2;
   order: 1;
 
 }
@@ -1565,7 +1585,7 @@ input[type="range"]::-moz-range-thumb {
 .programareciente {
   display: flex;
   opacity: 100;
-  width: 100%;
+  width: auto;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
@@ -1836,11 +1856,19 @@ button.podcastsprev:hover, button.podcastsnext:hover {
 }
 
 .programasrecientes {
-  display: none;
-  overflow: hidden;
-  width: 100VW;
+  width: 100%; /* Asegura que el contenedor no se expanda más que su tarjeta */
+  max-width: 900px; /* Establece un ancho máximo para evitar que el contenedor crezca más de lo necesario */
+  overflow: hidden; /* Evita que el contenido salga del contenedor si es demasiado grande */
+  display: none; /* Mantiene el contenedor oculto hasta que se haga clic */
 }
 
+.podcastcard.open .programasrecientes {
+  display: flex; /* Cuando se abre, el contenedor se muestra */
+  flex-direction: column;
+  width: auto; /* Ajusta el ancho automáticamente */
+  max-width: 900px; /* Controla el ancho máximo relativo a la pantalla */
+  /* Si necesitas ajustar más el diseño en pantallas pequeñas, añade media queries */
+}
 
 
 
@@ -2691,6 +2719,12 @@ scale: 1.01;
       gap: auto;
       justify-content: space-between;
     }
+
+
+  .cabezaespecial {
+     left: 1.5vw;
+
+  }
     
   
     .logo {

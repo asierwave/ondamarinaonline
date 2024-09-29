@@ -125,7 +125,7 @@ function cargarDatosDesdeGoogleSheets() {
             if (spotifyId) {
               spotifypHTML += `<button class="masprogramas masprogramasrecientes"> 
                   <img class="cardreproducirultimoprogramaimg"
-                    src="Assets/playwhite.png"
+                    src="Assets/playicon.png"
                     style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;"
                     alt="Boton reproducir ultimo episodio">
                   <h3>PROGRAMAS RECIENTES</h3>
