@@ -5,37 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Assets/main.css">
     <title>Formulario</title>
-
-
-        <!-- Añade este script para la autenticación de Google -->
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-    
 </head>
 <body>
     <div class="container">
-        <!-- Botón de Google Sign-In -->
-        <!-- Reemplaza TU_CLIENT_ID con el Client ID que obtuviste -->
-
-        <div id="g_id_onload"
-            data-client_id="109798056863-bhnofh9fch7l6ftlou8tdhg36klnq9fr.apps.googleusercontent.com" 
-            data-context="signin"
-            data-ux_mode="popup"
-            data-callback="onGoogleSignIn"
-            data-auto_prompt="false">
-        </div>
-        
-        <div class="g_id_signin"
-            data-type="standard"
-            data-shape="rectangular"
-            data-theme="outline"
-            data-text="signin_with"
-            data-size="large"
-            data-logo_alignment="left">
-        </div>
-
-        <!-- Formulario -->
-        <form id="contact-form" method="post" action="https://script.google.com/macros/s/AKfycbxwinYrKxgx2FTQ8J5kgMk9C43sTCpPpTR1ulv2KrDMxhKsqe2378AnwPrXdq0wYAVv/exec" name="contact-form" enctype="multipart/form-data" onsubmit="return submitIfLoggedIn(event)">
+        <form method="post" action="https://script.google.com/macros/s/AKfycbxwinYrKxgx2FTQ8J5kgMk9C43sTCpPpTR1ulv2KrDMxhKsqe2378AnwPrXdq0wYAVv/exec" name="contact-form" enctype="multipart/form-data" onsubmit="formatAndSubmit(event)">
             <h4>Escribe una noticia</h4>
             
             <label for="TITULAR">Titular:</label>
@@ -47,6 +20,7 @@
             <label for="FECHA">Fecha de publicación:</label>
             <input type="date" id="FECHA" name="FECHA" placeholder="Fecha" required>
 
+            <!-- Campo oculto para enviar la fecha formateada -->
             <input type="hidden" id="formattedFecha" name="formattedFecha">
 
             <label for="AUTOR">Autor:</label>
@@ -64,8 +38,10 @@
             <textarea name="ENTRADILLA" rows="5" placeholder="Entradilla" required></textarea>
             <textarea name="CUERPO" rows="7" placeholder="Cuerpo" required></textarea>
 
+            <!-- Botón para mostrar más apartados -->
             <button class="masprogramas" style="background-color: #2C2C2C;" id="additional-sections-button" type="button" onclick="toggleAdditionalSections()">ESCRIBIR MAS CONTENIDO</button>
 
+            <!-- Sección adicional oculta por defecto -->
             <div id="additional-sections" style="display:none;">
                 <input type="text" name="LADILLO1" placeholder="Ladillo 2">
                 <textarea name="CUERPO2" rows="4" placeholder="Cuerpo 2"></textarea>
@@ -78,6 +54,7 @@
             </div>
 
             <input type="text" name="LINK A IMAGEN PORTADA" placeholder="Link a imagen principal" required>
+            <!-- <input type="file" name="LINK A IMAGEN PORTADA" accept="image/*" required> -->
             <input type="text" name="LINK SEGUNDA IMAGEN" placeholder="Link a imagen complementaria">
             
             <input class="masprogramas" type="submit" value="PUBLICAR" id="submit">
@@ -85,23 +62,5 @@
     </div>
 
     <script src="Assets/scripts/xlsblogpush.js"></script>
-    <script>
-        let userSignedIn = false;
-
-        function onGoogleSignIn(response) {
-            console.log('Usuario autenticado:', response);
-            userSignedIn = true;
-        }
-
-        function submitIfLoggedIn(event) {
-            if (!userSignedIn) {
-                event.preventDefault();
-                alert('Por favor, inicia sesión con Google antes de enviar el formulario.');
-                return false;
-            }
-            return true;
-        }
-    </script>
 </body>
-
 </html>
