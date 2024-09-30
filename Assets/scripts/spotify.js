@@ -27,7 +27,7 @@ async function getAccessToken(clientId, clientSecret) {
 // Función para obtener los episodios de un podcast dado su ID
 async function getPodcastEpisodes(token, podcastId) {
     try {
-        const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=2`, {
+        const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=1`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -59,6 +59,10 @@ function formatDuration(ms) {
 function displayEpisodes(episodes, containerId) {
     const episodesContainer = document.getElementById(containerId);
     if (!episodesContainer) return;
+
+    // Mostrar el contenedor de episodios
+    episodesContainer.style.display = 'flex'; // Cambiar a 'block' si no quieres flexbox.
+    
     episodesContainer.innerHTML = '';
     
     episodes.forEach(episode => {
@@ -89,12 +93,6 @@ function displayEpisodes(episodes, containerId) {
         `;
         episodesContainer.appendChild(episodeDiv);
     });
-
-    // Cambiar el texto del botón a "CERRAR PROGRAMAS"
-    const button = document.querySelector('.masprogramasrecientes'); // Asegúrate de que este selector sea correcto para el botón que deseas cambiar
-    if (button) {
-        button.innerHTML = '<img class="cardreproducirultimoprogramaimg" src="Assets/playicon.png" style="transform: rotate(0deg);width: 30px; height: auto; margin-right: 10px;margin-top:2px; border-radius: 0; padding: 0; background-color: transparent;overflow: visible;" alt="Boton reproducir ultimo episodio"> <h3>PROGRAMAS RECIENTES</h3>';
-    }
 }
 
 // Función para extraer el número del episodio del nombre
@@ -107,7 +105,7 @@ function extractEpisodeNumber(episodeName) {
 // Función para obtener y mostrar episodios en una tarjeta específica
 async function fetchAndDisplayEpisodes(cardElement) {
     const podcastId = cardElement.getAttribute('data-podcast-id');
-    const containerElement = cardElement.querySelector('.programasrecientes');
+    const containerElement = cardElement.querySelector('.episodes-container');
 
     if (!containerElement) {
         console.error('No se encontró el contenedor de episodios en la tarjeta:', cardElement);
@@ -244,9 +242,3 @@ function pauseEpisode() {
         }
     }
 }
-
-// Iniciar la observación de tarjetas al cargar
-window.onload = () => {
-    observePodcastCards();
-    fetchAndDisplayEpisodesOnLoad();
-};

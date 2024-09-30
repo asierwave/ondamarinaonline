@@ -1020,25 +1020,24 @@ background-color:#FAFAFA;
     align-items: flex-start;
     flex-wrap: nowrap;
     width: auto;
+    max-width: fit-content;
     height: fit-content;
     gap: 0;
     padding: 0;
     border-radius: 8px;
     z-index: -1;
     background-color: #fafafa;
-    transition: all 0.3s ease; /* Animación suave */
+    transition: all 0.3s ease;
     transition: width 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-
-  }
-
-  .podcastcard.open {
+.podcastcard.open {
     display: flex;
-    width: 100vw; /* Ocupar toda la pantalla */
-    position: relative; /* Permitir el centrado */
+    width: 100vw;
+    position: relative;
     top: 0;
     left: 0;
-    z-index: 99999999999999999999; /* Asegúrate de que esté al frente */
+    z-index: 99999999999999999999;
 }
 
 
@@ -1570,14 +1569,12 @@ input[type="range"]::-moz-range-thumb {
   padding: 1rem 1rem;
   gap: 1rem;
   align-items: flex-start;
-  max-height: auto;
   flex-direction: column;
   transition: max-height 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background-color: #FAFAFA;
   overflow: auto;
   order: 3;
   flex-wrap: wrap;
-
 }
 
 
@@ -1680,33 +1677,45 @@ input[type="range"]::-moz-range-thumb {
 
 
 .programarecientetexto {
-  display: flex;
-  width: 100%;
+  display: block;
+  width: 100vw;
   gap: 0.2rem;
   padding: 0 20px;
+  align-items: center;
   flex-direction: column;
 }
 
+
+.programareciente p {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.programarecientedate {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.masprogramasreproducirfragmento {
+  overflow:hidden;
+  position: relative;
+}
 
 
 
 .masprogramasreproducirfragmentofondo {
   display: flex;
-  position: fixed;
+  position: absolute;
   background-color: #fafafa6e;
   z-index: 9999;
   height: 70px;
   left: -1px;
 }
 
-.masprogramasreproducirfragmentofondo:hover {
-  display: flex;
-  position: fixed;
-  background-color: #fafafa6e;
-  z-index: 9999;
-  height: 70px;
-  left: -1px;
-}
 
 
 
@@ -1855,19 +1864,16 @@ button.podcastsprev:hover, button.podcastsnext:hover {
     
 }
 
-.programasrecientes {
+.episodes-container {
   width: 100%; /* Asegura que el contenedor no se expanda más que su tarjeta */
   max-width: 900px; /* Establece un ancho máximo para evitar que el contenedor crezca más de lo necesario */
   overflow: hidden; /* Evita que el contenido salga del contenedor si es demasiado grande */
   display: none; /* Mantiene el contenedor oculto hasta que se haga clic */
 }
 
-.podcastcard.open .programasrecientes {
-  display: flex; /* Cuando se abre, el contenedor se muestra */
-  flex-direction: column;
-  width: auto; /* Ajusta el ancho automáticamente */
-  max-width: 900px; /* Controla el ancho máximo relativo a la pantalla */
-  /* Si necesitas ajustar más el diseño en pantallas pequeñas, añade media queries */
+.podcastcard.open .episodes-container {
+  display: flex; /* Se muestra cuando la tarjeta está expandida */
+  max-height: 1000px; /* Controla la altura máxima con animación */
 }
 
 
@@ -2677,7 +2683,7 @@ scale: 1.01;
 
 
 
-    .programasrecientes {
+    .episodes-container {
       gap: 1rem;
     }
 

@@ -4,138 +4,111 @@ document.addEventListener("DOMContentLoaded", () => {
   const podcastcards = document.querySelector(".cards");
   let podcastcardArray = document.querySelectorAll(".podcastcard");
   let counterpodcastCard = 0;
-  let intervalTimePodcastCard = 3000;
+  const intervalTimePodcastCard = 3000;
   let autoSlidePodcastCard;
 
   // Refresca la lista de podcast cards
-  function refreshPodcastCards() {
+  const refreshPodcastCards = () => {
       podcastcardArray = document.querySelectorAll(".podcastcard");
-  }
+  };
 
-  // Cerrar todos los grupos de programas recientes y ajustar el estilo de podcastcard
-  function closeAllProgramasRecientes() {
+  // Actualiza el contenido del botón masprogramasrecientes
+  const updateButtonContent = (button, isOpen) => {
+      const iconRotation = isOpen ? "-180deg" : "0deg";
+      const buttonText = isOpen ? "CERRAR PROGRAMAS RECIENTES" : "PROGRAMAS RECIENTES";
+      button.innerHTML = `
+          <img class="cardreproducirultimoprogramaimg" 
+               src="Assets/playicon.png" 
+               style="transform: rotate(${iconRotation}); width: 30px; height: auto; margin-right: 10px; margin-top: 2px; border-radius: 0; padding: 0; background-color: transparent; overflow: visible;" 
+               alt="Boton reproducir ultimo episodio">
+          <h3 class="masprogramasrecientestexto">${buttonText}</h3>`;
+  };
+
+  // Cerrar todos los grupos de programas recientes
+  const closeAllProgramasRecientes = () => {
       podcastcardArray.forEach(card => {
-          const programasRecientes = card.querySelector(".programasrecientes");
+          const btnMasProgramas = card.querySelector(".masprogramasrecientes");
+          const programasRecientes = card.querySelector(".episodes-container");
+
+          card.classList.remove("open");
+          if (btnMasProgramas) updateButtonContent(btnMasProgramas, false);
           if (programasRecientes) {
               programasRecientes.style.display = 'none';
               programasRecientes.style.maxWidth = '0';
           }
-          // Cambiar estilo de podcastcard a max-width: fit-content
-          card.style.maxWidth = 'fit-content'; 
       });
-  }
+  };
 
-  // Actualiza la posición del carrusel
-  function updatePodcastCarousel() {
-      refreshPodcastCards();
+  const goToPodcastCard = (button) => {
+      const closestCard = button.closest(".podcastcard");
+      const programasRecientes = closestCard.querySelector(".episodes-container");
 
-      if (!podcastcardArray.length) {
-          console.error("No podcast cards found!");
-          return;
-      }
-
-      const podcastCardWidth = podcastcardArray[0].clientWidth;
-      podcastcards.style.transform = `translateX(${
-          -counterpodcastCard * podcastCardWidth
-      }px)`;
-  }
-
-  function getPodcastCardsToSkip() {
-      if (innerWidth > 1300) {
-          return 3;
-      } else if (innerWidth > 800 && innerWidth <= 1300) {
-          return 2;
+      // Si el contenedor está abierto, cerrarlo
+      if (closestCard.classList.contains("open")) {
+          closestCard.classList.remove("open");
+          updateButtonContent(button, false);
+          programasRecientes.style.display = 'none';
+          programasRecientes.style.maxWidth = '0';
       } else {
-          return 1;
-      }
-  }
+          // Cerrar todos los demás
+          closeAllProgramasRecientes();
 
-  function jumpPodcastCards(numCards) {
+          // Abrir el contenedor actual
+          closestCard.classList.add("open");
+          updateButtonContent(button, true);
+          programasRecientes.style.display = 'block';  // Mostrar el contenedor
+          programasRecientes.style.maxWidth = 'fit-content';  // Ajustar el max-width
+      }
+  };
+
+  podcastcards.addEventListener("click", (event) => {
+      const button = event.target.closest(".masprogramasrecientes");
+      if (button) {
+          goToPodcastCard(button);
+      }
+  });
+
+  // Código para manejar el carrusel y el desplazamiento
+  const jumpPodcastCards = (numCards) => {
       refreshPodcastCards();
-
-      if (!podcastcardArray.length) {
-          console.error("No podcast cards found!");
-          return;
-      }
-
       const podcastTotalCards = podcastcardArray.length;
       counterpodcastCard = (counterpodcastCard + numCards + podcastTotalCards) % podcastTotalCards;
       updatePodcastCarousel();
-  }
+  };
 
-  function startPodcastAutoSlide() {
-      autoSlidePodcastCard = setInterval(
-          podcastAutoNextSlide,
-          intervalTimePodcastCard
-      );
-  }
-
-  function stopPodcastAutoSlide() {
-      clearInterval(autoSlidePodcastCard);
-  }
-
-  function goToPodcastCard(button) {
-      stopPodcastAutoSlide();
+  const updatePodcastCarousel = () => {
       refreshPodcastCards();
-
-      const closestCard = button.closest(".podcastcard");
-      if (!closestCard) {
-          console.error("No closest podcast card found!");
-          return;
-      }
-
-      const index = Array.from(podcastcardArray).indexOf(closestCard);
-      console.log("Index of clicked card:", index);
-
-      if (index < 0 || index >= podcastcardArray.length) {
-          console.error("Index out of bounds");
-          return;
-      }
-
-      counterpodcastCard = index;
-      updatePodcastCarousel();
-
-      podcastcardArray.forEach(card => {
-          if (card !== closestCard) {
-              card.classList.remove("open");
-          } else {
-              card.classList.toggle("open");
-          }
-      });
-  }
-
-  podcastcards.addEventListener("click", (event) => {
-      if (event.target.closest(".masprogramasrecientes")) {
-          console.log("Mas programas recientes button clicked!");
-          goToPodcastCard(event.target);
-      }
-  });
+      if (!podcastcardArray.length) return;
+      const podcastCardWidth = podcastcardArray[0].clientWidth;
+      podcastcards.style.transform = `translateX(${-counterpodcastCard * podcastCardWidth}px)`;
+  };
 
   document.querySelector(".podcastsnext").addEventListener("click", () => {
-      console.log("Next button clicked!");
       stopPodcastAutoSlide();
-      closeAllProgramasRecientes(); // Cerrar todos los programas recientes y ajustar estilo
-      const podcastCardsToSkip = getPodcastCardsToSkip();
-      jumpPodcastCards(podcastCardsToSkip);
+      closeAllProgramasRecientes();
+      jumpPodcastCards(getPodcastCardsToSkip());
   });
 
   document.querySelector(".podcastsprev").addEventListener("click", () => {
-      console.log("Previous button clicked!");
       stopPodcastAutoSlide();
-      closeAllProgramasRecientes(); // Cerrar todos los programas recientes y ajustar estilo
-      const podcastCardsToSkip = getPodcastCardsToSkip();
-      jumpPodcastCards(-podcastCardsToSkip);
+      closeAllProgramasRecientes();
+      jumpPodcastCards(-getPodcastCardsToSkip());
   });
 
-  window.addEventListener("resize", () => {
-      updatePodcastCarousel();
-  });
+  window.addEventListener("resize", updatePodcastCarousel);
 
-  function addNewPodcastCards() {
-      refreshPodcastCards();
-      updatePodcastCarousel();
-      startPodcastAutoSlide();
-  }
+  // Lógica de auto-slide (opcional)
+  const startPodcastAutoSlide = () => {
+      autoSlidePodcastCard = setInterval(podcastAutoNextSlide, intervalTimePodcastCard);
+  };
+
+  const stopPodcastAutoSlide = () => {
+      clearInterval(autoSlidePodcastCard);
+  };
+
+  const getPodcastCardsToSkip = () => {
+      return innerWidth > 1300 ? 3 : innerWidth > 800 ? 2 : 1;
+  };
 
   if (podcastcardArray.length) {
       startPodcastAutoSlide();

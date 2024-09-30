@@ -1,8 +1,7 @@
 const retocards = document.querySelector('.equipoconjunto');
 const retocardsArray = document.querySelectorAll('.equipolocutor');
 let counter = 0; // Inicia en 0
-let intervalTime = 20000; // Intervalo para el auto-slide
-let autoSlide;
+
 // Función para actualizar la posición del carrusel
 function updateCarousel() {
     const cardWidth = retocardsArray[0].clientWidth; // Ancho de una tarjeta
@@ -19,26 +18,6 @@ function getCardsToSkip() {
     } else {
         return 1; // Ajuste para pantallas pequeñas
     }
-}
-
-// Función para mover automáticamente las tarjetas
-function autoNextSlide() {
-    const cardsToSkip = getCardsToSkip();
-    counter += cardsToSkip;
-    if (counter >= retocardsArray.length - cardsToSkip) { // Si se supera el total, vuelve al inicio
-        counter = 0;
-    }
-    updateCarousel();
-}
-
-// Inicia el movimiento automático
-function startAutoSlide() {
-    autoSlide = setInterval(autoNextSlide, intervalTime);
-}
-
-// Detiene el movimiento automático
-function stopAutoSlide() {
-    clearInterval(autoSlide);
 }
 
 // Cambia el contador de tarjetas al saltar manualmente (con botones)
@@ -60,22 +39,15 @@ function jumpCards(numCards) {
 
 // Manejo del botón "siguiente"
 document.querySelector('.next').addEventListener('click', () => {
-    stopAutoSlide();  // Detiene el movimiento automático
-    jumpCards(1);     // Salta hacia adelante
-    setTimeout(startAutoSlide, 500); // Reinicia el auto-slide después de un pequeño retraso
+    jumpCards(1); // Salta hacia adelante
 });
 
 // Manejo del botón "anterior"
 document.querySelector('.prev').addEventListener('click', () => {
-    stopAutoSlide();  // Detiene el movimiento automático
-    jumpCards(-1);    // Salta hacia atrás
-    setTimeout(startAutoSlide, 500); // Reinicia el auto-slide después de un pequeño retraso
+    jumpCards(-1); // Salta hacia atrás
 });
 
 // Al cambiar el tamaño de la ventana, actualiza el carrusel
 window.addEventListener('resize', () => {
     updateCarousel(); // Actualiza la posición del carrusel
 });
-
-// Inicia el auto-slide
-startAutoSlide();
