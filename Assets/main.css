@@ -1033,11 +1033,11 @@ background-color:#FAFAFA;
 
 .podcastcard.open {
     display: flex;
-    width: 100vw;
+    width: 85vw;
     position: relative;
     top: 0;
     left: 0;
-    z-index: 99999999999999999999;
+    z-index: 99999;
 }
 
 
@@ -1589,7 +1589,7 @@ input[type="range"]::-moz-range-thumb {
   height: fit-content;
   align-items: flex-start;
   padding: 0;
-  margin: 0;
+  margin: 1rem 0;
   background-color: #2c2c2c0d;
   border-radius: 8px;
 }
@@ -1678,7 +1678,7 @@ input[type="range"]::-moz-range-thumb {
 
 .programarecientetexto {
   display: block;
-  width: 100vw;
+  width: 100%;
   gap: 0.2rem;
   padding: 0 20px;
   align-items: center;
@@ -1865,15 +1865,14 @@ button.podcastsprev:hover, button.podcastsnext:hover {
 }
 
 .episodes-container {
-  width: 100%; /* Asegura que el contenedor no se expanda más que su tarjeta */
-  max-width: 900px; /* Establece un ancho máximo para evitar que el contenedor crezca más de lo necesario */
+  width: 78vw; /* Asegura que el contenedor no se expanda más que su tarjeta */
   overflow: hidden; /* Evita que el contenido salga del contenedor si es demasiado grande */
   display: none; /* Mantiene el contenedor oculto hasta que se haga clic */
 }
 
 .podcastcard.open .episodes-container {
-  display: flex; /* Se muestra cuando la tarjeta está expandida */
-  max-height: 1000px; /* Controla la altura máxima con animación */
+  display: block; /* Se muestra cuando la tarjeta está expandida */
+  max-height: 100%; /* Controla la altura máxima con animación */
 }
 
 
@@ -2891,6 +2890,10 @@ scale: 1.01;
       flex-wrap: wrap;
     }
 
+
+    .episodes-container {
+      width: 100%;
+    }
  
 
     .card img {

@@ -40,26 +40,35 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const goToPodcastCard = (button) => {
-      const closestCard = button.closest(".podcastcard");
-      const programasRecientes = closestCard.querySelector(".episodes-container");
+    const closestCard = button.closest(".podcastcard");
+    const programasRecientes = closestCard.querySelector(".episodes-container");
 
-      // Si el contenedor está abierto, cerrarlo
-      if (closestCard.classList.contains("open")) {
-          closestCard.classList.remove("open");
-          updateButtonContent(button, false);
-          programasRecientes.style.display = 'none';
-          programasRecientes.style.maxWidth = '0';
-      } else {
-          // Cerrar todos los demás
-          closeAllProgramasRecientes();
+    // Obtener el índice de la tarjeta seleccionada
+    const cardIndex = Array.from(podcastcardArray).indexOf(closestCard);
 
-          // Abrir el contenedor actual
-          closestCard.classList.add("open");
-          updateButtonContent(button, true);
-          programasRecientes.style.display = 'block';  // Mostrar el contenedor
-          programasRecientes.style.maxWidth = 'fit-content';  // Ajustar el max-width
-      }
-  };
+    // Mover el carrusel a la tarjeta seleccionada
+    counterpodcastCard = cardIndex;
+    updatePodcastCarousel();  // Desplazar el carrusel a la tarjeta
+
+    // Si el contenedor está abierto, cerrarlo
+    if (closestCard.classList.contains("open")) {
+        closestCard.classList.remove("open");
+        updateButtonContent(button, false);
+        programasRecientes.style.display = 'none';
+        programasRecientes.style.maxWidth = '0';
+        pauseAllEpisodesOnClose();
+    } else {
+        // Cerrar todos los demás
+        closeAllProgramasRecientes();
+
+        // Abrir el contenedor actual
+        closestCard.classList.add("open");
+        updateButtonContent(button, true);
+        programasRecientes.style.display = 'block';  // Mostrar el contenedor
+        programasRecientes.style.maxWidth = '100%';  // Ajustar el max-width
+    }
+};
+
 
   podcastcards.addEventListener("click", (event) => {
       const button = event.target.closest(".masprogramasrecientes");
@@ -87,12 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
       stopPodcastAutoSlide();
       closeAllProgramasRecientes();
       jumpPodcastCards(getPodcastCardsToSkip());
+      pauseAllEpisodesOnClose(); //Viene de spotify.js para parar el audio de las previews al clickar en cualquier de los dos botones del carrousel ESTÁN CONECTADOS LOS JS
   });
 
   document.querySelector(".podcastsprev").addEventListener("click", () => {
       stopPodcastAutoSlide();
       closeAllProgramasRecientes();
       jumpPodcastCards(-getPodcastCardsToSkip());
+      pauseAllEpisodesOnClose(); //Viene de spotify.js para parar el audio de las previews al clickar en cualquier de los dos botones del carrousel
   });
 
   window.addEventListener("resize", updatePodcastCarousel);

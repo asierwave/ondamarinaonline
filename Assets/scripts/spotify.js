@@ -1,8 +1,16 @@
 const clientId = '4306ee8a93e84b92914ddc505c7d5d41';
 const clientSecret = '3ef61e58a15b44e39cafa253dd22d792';
 
+let cachedToken = null;
+let tokenExpiryTime = null;
+
 // Función para obtener el token de acceso desde Spotify API
 async function getAccessToken(clientId, clientSecret) {
+    // Check if the token is cached and still valid
+    if (cachedToken && tokenExpiryTime && Date.now() < tokenExpiryTime) {
+        return cachedToken;
+    }
+
     try {
         const response = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
@@ -18,34 +26,55 @@ async function getAccessToken(clientId, clientSecret) {
         }
 
         const data = await response.json();
-        return data.access_token;
+        // Cache the token and its expiration time (3600 seconds = 1 hour)
+        cachedToken = data.access_token;
+        tokenExpiryTime = Date.now() + data.expires_in * 1000;
+
+        return cachedToken;
     } catch (error) {
         console.error('Error obteniendo el token de acceso:', error);
+        return null;
     }
 }
 
-// Función para obtener los episodios de un podcast dado su ID
-async function getPodcastEpisodes(token, podcastId) {
-    try {
-        const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=1`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + token
+
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function getPodcastEpisodes(token, podcastId, retries = 5) {
+    for (let attempt = 0; attempt < retries; attempt++) {
+        try {
+            const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=3`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+
+            if (response.status === 429) {
+                const retryAfter = response.headers.get('Retry-After') || 1; // Default to 1 second if not provided
+                console.warn(`Rate limit hit. Retrying after ${retryAfter} seconds...`);
+                await delay(retryAfter * 1000); // Wait for the specified time before retrying
+                continue; // Retry the request
             }
-        });
 
-        if (!response.ok) {
-            throw new Error(`Error en la respuesta: ${response.status} ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`Error en la respuesta: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log('Episodios obtenidos:', data.items);
+            return data.items || [];
+
+        } catch (error) {
+            console.error('Error obteniendo episodios:', error);
+            if (attempt === retries - 1) {
+                return []; // Return empty array after exhausting retries
+            }
         }
-
-        const data = await response.json();
-        console.log('Episodios obtenidos:', data.items);
-        return data.items || [];
-    } catch (error) {
-        console.error('Error obteniendo episodios:', error);
-        return []; 
     }
 }
+
 
 // Función para formatear la duración del episodio en minutos y segundos
 function formatDuration(ms) {
@@ -55,14 +84,50 @@ function formatDuration(ms) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+// 
+function pauseAllEpisodesOnClose() {
+    if (currentAudio) {
+        currentAudio.pause();
+        isPlaying = false;
+
+        // Reiniciar todos los botones de reproducción a su estado inicial
+        document.querySelectorAll('.playpause-img').forEach(img => {
+            img.src = 'Assets/playwhite.png';
+        });
+
+        document.querySelectorAll('.button-text').forEach(buttonText => {
+            buttonText.textContent = 'Reproducir un fragmento';
+        });
+
+        document.querySelectorAll('.masprogramasreproducirfragmentofondo').forEach(bar => {
+            bar.style.width = '0';
+        });
+
+        // Resetear el nombre del episodio actual
+        currentEpisodeName = '';
+        currentAudio = null;
+    }
+}
+
+
+// document.querySelector('.masprogramasrecientes').addEventListener('click', () => {
+//     // Pausar todos los episodios cuando se cierre el contenedor
+
+//     if (document.querySelector('.masprogramasrecientestexto').textContent === "CERRAR PROGRAMAS" ) {
+//     pauseAllEpisodesOnClose();
+//     }
+
+// });
+
+
+
+
 // Función para mostrar los episodios en la interfaz
 function displayEpisodes(episodes, containerId) {
     const episodesContainer = document.getElementById(containerId);
     if (!episodesContainer) return;
 
-    // Mostrar el contenedor de episodios
-    episodesContainer.style.display = 'flex'; // Cambiar a 'block' si no quieres flexbox.
-    
+   
     episodesContainer.innerHTML = '';
     
     episodes.forEach(episode => {
@@ -128,7 +193,15 @@ async function fetchAndDisplayEpisodes(cardElement) {
     }
 }
 
-// Observa cambios en el DOM para detectar tarjetas de podcast añadidas dinámicamente
+// Function to fetch and display episodes on load
+async function fetchAndDisplayEpisodesOnLoad() {
+    const podcastCards = document.querySelectorAll('.podcastcard');
+    podcastCards.forEach(card => {
+        fetchAndDisplayEpisodes(card);
+    });
+}
+
+// Function to observe changes in the DOM and dynamically detect added podcast cards
 function observePodcastCards() {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
@@ -136,7 +209,7 @@ function observePodcastCards() {
                 mutation.addedNodes.forEach((node) => {
                     if (node.classList && node.classList.contains('podcastcard')) {
                         console.log('Nueva tarjeta de podcast encontrada:', node);
-                        fetchAndDisplayEpisodes(node); 
+                        fetchAndDisplayEpisodes(node);
                     }
                 });
             }
@@ -149,19 +222,11 @@ function observePodcastCards() {
     });
 }
 
-// Función para obtener y mostrar episodios en todas las tarjetas al cargar
-async function fetchAndDisplayEpisodesOnLoad() {
-    const podcastCards = document.querySelectorAll('.podcastcard');
-    podcastCards.forEach(card => {
-        fetchAndDisplayEpisodes(card);
-    });
-}
-
-// Inicia la observación de cambios cuando el DOM está completamente cargado
+// Ensure functions are called when DOM is fully loaded
 window.onload = function() {
     observePodcastCards();
     setTimeout(() => {
-        fetchAndDisplayEpisodesOnLoad();
+        fetchAndDisplayEpisodesOnLoad(); // Ensure this function is defined
     }, 500);
 };
 
