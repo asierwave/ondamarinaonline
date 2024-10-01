@@ -55,14 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Abrir el primer contenedor al cargar la página
+    // Abrir el primer y el quinto contenedor al cargar la página
     if (index === 0) {
       container.style.maxHeight = `100%`;
       container.style.padding = "0 7vw";
       if (img) {
         img.style.transform = "rotate(180deg)";
       }
-    }
+
+      }
   });
 
   // Evento para abrir el contenedor en la posición [3] al hacer clic en el botón "equipo"
