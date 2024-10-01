@@ -181,7 +181,6 @@ body {
 
 
 /* PANTALLA DE CARGA LOADING */
-
 .loading {
   position: fixed;
   top: 0;
@@ -193,14 +192,14 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999999; /* Mantener en el frente */
-  transition: transform 4s ease; /* Transición para el desplazamiento */
+  transition: transform 4s ease;
+  -webkit-transition: transform 4s ease; /* Safari & Chrome */
 }
 
 .loading.hidden {
   transform: translateY(-100vh); /* Desplazar hacia arriba */
-  
+  -webkit-transform: translateY(-100vh); /* Safari & Chrome */
 }
-
 
 .loading p {
   font-size: 24px;
@@ -209,11 +208,13 @@ body {
 
 #content {
   transform: translateY(100vh); /* Desplazar el contenido hacia arriba */
-  transition: transform 4s ease; /* Transición para el desplazamiento del contenido */
+  transition: transform 4s ease;
+  -webkit-transition: transform 4s ease; /* Safari & Chrome */
 }
 
 #content.move-up {
   transform: translateY(0); /* Desplazar el contenido hacia arriba */
+  -webkit-transform: translateY(0); /* Safari & Chrome */
 }
 
 
@@ -515,7 +516,7 @@ button.prev, button.next {
   padding: 0 26px 4px 26px;
   cursor: pointer;
   font-size: 64px;
-  z-index: 99999;
+  z-index: 1;
   transition: 1s fontSize cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -1837,7 +1838,7 @@ button.podcastsprev, button.podcastsnext {
   padding: 0 26px 4px 26px;
   cursor: pointer;
   font-size: 64px;
-  z-index: 99999;
+  z-index: 999999;
   transition: 1s fontSize cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
