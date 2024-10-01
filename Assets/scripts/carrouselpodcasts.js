@@ -67,8 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         programasRecientes.style.display = 'block';  // Mostrar el contenedor
         programasRecientes.style.maxWidth = '100%';  // Ajustar el max-width
     }
-};
-
+  };
 
   podcastcards.addEventListener("click", (event) => {
       const button = event.target.closest(".masprogramasrecientes");
@@ -124,4 +123,36 @@ document.addEventListener("DOMContentLoaded", () => {
   if (podcastcardArray.length) {
       startPodcastAutoSlide();
   }
+
+  // Funcionalidad de deslizamiento
+  let startX;
+
+  podcastcards.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX; // Guardar la posición inicial del toque
+  });
+
+  podcastcards.addEventListener("touchmove", (e) => {
+      const currentX = e.touches[0].clientX; // Obtener la posición actual del toque
+      const diffX = startX - currentX; // Calcular la diferencia
+
+      // Deslizar hacia la izquierda
+      if (diffX > 50) {
+          stopPodcastAutoSlide();
+          closeAllProgramasRecientes();
+          jumpPodcastCards(getPodcastCardsToSkip());
+          startX = currentX; // Actualizar la posición inicial
+      }
+      // Deslizar hacia la derecha
+      else if (diffX < -50) {
+          stopPodcastAutoSlide();
+          closeAllProgramasRecientes();
+          jumpPodcastCards(-getPodcastCardsToSkip());
+          startX = currentX; // Actualizar la posición inicial
+      }
+  });
+
+  // Prevenir el comportamiento predeterminado del deslizamiento vertical
+  podcastcards.addEventListener("touchend", (e) => {
+      e.preventDefault();
+  });
 });

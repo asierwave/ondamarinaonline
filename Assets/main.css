@@ -457,16 +457,17 @@ h2 {
 button.prev, button.next {
   display: flex;
   position: absolute;
-  top: 30%;
+  top: 15%;
   transform: translateY(-50%);
-  color: white;
-  background-color: #2F75A2;
+  color: #2F75A2;
+  background-color: #fafafa;
+  border-radius: 0;
   border: none;
-  padding: 0 20px;
+  padding: 0 26px 4px 26px;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 64px;
   z-index: 99999;
-  transition: 1s scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 1s fontSize cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 button.prev {
@@ -478,7 +479,7 @@ button.next {
 }
 
 button.prev:hover, button.next:hover {
-  scale: 1.1;
+  color: #2c2c2c;
 }
 
 
@@ -1573,7 +1574,6 @@ input[type="range"]::-moz-range-thumb {
   transition: max-height 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background-color: #FAFAFA;
   overflow: auto;
-  order: 3;
   flex-wrap: wrap;
 }
 
@@ -1589,7 +1589,7 @@ input[type="range"]::-moz-range-thumb {
   height: fit-content;
   align-items: flex-start;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   background-color: #2c2c2c0d;
   border-radius: 8px;
 }
@@ -1776,16 +1776,17 @@ overflow-x: auto;
 button.podcastsprev, button.podcastsnext {
   display: flex;
   position: absolute;
-  top: 16%;
+  top: 15%;
   transform: translateY(-50%);
-  color: white;
-  background-color: #2F75A2;
+  color: #2F75A2;
+  background-color: #fafafa;
+  border-radius: 0;
   border: none;
-  padding: 0 20px;
+  padding: 0 26px 4px 26px;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 64px;
   z-index: 99999;
-  transition: 1s scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 1s fontSize cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 button.podcastsprev {
@@ -1797,7 +1798,8 @@ button.podcastsnext {
 }
 
 button.podcastsprev:hover, button.podcastsnext:hover {
-  scale: 1.1;
+  color: #2c2c2c;
+
 }
 
 .cards {
@@ -2681,7 +2683,6 @@ scale: 1.01;
 
 
 
-
     .episodes-container {
       gap: 1rem;
     }
@@ -2954,6 +2955,14 @@ scale: 1.01;
   flex-direction: row;
   width: 100%;
 }
+
+button.podcastsprev, button.podcastsnext {
+padding: 20vw 16px;
+}
+
+
+
+
 
 .partetextualpodcastcard {
   width: auto;

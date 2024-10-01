@@ -1,5 +1,5 @@
-const clientId = '4306ee8a93e84b92914ddc505c7d5d41';
-const clientSecret = '3ef61e58a15b44e39cafa253dd22d792';
+const clientId = 'daca5776ab0641a1bd7cb99522b12660';
+const clientSecret = 'fc7ee7bb61114819a6605e320f57b569';
 
 let cachedToken = null;
 let tokenExpiryTime = null;
@@ -41,7 +41,7 @@ async function getAccessToken(clientId, clientSecret) {
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-async function getPodcastEpisodes(token, podcastId, retries = 5) {
+async function getPodcastEpisodes(token, podcastId, retries = 1) {
     for (let attempt = 0; attempt < retries; attempt++) {
         try {
             const response = await fetch(`https://api.spotify.com/v1/shows/${podcastId}/episodes?limit=3`, {
@@ -110,15 +110,6 @@ function pauseAllEpisodesOnClose() {
 }
 
 
-// document.querySelector('.masprogramasrecientes').addEventListener('click', () => {
-//     // Pausar todos los episodios cuando se cierre el contenedor
-
-//     if (document.querySelector('.masprogramasrecientestexto').textContent === "CERRAR PROGRAMAS" ) {
-//     pauseAllEpisodesOnClose();
-//     }
-
-// });
-
 
 
 
@@ -168,6 +159,23 @@ function extractEpisodeNumber(episodeName) {
 }
 
 // Función para obtener y mostrar episodios en una tarjeta específica
+// Event listener para manejar el clic en los botones de programas recientes
+document.addEventListener('click', async function (event) {
+    if (event.target.classList.contains('masprogramasrecientes')) {
+        const button = event.target;
+        const cardElement = button.closest('.podcastcard'); // Obtener la tarjeta correspondiente
+        
+        const buttonTextElement = button.querySelector('.masprogramasrecientestexto');
+        
+        // Verificar si el texto es "CERRAR PROGRAMAS"
+        if (buttonTextElement && buttonTextElement.textContent.trim() === "CERRAR PROGRAMAS") {
+            // Si es "CERRAR PROGRAMAS", llamamos a la API para obtener los episodios
+            await fetchAndDisplayEpisodes(cardElement);
+        }
+    }
+});
+
+// Función para obtener y mostrar episodios en una tarjeta específica
 async function fetchAndDisplayEpisodes(cardElement) {
     const podcastId = cardElement.getAttribute('data-podcast-id');
     const containerElement = cardElement.querySelector('.episodes-container');
@@ -192,6 +200,7 @@ async function fetchAndDisplayEpisodes(cardElement) {
         console.error('Error fetching episodes:', error);
     }
 }
+
 
 // Function to fetch and display episodes on load
 async function fetchAndDisplayEpisodesOnLoad() {
