@@ -40,33 +40,33 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const goToPodcastCard = (button) => {
-    const closestCard = button.closest(".podcastcard");
-    const programasRecientes = closestCard.querySelector(".episodes-container");
+      const closestCard = button.closest(".podcastcard");
+      const programasRecientes = closestCard.querySelector(".episodes-container");
 
-    // Obtener el índice de la tarjeta seleccionada
-    const cardIndex = Array.from(podcastcardArray).indexOf(closestCard);
+      // Obtener el índice de la tarjeta seleccionada
+      const cardIndex = Array.from(podcastcardArray).indexOf(closestCard);
 
-    // Mover el carrusel a la tarjeta seleccionada
-    counterpodcastCard = cardIndex;
-    updatePodcastCarousel();  // Desplazar el carrusel a la tarjeta
+      // Mover el carrusel a la tarjeta seleccionada
+      counterpodcastCard = cardIndex;
+      updatePodcastCarousel();  // Desplazar el carrusel a la tarjeta
 
-    // Si el contenedor está abierto, cerrarlo
-    if (closestCard.classList.contains("open")) {
-        closestCard.classList.remove("open");
-        updateButtonContent(button, false);
-        programasRecientes.style.display = 'none';
-        programasRecientes.style.maxWidth = '0';
-        pauseAllEpisodesOnClose();
-    } else {
-        // Cerrar todos los demás
-        closeAllProgramasRecientes();
+      // Si el contenedor está abierto, cerrarlo
+      if (closestCard.classList.contains("open")) {
+          closestCard.classList.remove("open");
+          updateButtonContent(button, false);
+          programasRecientes.style.display = 'none';
+          programasRecientes.style.maxWidth = '0';
+          pauseAllEpisodesOnClose();
+      } else {
+          // Cerrar todos los demás
+          closeAllProgramasRecientes();
 
-        // Abrir el contenedor actual
-        closestCard.classList.add("open");
-        updateButtonContent(button, true);
-        programasRecientes.style.display = 'block';  // Mostrar el contenedor
-        programasRecientes.style.maxWidth = '100%';  // Ajustar el max-width
-    }
+          // Abrir el contenedor actual
+          closestCard.classList.add("open");
+          updateButtonContent(button, true);
+          programasRecientes.style.display = 'block';  // Mostrar el contenedor
+          programasRecientes.style.maxWidth = '100%';  // Ajustar el max-width
+      }
   };
 
   podcastcards.addEventListener("click", (event) => {
@@ -95,14 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
       stopPodcastAutoSlide();
       closeAllProgramasRecientes();
       jumpPodcastCards(getPodcastCardsToSkip());
-      pauseAllEpisodesOnClose(); //Viene de spotify.js para parar el audio de las previews al clickar en cualquier de los dos botones del carrousel ESTÁN CONECTADOS LOS JS
+      pauseAllEpisodesOnClose();
   });
 
   document.querySelector(".podcastsprev").addEventListener("click", () => {
       stopPodcastAutoSlide();
       closeAllProgramasRecientes();
       jumpPodcastCards(-getPodcastCardsToSkip());
-      pauseAllEpisodesOnClose(); //Viene de spotify.js para parar el audio de las previews al clickar en cualquier de los dos botones del carrousel
+      pauseAllEpisodesOnClose();
   });
 
   window.addEventListener("resize", updatePodcastCarousel);
@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Deslizar hacia la izquierda
       if (diffX > 50) {
+          e.preventDefault(); // Evitar el comportamiento predeterminado
           stopPodcastAutoSlide();
           closeAllProgramasRecientes();
           jumpPodcastCards(getPodcastCardsToSkip());
@@ -144,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // Deslizar hacia la derecha
       else if (diffX < -50) {
+          e.preventDefault(); // Evitar el comportamiento predeterminado
           stopPodcastAutoSlide();
           closeAllProgramasRecientes();
           jumpPodcastCards(-getPodcastCardsToSkip());
@@ -153,6 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Prevenir el comportamiento predeterminado del deslizamiento vertical
   podcastcards.addEventListener("touchend", (e) => {
-      e.preventDefault();
+      // Aquí no necesitas llamar a e.preventDefault(), ya que el comportamiento ya está controlado en touchmove.
   });
 });
