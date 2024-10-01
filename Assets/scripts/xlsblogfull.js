@@ -46,6 +46,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
             };
             arrayDeObjetos.push(objeto);
   
+            if (innerWidth > 800) {
             // Crear un nuevo artículo en el HTML
             var articuloHTML = `
               <div class="noticia" id="articulo-${objeto.id}">
@@ -75,6 +76,39 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
                 </div>
               </div>
             `;
+            } else {
+// Crear un nuevo artículo en el HTML
+var articuloHTML = `
+<div class="noticia" id="articulo-${objeto.id}">
+ <div class="noticiatextual">
+    <h2 class="noticiatitular">${objeto.titulo}</h2>
+
+    <div class="noticiaetiquetas">
+      <div class="noticiatextualautor">
+        <img class="noticiaimagenautor" src="${objeto.imagenautor}" alt="Imagen del autor" style="max-width: auto; height: auto;">
+        <p>${objeto.autor}</p>
+      </div>
+      <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
+    </div>
+              <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+                <p class="noticiavideopie">Google Pictures</p>
+                <div class="noticiasredes">
+                </div>
+    <p class="noticiatextualentradilla">${objeto.entradilla}</p>
+    <p class="noticiatextualp">${objeto.cuerpo}</p>
+    <h2 class="noticialadillo">${objeto.ladillo1}</h2>
+    <p class="noticiatextualp">${objeto.cuerpo2}</p>
+    <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+    <h2 class="noticialadillo">${objeto.ladillo2}</h2>
+    <p class="noticiatextualp">${objeto.cuerpo3}</p>
+    <h2 class="noticialadillo">${objeto.ladillo3}</h2>
+    <p class="noticiatextualp">${objeto.cuerpo4}</p>
+    <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>
+
+  </div>
+</div>
+`;
+            }
             articulosContainer.innerHTML += articuloHTML;
           }
         } else {
