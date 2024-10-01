@@ -38,7 +38,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
   
             // Crear el HTML del artículo
             var articuloHTML = `
-            <a class="noticia" id="articulo-${i}" href="${objeto.id}.html" target="_blank">
+            <a class="noticia" id="articulo-${i}" href="noticia.html?id=${objeto.id}" target="_blank">
                   <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo">
                
                 <div class="noticiatextual">

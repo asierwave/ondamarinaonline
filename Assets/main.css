@@ -665,6 +665,7 @@ button.prev:hover, button.next:hover {
 .noticiatitular {
   height: fit-content;
   font-size: 24px;
+  color: #2c2c2c;
   white-space: wrap;
   padding: 0 0 1rem 0;
   hyphens: auto;
@@ -1828,7 +1829,7 @@ button.podcastsprev, button.podcastsnext {
   display: flex;
   position: absolute;
   top: 15%;
-  transform: translateY(-50%);
+  transform: translateY(-53%);
   color: #2F75A2;
   background-color: #fafafa;
   border-radius: 0;
