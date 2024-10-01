@@ -53,7 +53,15 @@
 
 <body>
 
-  <header>
+
+  <div id="loading" class="loading">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/22b4f1dc-0314-4f6c-9b05-5d73ca802691/bTQVVcavQe.json" background="transparent" speed="2" style="width: 400px; height: 400px; padding-bottom: 10vh;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+</div>
+
+
+
+
+  <header id="content">
 
 
     <section class="cabeza">
@@ -260,11 +268,12 @@
 
 
 
+
+
   <!-- <img id="topcards" src="Assets/topcards.png" alt="Tope de sección cards, para transición"> -->
 
   <a id="anclahorarios" style="z-index: -1;"></a>
 
-  <main>
 
 <!-- PROGRAMAS -->
 
@@ -284,6 +293,8 @@
     <button class="podcastsnext">›</button>
 
   </section>
+
+
 
 
 
@@ -894,7 +905,7 @@ Escúchame en <a class="equipolocutorenlace" href="#programas">EL BOLERO EN CANT
 
 
     </section>
-  </main>
+  
 
 
   <!-- Footer-->
@@ -916,6 +927,8 @@ Escúchame en <a class="equipolocutorenlace" href="#programas">EL BOLERO EN CANT
   <!-- los scripts mejor aquí si no usas window.onload() -->
 
   <!-- <script  src="Assets/scripts/scrologo.js"></script> -->
+
+  <script src="Assets/scripts/loading.js"></script>
 
   <script src="Assets/scripts/howler.js"></script>
   <script src="Assets/scripts/reproductor.js"></script>

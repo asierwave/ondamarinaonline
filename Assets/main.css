@@ -173,12 +173,47 @@ body {
   padding: 0;
   z-index: 0;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: #2c2c2c;
   opacity: 1;
   
 }
 
+
+/* PANTALLA DE CARGA LOADING */
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: #2F75A2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999; /* Mantener en el frente */
+  transition: transform 4s ease; /* Transición para el desplazamiento */
+}
+
+.loading.hidden {
+  transform: translateY(-100vh); /* Desplazar hacia arriba */
+}
+
+
+.loading p {
+  font-size: 24px;
+  color: #333;
+}
+
+#content {
+  transform: translateY(100vh); /* Desplazar el contenido hacia arriba */
+  transition: transform 4s ease; /* Transición para el desplazamiento del contenido */
+}
+
+#content.move-up {
+  transform: translateY(0); /* Desplazar el contenido hacia arriba */
+}
 
 
 /* FORM */
@@ -208,6 +243,19 @@ form #additional-sections {
 /* Estilo específico para no Safari gsap.js */
 body.nosafari {
   opacity: 1; /* Opacidad en 0 para no Safari */
+}
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  z-index: 1;
+  background-color:#FAFAFA;
+  padding: 0;
+  padding-bottom: 1rem;
 }
 
 
@@ -1768,6 +1816,8 @@ overflow-x: auto;
 
 .podcasts {
   display: flex;
+  width: 100%;
+  background-color: #fafafa;
   position: relative;
   height: auto;
 }
@@ -2505,17 +2555,7 @@ h4 {
   gap: 20px;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: fit-content;
-  justify-content: center;
-  z-index: 1;
-  background-color:#FAFAFA;
-  padding: 0;
-  padding-bottom: 1rem;
-}
+
 
 /* anuncio */
 
@@ -2778,12 +2818,7 @@ scale: 1.01;
 
 /* EQUIPO LOCUTOR */
 
-.equipo {
-  height: auto;
-  width: auto;
-  padding: 0;
-  margin: 0;
-}
+
 
 .equipoconjunto {
   display: flex;
@@ -2855,7 +2890,7 @@ scale: 1.01;
 
     .quienesomos {
       position: relative;
-      /* height: calc (100vh - 118px); */
+      height: calc (100vh - 118px);
       justify-content: flex-end;
       flex-direction: column;
       gap: 0;
