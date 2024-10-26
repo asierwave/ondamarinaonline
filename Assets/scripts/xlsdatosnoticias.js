@@ -48,6 +48,9 @@ function cargarNoticiaPorId(idNoticia) {
                     imagen: fila[12],
                     imagen2: fila[13],
                     imagenautor: fila[14],
+                    fuenteImagen: fila[15], // Pie de foto principal
+                    fuenteImagen2: fila[16], // Pie de foto 2
+
                 };
 
                 // Mostrar la noticia si coincide con el ID
@@ -99,6 +102,22 @@ function cargarNoticiaPorId(idNoticia) {
 
                 //     }else{
 
+                    let fuenteImagenHTML;
+                if (objeto.fuenteImagen) {
+                    fuenteImagenHTML = `<p class="noticiavideopie">${objeto.fuenteImagen}</p>`;
+
+                } else {
+                    fuenteImagenHTML = ``; //Si no hay fuente, no se pone nada
+                }
+
+                let fuenteImagen2HTML;
+                if (objeto.fuenteImagen2) {
+                    fuenteImagen2HTML = `<p class="noticiavideopie">${objeto.fuenteImagen}</p>`;
+
+                } else {
+                    fuenteImagen2HTML = ``; //Si no hay fuente, no se pone nada
+                }
+
 
                     // Insertar el contenido de la noticia
                     document.getElementById('noticia-completa').innerHTML = `
@@ -113,8 +132,7 @@ function cargarNoticiaPorId(idNoticia) {
                         </div>
 
                         <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
-
-                        <p class ="noticiavideopie">Google Imágenes</p>
+                  ${fuenteImagenHTML}
 
                         <div class="social-share"> 
                             <button onclick="compartirEnRedSocial('facebook', '${urlActual}', '${titulo}', '${imagen}')"><svg style= "width:30px"; xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg></button>
@@ -134,7 +152,7 @@ function cargarNoticiaPorId(idNoticia) {
                         <h2 class="noticialadillo">${objeto.ladillo2}</h2>
                         <p class="noticiatextualp">${objeto.cuerpo3}</p>
                         <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
-                        <p class ="noticiavideopie">Google Imágenes</p>
+                   ${fuenteImagen2HTML}
                         <h2 class="noticialadillo">${objeto.ladillo3}</h2>
                         <p class="noticiatextualp">${objeto.cuerpo4}</p>
                         <a href="noticia.html?id=${objeto.id}"><button class="masprogramas noticialeermas">Leer más</button></a>

@@ -43,8 +43,27 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
               imagen: fila[12], // URL de la imagen
               imagen2: fila[13], // URL de la imagen
               imagenautor: fila[14], // URL de la imagen
+              fuenteImagen: fila[15], // Pie de foto principal
+              fuenteImagen2: fila[16], // Pie de foto 2
             };
+
+            let fuenteImagenHTML;
+            if (objeto.fuenteImagen) {
+                fuenteImagenHTML = `<p class="noticiavideopie">${objeto.fuenteImagen}</p>`;
+
+            } else {
+              fuenteImagenHTML = ``;
+            }
+
+            let fuenteImagen2HTML;
+            if (objeto.fuenteImagen2) {
+                fuenteImagen2HTML = `<p class="noticiavideopie">${objeto.fuenteImagen}</p>`;
+
+            }
             arrayDeObjetos.push(objeto);
+
+
+     
   
             if (innerWidth > 800) {
             // Crear un nuevo artículo en el HTML
@@ -52,6 +71,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
               <div class="noticia" id="articulo-${objeto.id}">
                 <div class="noticiamedia">
                   <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+                    ${fuenteImagenHTML}
                 </div>
                 <div class="noticiatextual">
                   <h2 class="noticiatitular">${objeto.titulo}</h2>
@@ -67,7 +87,8 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
                   <h2 class="noticialadillo">${objeto.ladillo1}</h2>
                   <p class="noticiatextualp">${objeto.cuerpo2}</p>
                   <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
-                  <h2 class="noticialadillo">${objeto.ladillo2}</h2>
+  ${fuenteImagen2HTML}
+                    <h2 class="noticialadillo">${objeto.ladillo2}</h2>
                   <p class="noticiatextualp">${objeto.cuerpo3}</p>
                   <h2 class="noticialadillo">${objeto.ladillo3}</h2>
                   <p class="noticiatextualp">${objeto.cuerpo4}</p>
@@ -91,7 +112,7 @@ var articuloHTML = `
       <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
     </div>
               <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
-                <p class="noticiavideopie">Google Pictures</p>
+                <p class="noticiavideopie">${objeto.fuenteImagen}</p>
                 <div class="noticiasredes">
                 </div>
     <p class="noticiatextualentradilla">${objeto.entradilla}</p>
@@ -99,6 +120,7 @@ var articuloHTML = `
     <h2 class="noticialadillo">${objeto.ladillo1}</h2>
     <p class="noticiatextualp">${objeto.cuerpo2}</p>
     <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                    <p class="noticiavideopie">${objeto.fuenteImagen2}</p>
     <h2 class="noticialadillo">${objeto.ladillo2}</h2>
     <p class="noticiatextualp">${objeto.cuerpo3}</p>
     <h2 class="noticialadillo">${objeto.ladillo3}</h2>
