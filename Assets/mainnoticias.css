@@ -48,8 +48,12 @@
 .noticiavideo {
   width: 50vw;
   overflow: hidden;
-  max-height: 300px;
   
+}
+
+.noticiavideopaginaindividual {
+  max-height: 300px;
+
 }
 
 
@@ -233,15 +237,22 @@
     .noticiavideo {
       width: 100%;
       display: block;
-      padding: 1rem 0;
       order: 3;
+    }
+
+    .noticiavideopaginaindividual {
+      padding: 1rem 0;
+
     }
 
     .noticiaimagencomplementaria {
       width: 100%;
       margin: 0;
-      padding: 1rem 0;
 
+  }
+
+  .noticiaimagencomplementariapaginaindividual{
+    padding: 1rem 0;
   }
 
       .noticiatextualp {

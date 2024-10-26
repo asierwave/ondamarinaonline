@@ -131,7 +131,7 @@ function cargarNoticiaPorId(idNoticia) {
                             <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
                         </div>
 
-                        <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+                        <img class="noticiavideo noticiavideopaginaindivual" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
                   ${fuenteImagenHTML}
 
                         <div class="social-share"> 
@@ -151,7 +151,7 @@ function cargarNoticiaPorId(idNoticia) {
 
                         <h2 class="noticialadillo">${objeto.ladillo2}</h2>
                         <p class="noticiatextualp">${objeto.cuerpo3}</p>
-                        <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                        <img class="noticiaimagencomplementaria noticiaimagencomplementariapaginaindividual" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
                    ${fuenteImagen2HTML}
                         <h2 class="noticialadillo">${objeto.ladillo3}</h2>
                         <p class="noticiatextualp">${objeto.cuerpo4}</p>
