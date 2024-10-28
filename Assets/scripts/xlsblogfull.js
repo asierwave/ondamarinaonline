@@ -70,7 +70,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
             var articuloHTML = `
               <div class="noticia" id="articulo-${objeto.id}">
                 <div class="noticiamedia">
-                  <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+                  <img class="noticiavideo noticiavideopaginaindividual" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
                     ${fuenteImagenHTML}
                 </div>
                 <div class="noticiatextual">
@@ -86,7 +86,7 @@ function cargarDatosDesdeGoogleSheetsNoticias() {
                   <p class="noticiatextualp">${objeto.cuerpo}</p>
                   <h2 class="noticialadillo">${objeto.ladillo1}</h2>
                   <p class="noticiatextualp">${objeto.cuerpo2}</p>
-                  <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+                  <img class="noticiaimagencomplementaria noticiaimagencomplementariapaginaindividual" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
   ${fuenteImagen2HTML}
                     <h2 class="noticialadillo">${objeto.ladillo2}</h2>
                   <p class="noticiatextualp">${objeto.cuerpo3}</p>
