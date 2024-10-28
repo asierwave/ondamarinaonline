@@ -111,7 +111,7 @@ var articuloHTML = `
       </div>
       <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
     </div>
-              <img class="noticiavideo" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+              <img class="noticiavideo noticiavideopaginaindividual" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
                 <p class="noticiavideopie">${objeto.fuenteImagen}</p>
                 <div class="noticiasredes">
                 </div>
@@ -119,7 +119,7 @@ var articuloHTML = `
     <p class="noticiatextualp">${objeto.cuerpo}</p>
     <h2 class="noticialadillo">${objeto.ladillo1}</h2>
     <p class="noticiatextualp">${objeto.cuerpo2}</p>
-    <img class="noticiaimagencomplementaria" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
+    <img class="noticiaimagencomplementaria noticiaimagencomplementariapaginaindividual" src="${objeto.imagen2}" alt="Imagen complementaria" style="max-width: auto; height: auto;">
                     <p class="noticiavideopie">${objeto.fuenteImagen2}</p>
     <h2 class="noticialadillo">${objeto.ladillo2}</h2>
     <p class="noticiatextualp">${objeto.cuerpo3}</p>

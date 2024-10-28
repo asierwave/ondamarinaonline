@@ -131,7 +131,7 @@ function cargarNoticiaPorId(idNoticia) {
                             <div class="noticiafecha"> <p>${objeto.subtitulo}</p></div>
                         </div>
 
-                        <img class="noticiavideo noticiavideopaginaindivual" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
+                        <img class="noticiavideo noticiavideopaginaindividual" src="${objeto.imagen}" alt="Imagen del artículo" style="max-width: auto; height: auto;">
                   ${fuenteImagenHTML}
 
                         <div class="social-share"> 
