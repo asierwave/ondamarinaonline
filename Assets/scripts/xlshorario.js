@@ -203,13 +203,13 @@ document.querySelectorAll('.diaBtn').forEach(button => {
           var programaSabado0 = document.getElementById("xlshs0");
           var programaDomingo0 = document.getElementById("xlshd0");
 
-          var programaLunes2 = document.getElementById("xlshl2");
-          var programaMartes2 = document.getElementById("xlshm2");
-          var programaMiercoles2 = document.getElementById("xlshx2");
-          var programaJueves2 = document.getElementById("xlshj2");
-          var programaViernes2 = document.getElementById("xlshv2");
-          var programaSabado2 = document.getElementById("xlshs2");
-          var programaDomingo2 = document.getElementById("xlshd2");
+          var programaLunes1 = document.getElementById("xlshl1");
+          var programaMartes1 = document.getElementById("xlshm1");
+          var programaMiercoles1 = document.getElementById("xlshx1");
+          var programaJueves1 = document.getElementById("xlshj1");
+          var programaViernes1 = document.getElementById("xlshv1");
+          var programaSabado1 = document.getElementById("xlshs1");
+          var programaDomingo1 = document.getElementById("xlshd1");
 
           var programaLunes3 = document.getElementById("xlshl3");
           var programaMartes3 = document.getElementById("xlshm3");
@@ -374,7 +374,7 @@ document.querySelectorAll('.diaBtn').forEach(button => {
   
         
 
-          if (arrayDeObjetos2.length > 0) {
+          if (arrayDeObjetos2.length > 1) {
             programaLunes0.textContent = arrayDeObjetos2[0].programalunes;
             programaMartes0.textContent = arrayDeObjetos2[0].programamartes;
             programaMiercoles0.textContent = arrayDeObjetos2[0].programamiercoles;
@@ -387,13 +387,13 @@ document.querySelectorAll('.diaBtn').forEach(button => {
           }
 
           if (arrayDeObjetos2.length > 1) {
-            programaLunes2.textContent = arrayDeObjetos2[1].programalunes;
-            programaMartes2.textContent = arrayDeObjetos2[1].programamartes;
-            programaMiercoles2.textContent = arrayDeObjetos2[1].programamiercoles;
-            programaJueves2.textContent = arrayDeObjetos2[1].programajueves;
-            programaViernes2.textContent = arrayDeObjetos2[1].programaviernes;
-            programaSabado2.textContent = arrayDeObjetos2[1].programasabado;
-            programaDomingo2.textContent = arrayDeObjetos2[1].programadomingo;
+            programaLunes1.textContent = arrayDeObjetos2[1].programalunes;
+            programaMartes1.textContent = arrayDeObjetos2[1].programamartes;
+            programaMiercoles1.textContent = arrayDeObjetos2[1].programamiercoles;
+            programaJueves1.textContent = arrayDeObjetos2[1].programajueves;
+            programaViernes1.textContent = arrayDeObjetos2[1].programaviernes;
+            programaSabado1.textContent = arrayDeObjetos2[1].programasabado;
+            programaDomingo1.textContent = arrayDeObjetos2[1].programadomingo;
         } else {
             console.error("No se encontraron datos para la fila de las 2:00 AM");
           }
@@ -407,7 +407,7 @@ document.querySelectorAll('.diaBtn').forEach(button => {
             programaSabado3.textContent = arrayDeObjetos2[2].programasabado;
             programaDomingo3.textContent = arrayDeObjetos2[2].programadomingo;
         } else {
-            console.error("No se encontraron datos para la fila de las 3:00 AM");
+            console.error("No se encontraron datos para la fila de las 8:30 AM");
           }
 
 
