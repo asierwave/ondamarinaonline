@@ -473,7 +473,6 @@ h2 {
 
   .galeria img {
     width: 100%;
-    height: fit-content;
     opacity: 0.6;
     margin: -0.13em;
     cursor: pointer;
