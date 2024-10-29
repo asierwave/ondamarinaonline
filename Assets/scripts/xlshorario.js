@@ -12,9 +12,13 @@
         function (response) {
           var datos = response.result.values;
           var arrayDeObjetos2 = [];
+          var arrayDeObjetosVisualizacion= [];
           if (datos && datos.length > 0) {
             for (var i = 1; i < datos.length; i++) {
+
               var fila = datos[i];
+
+              //Para el letrero rotativo
               var objeto = {
                 hora: fila[0],
                 programalunes: fila[1],
@@ -25,10 +29,169 @@
                 programasabado: fila[6],
                 programadomingo: fila[7],
               };
+
+
+
+
+              // Para visualizar el horario en cards
+         
+              var objetoVisualizacion = {
+                hora: fila[0], // La primera columna contiene la hora
+                programas: {
+                  lunes: fila[1] || '',
+                  martes: fila[2] || '',
+                  miercoles: fila[3] || '',
+                  jueves: fila[4] || '',
+                  viernes: fila[5] || '',
+                  sabado: fila[6] || '',
+                  domingo: fila[7] || '',
+                }
+              };
+
               arrayDeObjetos2.push(objeto);
+              arrayDeObjetosVisualizacion.push(objetoVisualizacion);
             }
           }
+
           console.log(arrayDeObjetos2);
+          console.log(arrayDeObjetosVisualizacion);
+
+
+          
+
+// Inicializa el contenedor principal
+var HorarioCardsContainer = document.getElementById('horarioVisualizador');
+HorarioCardsContainer.className = "horarioCardsContainer";
+
+// Crea un fragmento para mejorar el rendimiento
+const fragment = document.createDocumentFragment();
+
+// Inicializa arrays para almacenar programas de cada día
+var programacionLunes = [];
+var programacionMartes = [];
+var programacionMiercoles = [];
+var programacionJueves = [];
+var programacionViernes = [];
+var programacionSabado = [];
+var programacionDomingo = [];
+
+// Itera sobre el array de objetos y extrae los programas de cada día
+arrayDeObjetosVisualizacion.forEach(function(objetoVisualizacion) {
+  // Filtra la hora para eliminar todo lo que está después de "-", incluido
+  var horaFiltrada = objetoVisualizacion.hora.split('-')[0].trim();
+
+  // Verifica si hay un programa para cada día antes de agregarlo
+  if (objetoVisualizacion.programas.lunes) {
+      programacionLunes.push(horaFiltrada + ": " + objetoVisualizacion.programas.lunes);
+  }
+  if (objetoVisualizacion.programas.martes) {
+      programacionMartes.push(horaFiltrada + ": " + objetoVisualizacion.programas.martes);
+  }
+  if (objetoVisualizacion.programas.miercoles) {
+      programacionMiercoles.push(horaFiltrada + ": " + objetoVisualizacion.programas.miercoles);
+  }
+  if (objetoVisualizacion.programas.jueves) {
+      programacionJueves.push(horaFiltrada + ": " + objetoVisualizacion.programas.jueves);
+  }
+  if (objetoVisualizacion.programas.viernes) {
+      programacionViernes.push(horaFiltrada + ": " + objetoVisualizacion.programas.viernes);
+  }
+  if (objetoVisualizacion.programas.sabado) {
+      programacionSabado.push(horaFiltrada + ": " + objetoVisualizacion.programas.sabado);
+  }
+  if (objetoVisualizacion.programas.domingo) {
+      programacionDomingo.push(horaFiltrada + ": " + objetoVisualizacion.programas.domingo);
+  }
+});
+
+
+// Crea una tarjeta para cada día y añade todos los programas
+function crearTarjeta(dia, programas, clase) {
+    var card = document.createElement('div');
+    card.className = 'horarioCard ' + clase;
+    card.style.display = 'none'; // Oculta la tarjeta por defecto
+
+    programas.forEach(function(programa) {
+        var programacionSingle = document.createElement('p');
+        programacionSingle.textContent = programa;
+        card.appendChild(programacionSingle);
+    });
+
+    return card;
+}
+
+// Agrega cada tarjeta al fragmento
+var cardLunes = crearTarjeta('Lunes', programacionLunes, 'horarioCardLunes');
+var cardMartes = crearTarjeta('Martes', programacionMartes, 'horarioCardMartes');
+var cardMiercoles = crearTarjeta('Miércoles', programacionMiercoles, 'horarioCardMiercoles');
+var cardJueves = crearTarjeta('Jueves', programacionJueves, 'horarioCardJueves');
+var cardViernes = crearTarjeta('Viernes', programacionViernes, 'horarioCardViernes');
+var cardSabado = crearTarjeta('Sábado', programacionSabado, 'horarioCardSabado');
+var cardDomingo = crearTarjeta('Domingo', programacionDomingo, 'horarioCardDomingo');
+
+fragment.appendChild(cardLunes);
+fragment.appendChild(cardMartes);
+fragment.appendChild(cardMiercoles);
+fragment.appendChild(cardJueves);
+fragment.appendChild(cardViernes);
+fragment.appendChild(cardSabado);
+fragment.appendChild(cardDomingo);
+
+// Luego agrega el fragmento al contenedor
+HorarioCardsContainer.appendChild(fragment);
+
+// Función para mostrar/ocultar las tarjetas
+function toggleCard(dia) {
+  const cards = {
+      lunes: cardLunes,
+      martes: cardMartes,
+      miercoles: cardMiercoles,
+      jueves: cardJueves,
+      viernes: cardViernes,
+      sabado: cardSabado,
+      domingo: cardDomingo,
+  };
+
+  // Oculta todas las tarjetas
+  Object.values(cards).forEach(card => {
+      card.style.display = 'none';
+  });
+
+  // Muestra la tarjeta del día seleccionado
+  if (cards[dia]) {
+      cards[dia].style.display = 'block';
+  }
+  
+  // Cambiar el estado de los botones
+  document.querySelectorAll('.diaBtn').forEach(button => {
+      if (button.getAttribute('data-dia') === dia) {
+          button.classList.add('active'); // Agrega la clase 'active' al botón presionado
+      } else {
+          button.classList.remove('active'); // Elimina la clase 'active' de los demás botones
+      }
+  });
+}
+
+// Inicialmente, oculta todas las tarjetas
+toggleCard('lunes'); // Muestra solo la tarjeta del lunes al cargar la página
+
+// Añadir event listeners a los botones
+document.querySelectorAll('.diaBtn').forEach(button => {
+  button.addEventListener('click', function() {
+      const dia = this.getAttribute('data-dia');
+      toggleCard(dia);
+  });
+});
+
+
+
+
+
+
+
+            //PARA LETRERO ROTATIVO (CON'T)
+
+      
   
           // Asignación de valores a los elementos del HTML
 
@@ -492,6 +655,13 @@
   }
   
   
+
+
+
+
+
+
+  //LETRERO ROTATIVO FUNCIONAMIENTO
   
 
    // Definir la función mostrarProgramasActuales como arrow function

@@ -36,11 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Abrir o cerrar el contenedor actual
       if (!isOpen) {
         if (index === 0) {
-          container.style.maxHeight = `fit-content`; 
+          container.style.maxHeight = `fit-content`;  //Si no, ponerle un `${container.scrollHeight}px`; para que deslice al clickar el botón hasta ese bloque
           container.style.padding = "0 7vw";
         }else{
 
-        container.style.maxHeight = `${container.scrollHeight}px`;
+        container.style.maxHeight = `fit-content`; 
         container.style.padding = "0 7vw";
       }
         if (img) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Abrir el primer y el quinto contenedor al cargar la página
+    // Abrir el primer y el quinto contenedor al cargar la página (Container PROGRAMAS)
     if (index === 0) {
       container.style.maxHeight = `100%`;
       container.style.padding = "0 7vw";
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   });
 
-  // Evento para abrir el contenedor en la posición [3] al hacer clic en el botón "equipo"
+  // Evento para abrir el contenedor en la posición [3] EQUIPO al hacer clic en el botón "equipo"
   botonequipo.addEventListener("click", function () {
     const index = 3; // Posición del contenedor que deseas abrir
     if (index < tituloseparadores.length) {
