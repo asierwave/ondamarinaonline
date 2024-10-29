@@ -473,6 +473,7 @@ h2 {
 
   .galeria img {
     width: 100%;
+    height: fit-content;
     opacity: 0.6;
     margin: -0.13em;
     cursor: pointer;
@@ -493,7 +494,6 @@ h2 {
     position: fixed;
     flex-direction: column;
     padding:2rem 2rem 4rem 2rem;
-    z-index: 99999999999999; /* Asegura que esté en primer plano */
     left: 0;
     top: 0;
     width: 100%;
