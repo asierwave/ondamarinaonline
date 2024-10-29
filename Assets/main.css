@@ -466,21 +466,22 @@ h2 {
 
   .galeria {
     columns: 100px;   /* Para separar en columnas de 300px cada una */
-    height: fit-content;
-    overflow: auto;
     background-color: #fafafa;
+    gap: 0;
 
   }
 
   .galeria img {
     width: 100%;
-    margin-bottom: 1em;
-    opacity: 0.8;
+    opacity: 0.6;
+    padding: 0;
+    margin: -0.15em;
     cursor: pointer;
   }
 
   .galeria img:hover {
     opacity: 1;
+    scale: 1.02;
   }
 
 
