@@ -464,7 +464,18 @@ h2 {
 
 
 
-  
+  .galeria {
+    columns: 300px;
+    background-color: #fafafa;
+
+  }
+
+  .galeria img {
+    width: 100%;
+    margin-bottom: 1em;
+
+
+  }
 
 
 
