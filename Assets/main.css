@@ -2366,7 +2366,7 @@ footer {
      .horarioCard {
       display: flex;
       border-radius: 8px;
-      width: 100%;
+      width: 56vw;
       height: fit-content;
       flex-wrap: wrap;
       gap: 0.4rem;
@@ -2837,7 +2837,12 @@ scale: 1.01;
     }
 
 
-  
+    /* horario visualizacion */
+
+    .horarioCard {
+      width: 100%;
+
+    }
 
 
     
@@ -2883,6 +2888,9 @@ scale: 1.01;
     }
 
 
+
+
+  
 
     /*anuncio */
 
