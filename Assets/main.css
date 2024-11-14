@@ -1081,6 +1081,7 @@ border-radius: 0;
   top: 40px;
   max-width: 100%;
   justify-content: center;
+  align-items: flex-start;  /* para centrarlos horizontalmente */
   height: 100%;
   gap: 2rem;
   padding: 0 40vw 0 7vw;
@@ -1335,7 +1336,7 @@ background-color:#FAFAFA;
   border-radius: 4px;
   border: 1px solid #2F75A2;
   font-size: 14px;
-  width: 100%;
+  width: fit-content;
   margin: 0;
   padding: 14px 20px;
   display: flex;
