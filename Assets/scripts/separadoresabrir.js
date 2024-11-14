@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Evento para abrir el contenedor en la posición [3] EQUIPO al hacer clic en el botón "equipo"
   botonequipo.addEventListener("click", function () {
-    const index = 3; // Posición del contenedor que deseas abrir
+    const index = 4; // Posición del contenedor que deseas abrir
     if (index < tituloseparadores.length) {
       const titulo = tituloseparadores[index];
       const container = titulo.nextElementSibling;
