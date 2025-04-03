@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded and parsed");
 
-  const podcastcards = document.querySelector(".cards");
-  let podcastcardArray = document.querySelectorAll(".podcastcard");
+  const podcastcards = document.querySelector(".podcastCards");
+  let podcastcardArray = document.querySelectorAll(".podcastCard");
   let counterpodcastCard = 0;
   const intervalTimePodcastCard = 3000;
   let autoSlidePodcastCard;
 
   // Refresca la lista de podcast cards
   const refreshPodcastCards = () => {
-      podcastcardArray = document.querySelectorAll(".podcastcard");
+      podcastcardArray = document.querySelectorAll(".podcastCard");
   };
 
   // Actualiza el contenido del botón masprogramasrecientes
