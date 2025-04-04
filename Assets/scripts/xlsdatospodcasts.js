@@ -120,7 +120,7 @@ function cargarDatosDesdeGoogleSheets() {
 
                   
                 if (nombreAutor) {
-                    daysHTML += `<a href="${linkAutor}" target="_blank" class="podcastAutor"><img src="Assets/logos/${imagenAutor}" class="podcastImagenAutor"><h6>${nombreAutor}</h6></a>`;
+                    daysHTML += `<a href="${linkAutor}" target="_blank" class="podcastAutor"><img src="Assets/equipo/${imagenAutor}" class="podcastImagenAutor"><h6>${nombreAutor}</h6></a>`;
 
                 }
             
