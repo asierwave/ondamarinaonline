@@ -86,11 +86,17 @@ function cargarDatosDesdeGoogleSheets() {
   </svg></a>`;
                     }
 
+<<<<<<< HEAD
                     if (spotifyLink) {
                         daysHTML += `<a style="background:green;" class="podcastAutorRsBubble" href="${spotifyLink}" target="_blank">
                             <img src="Assets/mapalocalizaciones/spotifylogo.png" alt="Logo Spotify">
                         </a>`;
                     }
+=======
+                  
+                if (nombreAutor) {
+                    daysHTML += `<a href="${linkAutor}" target="_blank" class="podcastAutor"><img src="Assets/equipo/${imagenAutor}" class="podcastImagenAutor"><h6>${nombreAutor}</h6></a>`;
+>>>>>>> 258fa6509b677e0250af50ee04b3426f7f44bf14
 
                     if (IvooxLink) {
                         daysHTML += `<a style="background:#2c2c2c;" class="podcastAutorRsBubble" href="${IvooxLink}" target="_blank">
