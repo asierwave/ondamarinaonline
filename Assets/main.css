@@ -1295,7 +1295,7 @@ background-color:#FAFAFA;
 
 .descriptionon {
   background-color: #f1f1f1;
-  color: #2F75A2;
+  color: #8c8c8c;
   border-radius: 40px;
   width: fit-content;
   height: 42px;
@@ -2035,18 +2035,19 @@ button.podcastsprev:hover, button.podcastsnext:hover {
 
 
 .podcastAutor h6{
-  color: #2F75A2;
-  background-color: #f1f1f1;
+  color: #fafafa;
+  background-color: #2F75A2;
   padding: 12px 32px;
   border-radius: 40px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 500;
   width: auto;
+  letter-spacing: 0.3em;
   margin-left:-2px;
   text-align: center;
   transition: all 0.3s ease;
-  box-shadow: #2c2c2c40 0px 0px 5px 0px;
+  /* box-shadow: #2c2c2c40 0px 0px 5px 0px; */
   overflow: hidden;
 
   position: relative;
@@ -2097,12 +2098,12 @@ button.podcastsprev:hover, button.podcastsnext:hover {
 .podcastImagenAutor {
   display: flex;
   border-radius: 40px;
-  box-shadow: #2c2c2c40 0px 0px 5px 0px;
+  /* box-shadow: #2c2c2c40 0px 0px 5px 0px; */
   align-items: center;
   text-decoration: none;
   color: #2F75A2;
   background-color: #f1f1f1;
-  padding:0.2rem;
+  padding:0.4rem;
   letter-spacing: normal;
   margin-right: 0;
   width: 38px;
@@ -2123,7 +2124,7 @@ button.podcastsprev:hover, button.podcastsnext:hover {
 }
 
 .podcastAutorRsBubble {
-  background-color: #2c2c2c !important;
+  background-color: #2F75A2 !important;
   max-width: 38px;
   object-fit: contain;
   height: 38px;
@@ -2157,6 +2158,51 @@ button.podcastsprev:hover, button.podcastsnext:hover {
   cursor: pointer;
   scale: 1.08;
 
+}
+
+
+/*DESCRIPCION DEL PODCAST COLAPSABLE */
+/* Estilos para el sistema de leer más/leer menos */
+
+.dots {
+  display: inline;
+}
+
+.parrafoleermas {
+  position: relative;
+  display: inline;
+  line-height: 1.5;
+  margin-bottom: 1em;
+}
+
+.leer-mas-text {
+  color: #fafafa;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  background-color: #2F75A2;
+  border-radius: 80px;
+  display: inline;
+  margin-left: 4px;
+  /* text-decoration: underline; */
+  white-space: nowrap;
+}
+
+.leer-mas-text:hover {
+  background-color: #4c4c4c;
+}
+
+.full-description {
+  display: none;
+}
+
+/* Cuando está expandido */
+.parrafoleermas.expanded .full-description {
+  display: inline;
+}
+
+.parrafoleermas.expanded .leer-mas-text::after {
+  content: "-";
 }
 
 
